@@ -1,0 +1,103 @@
+body{
+  background-color: antiquewhite;
+  box-sizing: border-box;
+}
+
+header{
+  text-align: center;
+}
+
+#logo{
+  border: 1px solid rgb(83, 24, 24);
+  border-radius: 10px ;
+  margin-top:20px;  
+}
+
+h1 {
+  font-size: 60px;
+  text-align: center;
+  margin: 50px 0px 0px 5px;
+  color:rgba(70, 8, 6, 0.561);
+}
+
+h2{
+  font-size: 45px;
+  text-align: center;
+  color:rgba(53, 17, 17, 0.712);
+}
+
+.link-paginas{
+  font-size: 28px;
+  text-align: center;
+}
+
+a{
+  text-decoration: none;
+  color: rgba(53,17, 17, 0.712)
+}
+
+.infor-loja{
+  font-size: 31px;
+  text-align: center;
+  color:rgba(63, 17, 17, 0.753)
+}
+
+h3{
+  font-size: 30px;
+  text-align: center;
+  color:rgba(63, 17, 17, 0.89)
+}
+
+.logo-redes img {
+  width:50px;
+  padding: 18px;
+}
+
+#redes{
+  display:inline-block;
+  padding:0px 150px 0px 150px;
+}
+
+.form-produto{
+  font-size: 38px;
+  margin-top:150px;
+}
+
+.lista-funcionarios{
+  font-size: 25Px;
+}
+
+input{
+  height: 20px;
+  width: 400px;
+}
+
+table{
+  width: 100%;
+  height: 100%;
+  font-size:29px;
+  color:rgba(63, 17, 17, 0.89);
+  background-clip: padding-box;
+  display: inline-block;
+  margin: 40px 0px 150px 0px;
+}
+
+tr img{
+  border: 2px solid rgba(150, 80, 80, 0.459);
+  border-radius:10px;
+  width: 90%;
+}
+
+footer{
+  position:absolute;
+  bottom: 0;
+  background-color: rgb(179, 139, 84);
+  width:100%;
+  text-align: center;
+  line-height: 50px;
+}
+
+.rodape{
+  position: fixed;
+}
+
