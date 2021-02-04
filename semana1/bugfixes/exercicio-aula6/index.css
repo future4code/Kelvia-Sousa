@@ -111,10 +111,13 @@ div:last-child {
 table {
     width: 60%;
     margin: 0 auto;
-    padding-left: 100px;
+    padding-left: 50px;
     font-family: 'Roboto', sans-serif;
 }
 
+td{
+    min-width: 200px;
+}
 
 td img{
     height: 50px;
