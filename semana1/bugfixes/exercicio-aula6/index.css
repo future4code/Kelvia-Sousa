@@ -100,7 +100,13 @@ div:last-child {
 
 table {
     width: 60%;
-    margin: 0 auto;
+    margin: auto;
+    padding-right: 0px;
+}
+
+td img{
+    height: 50px;
+    width: 50px;
 }
 
 td button {
