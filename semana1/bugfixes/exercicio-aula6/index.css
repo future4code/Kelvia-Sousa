@@ -98,6 +98,11 @@ div:last-child {
     text-align: center;
 }
 
+.campo-texto{
+    border: none;
+    border-bottom: 2px solid black;
+}
+
 .icone{
     height: 15px;
     width: 40px;
