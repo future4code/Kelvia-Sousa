@@ -110,10 +110,11 @@ div:last-child {
 
 table {
     width: 60%;
-    margin: auto;
-    padding-right: 0px;
+    margin: 0 auto;
+    padding-left: 100px;
     font-family: 'Roboto', sans-serif;
 }
+
 
 td img{
     height: 50px;
@@ -126,6 +127,7 @@ td button {
     height: 30px;
     border-radius: 5px;
     color: black;
+    font-family: 'Roboto', sans-serif;
 }
 
 button:hover{
