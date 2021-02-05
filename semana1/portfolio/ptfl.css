@@ -1,0 +1,143 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+/* Página Principal */
+
+header, main, section, article, nav{
+  text-align: center;
+}
+
+header{
+  border-radius: 20px;
+  margin: 15px 0px;
+}
+
+#menu{
+  font-size:20px;
+  display: flex;
+  position: relative;
+  margin: 0 550px;
+  
+}
+
+h1{
+  font-size: 40px;
+  font-family: 'Lobster', cursive;
+}
+h2{
+  font-size: 25px;
+  font-family: 'Satisfy', cursive;
+}
+
+h3{
+  font-size: 20px;
+}
+
+main{
+  display: flex;
+  margin:0px ;
+}
+
+nav{
+  background-color:rgba(181, 196, 238, 0.39);
+  display:inline-block;
+  padding: 50px 15px;
+  border-radius:20px;
+}
+
+
+img{
+  width: 80px;
+  height: 80px;
+}
+
+h1, h2, h3, p{
+  text-align: center;
+  margin: 10px 30px;
+
+}
+
+.logoInstit, .redes{
+  width:30px;
+  height: 30px;
+  border: 1px solid rgba(41, 28, 28, 0.164);
+  border-radius: 10px;
+}
+
+ul{
+  list-style: none;
+}
+
+li{
+  display: flex;
+  text-align: left;
+  padding: 5px;
+}
+
+article{
+  background-color: rgba(240, 248, 255, 0.918);
+  display:inline-block;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+}
+
+section .projetos{
+  border: 1px solid black;
+  display:inline-block;
+}
+
+.projetos-foto{
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 150px;
+  height: 100px;
+}
+
+.habil{
+  padding:50px 50px;
+}
+
+
+.contato{
+  padding: 50px 150px;
+}
+
+
+label{
+  display: flex;
+}
+
+#message{
+  padding:20px 0px; 
+}
+
+footer{
+  text-align:center;
+  padding:10px;
+  margin: 0 auto; 
+  position: relative;
+  font-family: 'Satisfy', cursive;
+}
+
+.rodape{
+  margin: 50px 0px;
+}
+
+/* Paginas secundárias */
+
+#descricao{
+  padding: 50px;
+  margin: 50px 50px;
+}
+
+.imagem-projeto{
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 60%;
+  height: 400px;
+  margin:20 80px;
+}
+
