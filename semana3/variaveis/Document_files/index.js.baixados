@@ -1,0 +1,32 @@
+/* Exercícios de interpretação de código
+
+1)
+Primeira impressão: 10, 10 
+Segunda impressão; 10, 5
+
+2) 
+Impressão: 10, 20, 10
+*/
+
+/*Exercícios de escrita de código
+1) */
+
+// let name; //a
+// console.log(typeof name) //c
+
+// let age; //b
+// console.log(typeof age)//c
+
+// Foi impresso um Undefined, pois, não foi definido, atribuido nada para as variavel name e age. //d
+
+
+let name = prompt('Qual seu nome? ')//d
+let age = prompt('Qual sua idade? ')//d
+console.log(name, age)
+
+// console.log(typeof name)
+// console.log(typeof age)
+
+//As duas respostas foram consideradas como String. //e
+
+console.log('Olá', name, ', você tem:', age, 'anos')
