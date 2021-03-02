@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    display: flex;
+    justify-content: space-evenly;
+    height: 80vh;
+}
+
+.semana {
+    border: 1px dotted rgb(53, 53, 53);
+    width: 14%;
+    padding: 5px;
+}
+
+p{
+    color: rgb(131, 70, 187);
+    font-size: 4vh;
+    padding-top: 10px;
+}
+
+.botaoLimpar{
+    display: flex;
+    justify-content:center;
+    padding: 10px 0px;
+}
