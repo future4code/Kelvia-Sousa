@@ -2,11 +2,11 @@ import React, {Component} from 'react'
 import './SecaoComentario.css'
 
 export class SecaoComentario extends Component {
-	state = {
+	state = { // objeto
 		entradaComentario: ''
 	}
 
-	onChangeComentario = (event) => {
+	onChangeComentario = (event) => { //arrow function - para value ser colocado pelo usuário
 		this.setState({entradaComentario: event.target.value })
 		console.log(event.target.value)
 	}
