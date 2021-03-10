@@ -1,0 +1,15 @@
+.compartilhar-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.redes{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.redes > img {
+    height: 24px;
+}
