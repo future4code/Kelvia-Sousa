@@ -22,9 +22,9 @@ class App extends React.Component {
       fotoUsuario: 'https://i.pinimg.com/236x/f3/28/8c/f3288cdb177e602aa28c15291ef7407d.jpg',
       fotoPost: 'https://picsum.photos/140/150',
       },
-    ]
+    ],
 
-    valorInputPessoa: "",
+    valorInputPessoa:"",
     valorInputFotoUsuario:"",
     valorInputFotoPost:""
   };
@@ -55,12 +55,34 @@ class App extends React.Component {
     return (
     <Post nomeUsuario={post.nomeUsuario} fotoUsuario={post.fotoUsuario} fotoPost={post.fotoPost}/>
     )
-    })
+    });
 
     return (
-    <div className={'app-container'}> 
-    {ListaDeComponentes}
+    <div>
+          <h1>Novo usuário</h1>
+      <div>
+        <input 
+          value={this.state.valorInputPessoa}
+          onChange={this.onChangeInputPessoa }
+          placeholder={"Nome"}
+        />
+        <input 
+          value={this.state.valorInputFotoUsuario}
+          onChange={this.onChangeInputFotoUsuario } 
+          placeholder={"Foto do usuário"}
+        />
+        <input 
+          value={this.state.valorInputFotoPost}
+          onChange={this.onChangeInputFotoPost } 
+          placeholder={"Foto Postagem"}
+        />
+        <button onClick={this.novosPosts}>Postar</button>
+      </div>
+      
+      <div className={'app-container'}>{ListaDeComponentes}</div>
+
     </div>
+    
     );
   }
 }
