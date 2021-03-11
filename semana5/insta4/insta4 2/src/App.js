@@ -23,6 +23,31 @@ class App extends React.Component {
       fotoPost: 'https://picsum.photos/140/150',
       },
     ]
+
+    valorInputPessoa: "",
+    valorInputFotoUsuario:"",
+    valorInputFotoPost:""
+  };
+
+  novosPosts = () => {
+    const novoPost = {
+      nomeUsuario: this.state.valorInputPessoa,
+      fotoUsuario: this.state.valorInputFotoUsuario,
+      fotoPost: this.state.valorInputFotoPost
+    }
+
+    const novaPostagem = [...this.state.posts, novoPost]
+    this.setState({posts: novaPostagem})
+  }
+
+  onChangeInputPessoa = (event) => {
+    this.setState({ valorInputPessoa: event.target.value })
+  }
+  onChangeInputFotoUsuario = (event) => {
+    this.setState({ valorInputFotoUsuario: event.target.value })
+  }
+  onChangeInputFotoPost = (event) => {
+    this.setState({ valorInputFotoPost: event.target.value })
   }
 
   render() {
