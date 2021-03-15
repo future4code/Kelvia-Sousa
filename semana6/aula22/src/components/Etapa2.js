@@ -2,10 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Corpo = styled.div `
-    height: 80vh;
+    height: 60vh;
     width: 500px;
     box-sizing: border-box;
-    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
