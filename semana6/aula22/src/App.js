@@ -41,8 +41,10 @@ export default class App extends React.Component {
       <BotaoContainer>
         
           {this.renderizaEtapa()}
-          <button onClick={this.irParaProximaEtapa}>Próxima Etapa</button>
-        
+          {this.state.etapa !== 4 && (
+          <button onClick={this.irParaProximaEtapa}>Próxima etapa</button>
+          )}
+
       </BotaoContainer>
     )
   }

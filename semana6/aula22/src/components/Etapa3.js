@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PerguntaAberta from "./PerguntaAberta";
 
 const Corpo = styled.div `
     height: 60vh;
@@ -16,8 +17,8 @@ export class Etapa3 extends React.Component {
         return (
             <Corpo>
                 <h3>ETAPA 3 - INFORMAÇÕES GERAIS DE ENSINO</h3>
-                <p>5- Por que você não terminou um curso de graduação?</p>
-                <input></input>
+                <PerguntaAberta perguntas={"5- Por que você não terminou um curso de graduação?"} />
+                
                 <p>6- Você fez algum curso complementar? </p>
                 <select>
                     <option>Não fiz curso complementar</option>
