@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PerguntaAberta from "./PerguntaAberta";
+import PerguntaFechada from "./PerguntaFechada";
 
 const Corpo = styled.div `
     height: 60vh;
@@ -13,7 +14,6 @@ const Corpo = styled.div `
 ` 
 
 
-
 export class Etapa1 extends React.Component {
     render () {
         return (
@@ -22,7 +22,8 @@ export class Etapa1 extends React.Component {
                 <PerguntaAberta perguntas={"1- Qual o seu nome?"} />
                 <PerguntaAberta perguntas={"2 - Qual sua idade? "} />
                 <PerguntaAberta perguntas={"3 - Qual seu email?"} />
-                <p>4 - Qual a sua escolaridade </p>
+                
+                <PerguntaFechada pergunta={'4 - Qual a sua escolaridade?'}/>
                 <select>
                     <option>Ensino Médio Incompleto</option>
                     <option>Ensino Médio Completo</option>
