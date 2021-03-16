@@ -20,18 +20,7 @@ const InputsContainer = styled.div`
 
 class App extends React.Component {
     state = {
-      tarefas: [
-      {
-        id: Date.now(), // Explicação abaixo
-        texto: 'Estudar',
-        completa: false // Indica se a tarefa está completa (true ou false)
-      },
-      {
-        id: Date.now(), // Explicação abaixo
-        texto: 'Ler um livro',
-        completa: true // Indica se a tarefa está completa (true ou false)
-      },
-      ],
+      tarefas: [],
       inputValue: '',
       filtro: ''
     }
@@ -50,12 +39,14 @@ class App extends React.Component {
 
   criaTarefa = () => {
     const novaTarefa = {
-      id: Date.now(), // aqui, pode deixar o valor Date.now() para todas as tarefas as serem criadas
-      texto: this.state.inputValue, // aqui, o texto da tarefa virá do input controlado guardado no estado
-      completa: false // aqui, pode deixar o valor false para todas as tarefas as serem criadas, pq a tarefa sempre vai começar como não completa.
+      id: Date.now(), 
+      texto: this.state.inputValue, // input controlado 
+      completa: false // a tarefa sempre vai começar como não completa.
     }
     const copiaDoEstado  = [...this.state.tarefas, novaTarefa]
     this.setState({tarefas: copiaDoEstado})
+
+    this.setState({inputValue: ""}); //Limpar o input após adicionar
 
   }
 
@@ -78,7 +69,7 @@ class App extends React.Component {
   }
 
   onChangeFilter = (event) => {
-
+    this.setState({filtro: event.target.value})
   }
 
   render() {
