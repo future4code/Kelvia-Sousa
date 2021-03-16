@@ -30,7 +30,9 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-
+    const tarefaEmString = localStorage.getItem('novaTarefa')
+    const tarefaEmObjeto = JSON.parse(tarefaEmString)
+    this.setState({novaTarefa: tarefaEmObjeto.tarefas})
   };
 
   onChangeInput = (event) => {
@@ -46,11 +48,11 @@ class App extends React.Component {
     const copiaDoEstado  = [...this.state.tarefas, novaTarefa]
     this.setState({tarefas: copiaDoEstado})
 
+    localStorage.setItem('novaTarefa', JSON.stringify(novaTarefa))
+
     this.setState({inputValue: ""}); //Limpar o input após adicionar
 
   }
-
- 
 
   selectTarefa = (id) => {
     const alterarStatus = this.state.tarefas.map((tarefa) => {
