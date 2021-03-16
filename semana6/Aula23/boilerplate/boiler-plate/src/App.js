@@ -54,15 +54,27 @@ class App extends React.Component {
       texto: this.state.inputValue, // aqui, o texto da tarefa virá do input controlado guardado no estado
       completa: false // aqui, pode deixar o valor false para todas as tarefas as serem criadas, pq a tarefa sempre vai começar como não completa.
     }
-    const novaListaTarefas = [...this.state.tarefas, novaTarefa]
-    this.setState({tarefas: novaListaTarefas})
+    const copiaDoEstado  = [...this.state.tarefas, novaTarefa]
+    this.setState({tarefas: copiaDoEstado})
 
   }
 
  
 
   selectTarefa = (id) => {
+    const alterarStatus = this.state.tarefas.map((tarefa) => {
+      if (id === tarefa.id){
+        const novaTarefa = {
+          ...tarefa,
+          completa: !tarefa.completa
+        }
+        return novaTarefa
+      }else {
+        return tarefa
+      }
+    })
 
+    this.setState({ tarefas: alterarStatus })
   }
 
   onChangeFilter = (event) => {
