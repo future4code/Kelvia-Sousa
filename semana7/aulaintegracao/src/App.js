@@ -1,4 +1,4 @@
-import Creat from "./components/Creat";
+import Creat from "./components/Create";
 import List from "./components/List";
 import React from 'react'
 import styled from 'styled-components'
@@ -25,7 +25,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Button onClick={this.mostrarLista}>Ir para a Lista/ Voltar</Button>
+        <Button onClick={this.mostrarLista}>Ver lista / Voltar</Button>
         {this.state.novo ? <Creat/>: <List/>}
       </div>
     );

@@ -1,17 +1,17 @@
 import React from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { axiosConfig, baseUrl } from "../parameters";
+import { axiosConfig, baseUrl } from "../parametros";
 
 const Container = styled.div`
-  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const Entradas = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 80px;
-  margin-top: 80px;
   width: 40vh;
   padding: 40px;
   border: 1px solid black;
@@ -66,6 +66,7 @@ export default class Creat extends React.Component {
   render() {
     return(
         <Container>
+          <h2>Adicione Novos Usuários</h2>
             <Entradas>
                 <label>Nome:</label>
                 <input type="text" value={this.state.name} onChange={this.handleName}/>
