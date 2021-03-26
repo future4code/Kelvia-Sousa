@@ -49,11 +49,10 @@ export default class Create extends React.Component{
    return (
       <Content>
         <UserCreation>
-          <h1>LABEFY</h1>
           <h2>Create your favorite playlists</h2>
           <label>Your Playlist Name</label>
           <input
-          placeholder='name'
+          placeholder='Name'
           value={this.state.name}
           onChange={this.handleName}
           />

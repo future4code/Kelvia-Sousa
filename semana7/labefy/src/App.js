@@ -13,7 +13,7 @@ const Content = styled.div`
   
 ` 
 const Button = styled.button`
-  margin-top: 48px;
+  margin: 20vh;
 ` 
 
 export default class  App extends React.Component {
@@ -27,9 +27,12 @@ export default class  App extends React.Component {
 
   render() {
     return (
+      
       <Content>
+        <header><h1>LABEFY</h1></header>
         {this.state.pages ? <Create/> : <View/>}
         <Button onClick={this.changePage}>See your playlists / Create </Button>
+        <footer>FOOTER</footer>
       </Content>
     );
   }
