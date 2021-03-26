@@ -13,22 +13,44 @@ const ListsContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    justify-content: space-between
 ` 
-const ButtonDelete = styled.span`
+
+const Lista = styled.li`
+  display: flex;
+  flex-direction: column;
+  width: 40vh;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  padding: 10px;
+`
+
+const ButtonDelete = styled.button`
   color: red;
   cursor: pointer;
 `
 
 export default class View extends React.Component {
     state = {
-        playlists: []
+        playlists: [],
+        name: '',
+        artist:'',
+        url:''
     }
+
+    handleName = (event) => {
+      this.setState({name: event.target.value})
+    };
+    handleArtist = (event) => {
+      this.setState({artist: event.target.value})
+    };
+    handleUrl = (event) => {
+      this.setState({url: event.target.value})
+    };
 
     componentDidMount() {
        this.getAllPlaylists()
     }
+    
 
     getAllPlaylists = async () => {
         try{
@@ -46,7 +68,7 @@ export default class View extends React.Component {
                 .then((response)=>{
                     console.log(response)
                     this.getAllPlaylists()
-                    alert('deleted playlist')
+                    alert('The playlist has been deleted ')
                 })
                 .catch((error) => {
                     console.log(error.response.data)
@@ -54,18 +76,43 @@ export default class View extends React.Component {
         }     
     }
 
+  addTrackToPlaylist = (playlistId, tracks) => {
+      const body = {
+        name: '',
+        artist: '',
+        url:''
+      };
+      console.log(body)
+        axios.post(`${baseUrl}/${playlistId}/${tracks}`, body, axiosConfig)
+      .then((response) => {
+        /* this.getAllPlaylists() */
+        alert('Success. Your song has been added')
+        this.setState({name: '', artist: '', url: ''})
+        console.log(response.data.message)
+      })
+      .catch((error) => {
+        console.log(error.response.data.message)
+        /* alert('Sorry, try adding the song again') */
+      })
+  }
+
 
     render(){
         const allPlaylists = this.state.playlists.map((list) => {
             return (
-                <div key={list.id}>
-                    <p>{list.name} 
-                    <ButtonDelete onClick={() => this.deletePlaylist(list.id)}> 
-                    X
-                    </ButtonDelete>
-                    </p>
+                <Lista key={list.id}>
+                    <p>{list.name}</p>
+                    <ButtonDelete onClick={() => this.deletePlaylist(list.id)}> Delete </ButtonDelete>
                     
-                </div>
+                    <h4>Add a song</h4>
+                    <label>Song Name</label>
+                    <input type='text' value={this.state.name} onChange={this.handleName}/>
+                    <label>Artist Name</label>
+                    <input type='text' value={this.state.artist} onChange={this.handleArtist}/>
+                    <label>Song link</label>
+                    <input type='url' value={this.state.url} onChange={this.handleUrl}/>
+                    <button onClick={this.addTrackToPlaylist(list.playlistId)}>Add</button>
+                </Lista>
             )
         })
         return(
