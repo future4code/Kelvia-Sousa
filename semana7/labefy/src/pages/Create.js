@@ -7,10 +7,8 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
-  max-width: 1280px;
-  min-width: 350px;
-  margin: 18vh;
+  padding: 20px;
+  border: 1px solid black;
 ` 
 const UserCreation = styled.div`
   display: flex;

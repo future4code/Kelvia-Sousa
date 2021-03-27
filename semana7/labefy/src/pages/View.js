@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { axiosConfig, baseUrl } from '../parameters';
+import Details from '../pages/Details';
 
 const PlaylistContent = styled.div`
     display: flex;
@@ -22,8 +23,11 @@ const Lista = styled.li`
   flex-direction: column;
   width: 40vh;
   justify-content: space-between;
-  border-bottom: 5px solid black;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 5px;
   padding: 10px;
+  margin: 5px
 `
 
 const ButtonDelete = styled.button`
@@ -31,12 +35,28 @@ const ButtonDelete = styled.button`
   cursor: pointer;
 `
 
+const Add = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 80%;
+    font-size: 14px;
+`
+
 export default class View extends React.Component {
     state = {
         playlists: [],
         name: '',
         artist:'',
-        url:''
+        url:'',
+        seeTracks: false
+    }
+
+    seeAllTracks = () => {
+        this.setState({seeTracks: !this.state.seeTracks})
     }
 
     handleName = (event) => {
@@ -52,7 +72,7 @@ export default class View extends React.Component {
     componentDidMount() {
        this.getAllPlaylists()
     }
-    
+        
 
     getAllPlaylists = async () => {
         try{
@@ -94,29 +114,34 @@ export default class View extends React.Component {
       })
       .catch((error) => {
         console.log(error.response.data.message)
-        /* alert('Sorry, try adding the song again') */
+        alert('Sorry, try adding the song again')
       })
   }
 
-
+    
     render(){
         const allPlaylists = this.state.playlists.map((list) => {
             return (
                 <Lista key={list.id}>
-                    <p>{list.name}</p>
-                    <ButtonDelete onClick={() => this.deletePlaylist(list.id)}> Delete </ButtonDelete>
-                    
-                    <h4>Add a song</h4>
-                    <label>Song Name</label>
-                    <input type='text' value={this.state.name} onChange={this.handleName}/>
-                    <label>Artist Name</label>
-                    <input type='text' value={this.state.artist} onChange={this.handleArtist}/>
-                    <label>Song link</label>
-                    <input type='url' value={this.state.url} onChange={this.handleUrl}/>
-                    <button onClick={() => this.addTrackToPlaylist(list.id)}>Add</button>
+                    <h3>{list.name}</h3>
+                    <Add>
+                        <h4>Add your favorite songs</h4>
+                        <label>Song Name</label>
+                        <input type='text' value={this.state.name} onChange={this.handleName}/>
+                        <label>Artist Name</label>
+                        <input type='text' value={this.state.artist} onChange={this.handleArtist}/>
+                        <label>Song link</label>
+                        <input type='url' value={this.state.url} onChange={this.handleUrl}/>
+                        <button onClick={() => this.addTrackToPlaylist(list.id)}>Add Song</button>
+                    </Add>
+                    <br/>
+                    <ButtonDelete onClick={() => this.deletePlaylist(list.id)}> Delete Playlist</ButtonDelete>
+                    <br/>
+                    <button onClick={this.seeAllTracks}>See Tracks</button>
+                    {this.state.seeTracks ? <Details/> : <div/>}
                 </Lista>
             )
-        })
+        });
         return(
             <PlaylistContent>
                 <h1>All your Playlists</h1>
