@@ -10,7 +10,7 @@ const Content = styled.div`
   width: 80%;
   max-width: 1280px;
   min-width: 350px;
-  margin-top: 48px;
+  margin: 18vh;
 ` 
 const UserCreation = styled.div`
   display: flex;

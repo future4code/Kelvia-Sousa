@@ -13,7 +13,7 @@ const Content = styled.div`
   
 ` 
 const Button = styled.button`
-  margin: 20vh;
+  margin: 10px;
 ` 
 const Header = styled.header`
   border-bottom: 1px solid blue;
@@ -23,8 +23,6 @@ const Header = styled.header`
 const Footer = styled.footer`
   border-top: 1px solid blue;
   width: 100vh;
-  
-  
 ` 
 
 export default class  App extends React.Component {
@@ -41,8 +39,8 @@ export default class  App extends React.Component {
       
       <Content>
         <Header><h1>LABEFY</h1></Header>
-        {this.state.pages ? <Create/> : <View/>}
         <Button onClick={this.changePage}>See your playlists / Create </Button>
+        {this.state.pages ? <Create/> : <View/>}
         <Footer>
           <h1>Footer</h1>
         </Footer>

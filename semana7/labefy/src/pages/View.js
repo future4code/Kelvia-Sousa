@@ -7,12 +7,14 @@ const PlaylistContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 ` 
 
 const ListsContainer = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
+    margin-left: 100px;
 ` 
 
 const Lista = styled.li`
@@ -20,7 +22,7 @@ const Lista = styled.li`
   flex-direction: column;
   width: 40vh;
   justify-content: space-between;
-  border-bottom: 1px solid black;
+  border-bottom: 5px solid black;
   padding: 10px;
 `
 
@@ -76,14 +78,14 @@ export default class View extends React.Component {
         }     
     }
 
-  addTrackToPlaylist = (playlistId, tracks) => {
+  addTrackToPlaylist = (playlistId) => {
       const body = {
-        name: '',
-        artist: '',
-        url:''
+        name: this.state.name,
+        artist: this.state.artist,
+        url: this.state.url
       };
       console.log(body)
-        axios.post(`${baseUrl}/${playlistId}/${tracks}`, body, axiosConfig)
+        axios.post(`${baseUrl}/${playlistId}/tracks`, body, axiosConfig)
       .then((response) => {
         /* this.getAllPlaylists() */
         alert('Success. Your song has been added')
@@ -111,7 +113,7 @@ export default class View extends React.Component {
                     <input type='text' value={this.state.artist} onChange={this.handleArtist}/>
                     <label>Song link</label>
                     <input type='url' value={this.state.url} onChange={this.handleUrl}/>
-                    <button onClick={this.addTrackToPlaylist(list.playlistId)}>Add</button>
+                    <button onClick={() => this.addTrackToPlaylist(list.id)}>Add</button>
                 </Lista>
             )
         })
