@@ -4,7 +4,7 @@ import { axiosConfig, baseUrl } from '../parameters';
 
 export default class Details extends React.Component {
     state = {
-        tracks: []
+        tracksList: []
     }
 
     componentDidMount(){
@@ -12,33 +12,28 @@ export default class Details extends React.Component {
     }
 
    
-    getPlaylistTracks = (playlistId) => {
-         axios.get(`${baseUrl}/${playlistId}/tracks`, axiosConfig)
-            .then((response) => {
-                this.setState({tracks: response.data.results.tracks})
-                console.log(response.data)
-                
-            }).catch((error) => {
+    getPlaylistTracks = async (playlistId) => {
+        try{
+            const response = await axios.get(`${baseUrl}/${playlistId}/tracks`, axiosConfig)
+            this.setState({tracksList: response.data.result.tracks})
+            console.log(response.data)
+        }catch(error){
             console.log(error.response.data)
-            })
+        }
     }
 
     render(){
-        const allTracks =this.state.tracks.map((list) => {
+        const allTracks =this.state.tracksList.map((list) => {
             return(
-                <div>
-                    <li key={list.id}>
-                        {list.tracks}
-                    </li>
+                <div key={list.id}>
+                    <p>{list.tracks}</p>
                 </div>
             )
         })
         return(
             <div>
                 <h4>All Tracks</h4>
-                <div>
-                    {allTracks}
-                </div>
+                {allTracks}
             </div>
         )
     }

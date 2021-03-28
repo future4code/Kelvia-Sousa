@@ -52,11 +52,16 @@ export default class View extends React.Component {
         name: '',
         artist:'',
         url:'',
-        seeTracks: false
+        seeTracks: false,
+        add: false
     }
 
     seeAllTracks = () => {
         this.setState({seeTracks: !this.state.seeTracks})
+    }
+
+    addTracks = () => {
+        this.setState({add: !this.state.add })
     }
 
     handleName = (event) => {
@@ -124,16 +129,20 @@ export default class View extends React.Component {
             return (
                 <Lista key={list.id}>
                     <h3>{list.name}</h3>
-                    <Add>
-                        <h4>Add your favorite songs</h4>
-                        <label>Song Name</label>
-                        <input type='text' value={this.state.name} onChange={this.handleName}/>
-                        <label>Artist Name</label>
-                        <input type='text' value={this.state.artist} onChange={this.handleArtist}/>
-                        <label>Song link</label>
-                        <input type='url' value={this.state.url} onChange={this.handleUrl}/>
-                        <button onClick={() => this.addTrackToPlaylist(list.id)}>Add Song</button>
-                    </Add>
+                    <button onClick={this.addTracks}>Add your favorite songs</button>
+                    {this.state.add ? 
+                        <Add>
+                            <label>Song Name</label>
+                            <input type='text' value={this.state.name} onChange={this.handleName}/>
+                            <label>Artist Name</label>
+                            <input type='text' value={this.state.artist} onChange={this.handleArtist}/>
+                            <label>Song link</label>
+                            <input type='url' value={this.state.url} onChange={this.handleUrl}/>
+                            <button onClick={() => this.addTrackToPlaylist(list.id)}>Add Song</button>
+                        </Add> :
+                    <div/>
+                    }
+                    
                     <br/>
                     <ButtonDelete onClick={() => this.deletePlaylist(list.id)}> Delete Playlist</ButtonDelete>
                     <br/>
