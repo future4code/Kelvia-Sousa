@@ -1,8 +1,9 @@
 import React,{useState, useEffect} from 'react'
 import styled from 'styled-components'
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import { red, blue } from '@material-ui/core/colors';
+import { red, blue, green } from '@material-ui/core/colors';
 import CloseIcon from '@material-ui/icons/Close';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import axios from 'axios';
 
 const Container = styled.div`
@@ -23,31 +24,50 @@ h2{
     color: violet;
   }
 ` 
-
+const Header =styled.div`
+    width: 100%;
+    margin: 5px 0 0 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    >h2{
+       margin-right: 80px; 
+    }  
+    >svg{
+        cursor:pointer;
+    }  
+` 
 const Div = styled.div`
-  margin: 10px 5px 20px 5px;
+  margin: 5px 5px 20px 5px;
   width: 80%;
   height: 400px;
   border: 1px solid gray;
 ` 
-
 const Choice = styled.div`
   padding: 20px 0;
   width: 80%;
   display: flex;
   justify-content: space-around;
+  >*{
+    cursor: pointer;
+  }
 `
 const Profiles = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    max-height: 100%;
+    img{
+        height: 300px;
+    }
+    p{
+        margin-top: 0;
+    }
 ` 
-
 
 const HomeScreen = (props) => {
   const [profile, setProfile] = useState({})
 
-  
   useEffect(() =>{
     getProfileToChoose(props.profile);
   }
@@ -83,11 +103,16 @@ const HomeScreen = (props) => {
         .catch((error) => console.log(error))
     }
 
+    
+
   return(
     <Container>
-      <h2><span>labe</span>match</h2>
+        <Header>
+        <h2><span>labe</span>match</h2>
+        <GroupAddIcon onClick={() => props.changePages()} style={{ fontSize: 40, color: green[500]}}/>
+        </Header>
       <Div>
-        {profiles()}
+        {(profile && Object.keys(profile).length !== 0) && profiles()}
       </Div>
       <Choice>
         <FavoriteIcon onClick={() => liked(true)} style={{ fontSize: 50, color: red[500]}}></FavoriteIcon>

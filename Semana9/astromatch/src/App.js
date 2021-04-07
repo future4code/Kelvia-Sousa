@@ -1,12 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import HomeScreen from './pages/HomeScreen';
+import Matches from './pages/Matches'
 
 
 export default function App() {
+  const [pages, setPages] = useState(true)
+
+  const changePages = () =>{
+    setPages(!pages)
+  }
+  
   return (
     <div>
-      <HomeScreen/>
+      {pages ? <HomeScreen changePages={changePages}/>: <Matches/>} 
     </div>
   );
 }
