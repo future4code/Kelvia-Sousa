@@ -24,7 +24,7 @@ h2{
   }
 ` 
 
-const Photos = styled.div`
+const Div = styled.div`
   margin: 10px 5px 20px 5px;
   width: 80%;
   height: 400px;
@@ -46,25 +46,23 @@ const Profiles = styled.div`
 
 const HomeScreen = (props) => {
   const [profile, setProfile] = useState({})
-  
 
-  const baseUrl = 'https://us-central1-missao-newton.cloudfunctions.net/astroMatch/kelvia/person'
   
   useEffect(() =>{
     getProfileToChoose(props.profile);
   }
   ,[props.profile]);
 
+
     const getProfileToChoose = () => {
       axios
-      .get(baseUrl)
+      .get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/kelvia/person')
       .then((response) => setProfile(response.data.profile))
       .catch((error) => console.log(error))
     };
     
 
   const profiles = () => {
-      console.log('abc',profile)
       return (
         <Profiles>
           <img src={profile.photo} alt={profile.name}/>
@@ -73,16 +71,27 @@ const HomeScreen = (props) => {
         </Profiles>
       );
     }; 
-  
+
+    const liked = (choices) => {
+        const body = {
+            id: profile.id,
+            choice: choices
+        }
+        axios
+        .post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/kelvia/choose-person', body)
+        .then((response) => getProfileToChoose())
+        .catch((error) => console.log(error))
+    }
+
   return(
     <Container>
       <h2><span>labe</span>match</h2>
-      <Photos>
+      <Div>
         {profiles()}
-      </Photos>
+      </Div>
       <Choice>
-        <FavoriteIcon style={{ fontSize: 50, color: red[500]}}></FavoriteIcon>
-        <CloseIcon style={{ fontSize: 50, color: blue[500]}}></CloseIcon>
+        <FavoriteIcon onClick={() => liked(true)} style={{ fontSize: 50, color: red[500]}}></FavoriteIcon>
+        <CloseIcon onClick={() => liked(false)} style={{ fontSize: 50, color: blue[500]}}></CloseIcon>
       </Choice>
     </Container>
   )
