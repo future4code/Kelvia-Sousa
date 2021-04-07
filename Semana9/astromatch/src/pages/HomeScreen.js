@@ -92,7 +92,7 @@ const HomeScreen = (props) => {
       );
     }; 
 
-    const liked = (choices) => {
+    const ChoosePerson = (choices) => {
         const body = {
             id: profile.id,
             choice: choices
@@ -115,8 +115,8 @@ const HomeScreen = (props) => {
         {(profile && Object.keys(profile).length !== 0) && profiles()}
       </Div>
       <Choice>
-        <FavoriteIcon onClick={() => liked(true)} style={{ fontSize: 50, color: red[500]}}></FavoriteIcon>
-        <CloseIcon onClick={() => liked(false)} style={{ fontSize: 50, color: blue[500]}}></CloseIcon>
+        <FavoriteIcon onClick={() => ChoosePerson(true)} style={{ fontSize: 50, color: red[500]}}></FavoriteIcon>
+        <CloseIcon onClick={() => ChoosePerson(false)} style={{ fontSize: 50, color: blue[500]}}></CloseIcon>
       </Choice>
     </Container>
   )

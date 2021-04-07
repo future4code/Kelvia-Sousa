@@ -32,31 +32,58 @@ const Header =styled.div`
     justify-content: space-around;
     >h2{
        margin-right: 50px; 
-    }    
+    } 
+    >svg{
+        cursor: pointer;
+    }   
 ` 
 const Div = styled.div`
   margin: 5px 5px 20px 5px;
   width: 80%;
   height: 400px;
 ` 
-
-const GetMatches = () => {
-    axios
-    .get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/kelvia/matches')
-    .then((response) => console.log(response.data))
-    .catch((error) => console.log(error))
-}
+const Li = styled.li`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    img{
+        width: 80px;
+    }
+`
 
 const Matches = (props) => {
+    const [matches, setMatches] = useState([])
+
+    useEffect(() =>{
+        getMatches(props.matches);
+    }
+    ,[props.matches]);
+
+    const getMatches = () => {
+        axios
+        .get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/kelvia/matches')
+        .then((response) => setMatches(response.data.matches))
+        .catch((error) => console.log(error))
+    }
+
+    const seeMatches = matches.map((person) =>{
+        return(
+            <Li>
+            <img src={person.photo} alt={person.name}/>
+            <p>{person.name}</p>
+            </Li>
+        )
+    })
+
     return(
         <Container>
         <Header>
-        <AccountBoxIcon style={{ fontSize: 40, color: green[500]}}/>
+        <AccountBoxIcon onClick={() => props.changePages()} style={{ fontSize: 40, color: green[500]}}/>
         <h2><span>labe</span>match</h2>
         </Header>
       
       <Div>
-        
+        {seeMatches}
       </Div>
       
     </Container>
