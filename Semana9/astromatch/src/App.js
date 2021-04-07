@@ -13,7 +13,7 @@ export default function App() {
   
   return (
     <div>
-      {pages ? <HomeScreen changePages={changePages}/>: <Matches/>} 
+      {pages ? <HomeScreen changePages={changePages}/>: <Matches changePages={changePages}/>} 
     </div>
   );
 }

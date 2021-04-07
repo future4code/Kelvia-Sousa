@@ -44,10 +44,14 @@ const Div = styled.div`
 ` 
 const Li = styled.li`
     width: 100%;
+    
     display: flex;
     justify-content: center;
+    margin-top: 5px;
     img{
-        width: 80px;
+        width: 90px;
+        height: 70px;
+        border-radius: 10px;
     }
 `
 
