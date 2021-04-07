@@ -4,6 +4,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { red, blue, green } from '@material-ui/core/colors';
 import CloseIcon from '@material-ui/icons/Close';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
 import axios from 'axios';
 
 const Container = styled.div`
@@ -55,6 +57,7 @@ const Li = styled.li`
     }
 `
 
+
 const Matches = (props) => {
     const [matches, setMatches] = useState([])
 
@@ -70,6 +73,14 @@ const Matches = (props) => {
         .catch((error) => console.log(error))
     }
 
+    const clear = () => {
+        axios
+        .put('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/kelvia/clear')
+        .then(() => getMatches())
+        .catch((error) => console.log(error))
+    }
+
+
     const seeMatches = matches.map((person) =>{
         return(
             <Li>
@@ -81,16 +92,16 @@ const Matches = (props) => {
 
     return(
         <Container>
-        <Header>
-        <AccountBoxIcon onClick={() => props.changePages()} style={{ fontSize: 40, color: green[500]}}/>
-        <h2><span>labe</span>match</h2>
-        </Header>
-      
-      <Div>
-        {seeMatches}
-      </Div>
-      
-    </Container>
+            <Header>
+            <AccountBoxIcon onClick={() => props.changePages()} style={{ fontSize: 40, color: green[500]}}/>
+            <h2><span>labe</span>match</h2>
+            </Header>
+        
+            <Div>
+                {seeMatches}
+            </Div>
+            <Button onClick={clear} style={{ fontSize: 15 }} startIcon={<DeleteIcon />}>Limpar Lista</Button>
+        </Container>
     )
 }
 
