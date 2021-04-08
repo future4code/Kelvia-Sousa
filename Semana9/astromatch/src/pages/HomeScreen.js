@@ -16,40 +16,76 @@ const Container = styled.div`
   align-content: center;
   border: 4px solid black;
   border-radius: 15px;
-  left: 500px;
-h2{
-  color: blue;
-}
+  margin-left: 500px;
+  * {
+    box-sizing: border-box;
+  }
+  h1{
+    color: blue;
+  }
   span{
     color: violet;
   }
+  @media only screen and (max-width: 768px){
+    width: 90%;
+    display:flex;
+    flex-direction: column;
+    margin:0;
+    padding:0;
+}
 ` 
 const Header =styled.div`
     width: 100%;
-    margin: 5px 0 0 0;
+    margin: 20px 0 0 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    >h2{
-       margin-right: 80px; 
-    }  
+    >h1{
+       font-size: 40px;
+    }
     >svg{
         cursor:pointer;
-    }  
+    }
+    svg:hover {
+      -webkit-transform: scale(1.5);
+      transform: scale(1.5);
+    }
 ` 
 const Div = styled.div`
-  margin: 5px 5px 20px 5px;
+  margin: 5px;
   width: 80%;
-  height: 400px;
-  border: 1px solid gray;
+  height: 380px;
+  border-radius: 5px;
+  background-color: mediumseagreen;
+  span{
+    color: white;
+    margin: 0 10px;
+  }
+  p{
+    color: white;
+    font-size: 20px;
+    margin: 0 10px;
+    font-family: "Lucida Console", "Courier New", monospace;
+  }
+  @media only screen and (max-width: 350px){
+    p{
+      font-size: 12px;
+    }
+    span{
+    font-size: 16px;
+  }
+}
 ` 
 const Choice = styled.div`
-  padding: 20px 0;
-  width: 80%;
+  margin-top: 20px;
+  width: 100%;
   display: flex;
   justify-content: space-around;
-  >*{
+  >svg:hover {
     cursor: pointer;
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+    filter: drop-shadow(15px 10px 5px rgba(0,0,0,.5));
   }
 `
 const Profiles = styled.div`
@@ -59,9 +95,11 @@ const Profiles = styled.div`
     max-height: 100%;
     img{
         height: 300px;
+        border-radius: 5px;
     }
     p{
-        margin-top: 0;
+        margin-top: 10px;
+        
     }
 ` 
 
@@ -87,7 +125,7 @@ const HomeScreen = (props) => {
         <Profiles>
           <img src={profile.photo} alt={profile.name}/>
           <p>{profile.name}, {profile.age}</p>
-          <p>{profile.bio}</p>
+          <span>{profile.bio}</span>
         </Profiles>
       );
     }; 
@@ -108,7 +146,7 @@ const HomeScreen = (props) => {
   return(
     <Container>
         <Header>
-        <h2><span>labe</span>match</h2>
+        <h1><span>labe</span>match</h1>
         <GroupAddIcon onClick={() => props.changePages()} style={{ fontSize: 40, color: green[500]}}/>
         </Header>
       <Div>

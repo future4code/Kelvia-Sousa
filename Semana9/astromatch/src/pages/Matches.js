@@ -1,8 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import styled from 'styled-components'
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import { red, blue, green } from '@material-ui/core/colors';
-import CloseIcon from '@material-ui/icons/Close';
+import { green } from '@material-ui/core/colors';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
@@ -19,41 +17,64 @@ const Container = styled.div`
   border: 4px solid black;
   border-radius: 15px;
   left: 500px;
-h2{
-  color: blue;
+h1{
+    color: blue;
 }
   span{
     color: violet;
   }
+  Button{
+    margin-top: 15px;
+  }
+Button:hover{
+    background-color: lightcoral;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1); 
+}
+@media only screen and (max-width:768px){
+    height: 100vh;
+    width: 90%;
+    display:flex;
+    flex-direction: column;
+    padding:0;
+    margin-left: -500px;
+}
 ` 
 const Header =styled.div`
     width: 100%;
-    margin: 5px 0 0 0;
+    margin: 20px 0 0 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    >h2{
-       margin-right: 50px; 
+    >h1{
+       font-size: 40px;
     } 
     >svg{
         cursor: pointer;
-    }   
+    }
+    >svg:hover {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);  
+    }
+    
 ` 
 const Div = styled.div`
-  margin: 5px 5px 20px 5px;
   width: 80%;
   height: 400px;
 ` 
 const Li = styled.li`
     width: 100%;
-    
     display: flex;
-    justify-content: center;
-    margin-top: 5px;
+    align-content: center;
+    justify-content:space-evenly;
     img{
-        width: 90px;
-        height: 70px;
-        border-radius: 10px;
+        width: 50px;
+        height: 50px;
+        border-radius: 20px;
+    }
+    p{
+        font-size: 20px;
+        font-family: "Lucida Console", "Courier New", monospace;
     }
 `
 
@@ -94,13 +115,13 @@ const Matches = (props) => {
         <Container>
             <Header>
             <AccountBoxIcon onClick={() => props.changePages()} style={{ fontSize: 40, color: green[500]}}/>
-            <h2><span>labe</span>match</h2>
+            <h1><span>labe</span>match</h1>
             </Header>
         
             <Div>
                 {seeMatches}
             </Div>
-            <Button onClick={clear} style={{ fontSize: 15 }} startIcon={<DeleteIcon />}>Limpar Lista</Button>
+            <Button onClick={clear} style={{ fontSize: 20 }} startIcon={<DeleteIcon />}>Limpar Lista</Button>
         </Container>
     )
 }
