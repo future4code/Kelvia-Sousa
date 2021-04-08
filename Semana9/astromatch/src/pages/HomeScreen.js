@@ -30,7 +30,7 @@ const Container = styled.div`
     width: 90%;
     display:flex;
     flex-direction: column;
-    margin:0;
+    margin:10px;
     padding:0;
 }
 ` 
@@ -54,33 +54,14 @@ const Header =styled.div`
 const Div = styled.div`
   margin: 5px;
   width: 80%;
-  height: 380px;
+  height: 350px;
   border-radius: 5px;
-  background-color: mediumseagreen;
-  span{
-    color: white;
-    margin: 0 10px;
-  }
-  p{
-    color: white;
-    font-size: 20px;
-    margin: 0 10px;
-    font-family: "Lucida Console", "Courier New", monospace;
-  }
-  @media only screen and (max-width: 350px){
-    p{
-      font-size: 12px;
-    }
-    span{
-    font-size: 16px;
-  }
-}
 ` 
 const Choice = styled.div`
   margin-top: 20px;
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   >svg:hover {
     cursor: pointer;
     -webkit-transform: scale(1.5);
@@ -93,13 +74,36 @@ const Profiles = styled.div`
     flex-direction: column;
     width: 100%;
     max-height: 100%;
+    p{
+    width: 80%;
+    text-shadow: 2px 0 5px darkgray;
+    position: absolute;
+    top: 350px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Lucida Console", "Courier New", monospace;
+    }
+    span{
+    background: lightgreen;
+    opacity: 0.6;
+    border-radius: 6px;
+    position: absolute;
+    margin-top: 270px;
+    width: 80%;
+    color: black;
+    font: 19px "comic Sans MS", cursive;
+    }
     img{
-        height: 300px;
+        height: 350px;
         border-radius: 5px;
     }
-    p{
-        margin-top: 10px;
-        
+    @media only screen and (max-width: 350px){
+      p{
+        font-size: 20px;
+      }
+      span{
+      font-size: 18px;
+      }
     }
 ` 
 

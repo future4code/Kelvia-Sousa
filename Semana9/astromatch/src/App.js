@@ -1,8 +1,6 @@
-import React, {useState} from 'react';
-import styled from 'styled-components';
-import HomeScreen from './pages/HomeScreen';
 import Matches from './pages/Matches'
-
+import React, {useState} from 'react';
+import HomeScreen from './pages/HomeScreen';
 
 export default function App() {
   const [pages, setPages] = useState(true)
