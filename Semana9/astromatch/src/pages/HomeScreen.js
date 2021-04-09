@@ -42,6 +42,7 @@ const Header =styled.div`
     justify-content: space-around;
     >h1{
        font-size: 40px;
+       margin:0;
     }
     >svg{
         cursor:pointer;
@@ -52,20 +53,18 @@ const Header =styled.div`
     }
 ` 
 const Div = styled.div`
-  margin: 5px;
-  width: 80%;
-  height: 350px;
+  margin-top: 5px;
+  width: 85%;
+  height: 100%;
   border-radius: 5px;
 ` 
 const Choice = styled.div`
-  margin-top: 20px;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
   >svg:hover {
     cursor: pointer;
-    -webkit-transform: scale(1.5);
-    transform: scale(1.5);
+    transform: scale(1.4);
     filter: drop-shadow(15px 10px 5px rgba(0,0,0,.5));
   }
 `
@@ -78,23 +77,26 @@ const Profiles = styled.div`
     width: 80%;
     text-shadow: 2px 0 5px darkgray;
     position: absolute;
-    top: 350px;
+    top: 420px;
     font-size: 20px;
     font-weight: bold;
     font-family: "Lucida Console", "Courier New", monospace;
+    
     }
     span{
-    background: lightgreen;
-    opacity: 0.6;
+    font-weight: bold;
+    text-shadow: 4px 4px 5px darkgray;
     border-radius: 6px;
     position: absolute;
-    margin-top: 270px;
+    margin-top: 390px;
     width: 80%;
     color: black;
     font: 19px "comic Sans MS", cursive;
+    line-height: 16px;
+    text-align: center;
     }
     img{
-        height: 350px;
+        height: 450px;
         border-radius: 5px;
     }
     @media only screen and (max-width: 350px){
@@ -157,7 +159,7 @@ const HomeScreen = (props) => {
         {(profile && Object.keys(profile).length !== 0) && profiles()}
       </Div>
       <Choice>
-        <FavoriteIcon onClick={() => ChoosePerson(true)} style={{ fontSize: 50, color: red[500]}}></FavoriteIcon>
+        <FavoriteIcon onClick={() => ChoosePerson(true)} style={{ fontSize: 45, color: red[500]}}></FavoriteIcon>
         <CloseIcon onClick={() => ChoosePerson(false)} style={{ fontSize: 50, color: blue[500]}}></CloseIcon>
       </Choice>
     </Container>
