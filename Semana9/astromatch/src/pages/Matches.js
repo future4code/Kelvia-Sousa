@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { red, green } from "@material-ui/core/colors";
+import { green } from "@material-ui/core/colors";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "@material-ui/core/Button";
@@ -24,13 +24,13 @@ const Container = styled.div`
     color: violet;
   }
   Button {
-    margin-top: 15px;
     border: 1px double pink;
+    position: absolute;
+    top: 540px;
   }
   Button:hover {
     background-color: lightblue;
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+    transform: scale(1.4);
   }
   @media only screen and (max-width: 768px) {
     width: 90%;
@@ -43,44 +43,53 @@ const Container = styled.div`
 `;
 const Header = styled.div`
   width: 100%;
-  margin: 20px 0 0 0;
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   > h1 {
     font-size: 40px;
+    margin-bottom: 0;
   }
   > svg {
     cursor: pointer;
   }
   > svg:hover {
-    -webkit-transform: scale(1.5);
     transform: scale(1.5);
   }
 `;
 const Div = styled.div`
-  width: 80%;
-  height: 400px;
-`;
-const Li = styled.li`
   width: 100%;
   display: flex;
-  align-content: center;
-  justify-content: space-between;
-  background-color: lightgreen;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   border-radius: 10px;
-  margin-top: 5px;
+  position: absolute;
+  top: 130px;
+`
+const Li = styled.li`
+  width: 15%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin: 3px;
   padding: 10px;
   img {
     width: 50px;
     height: 50px;
-    border-radius: 20px;
+    border-radius: 10px;
     border: 4px solid violet;
   }
+  img:hover{
+    transform: scale(1.5);
+  }
   p {
-    font-size: 20px;
+    font-size: 12px;
     font-weight: bold;
     font-family: "Lucida Console", "Courier New", monospace;
+    text-align: center;
+    
   }
 `;
 
@@ -129,7 +138,6 @@ const Matches = (props) => {
           <span>labe</span>match
         </h1>
       </Header>
-
       <Div>{seeMatches}</Div>
       <Button
         onClick={clear}
