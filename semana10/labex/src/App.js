@@ -15,7 +15,9 @@ import ApplicationFormPage from './pages/ApplicationFormPage';
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      
       <HomePage/>
+      
     </ThemeProvider>
   );
 }

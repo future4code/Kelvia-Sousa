@@ -4,15 +4,15 @@ export const theme = createMuiTheme({
   palette: {
     primary: {
       // light: será calculada com base em palette.primary.main,
-      main: '#ff4400',
+      main: '#cc8400',
       // dark: será calculada com base em palette.primary.main,
       // contrastText: será calculada para contrastar com palette.primary.main
     },
     secondary: {
-      light: '#0066ff',
-      main: '#0044ff',
+      light: '#ffbc40',
+      main: '#cc8400',
       // dark: será calculada com base palette.secondary.main,
-      contrastText: '#ffcc00',
+      contrastText: '#ed9121',
     },
     // Usado por `getContrastText()` para maximizar o contraste entre
     // o plano de fundo e o texto.
