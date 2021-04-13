@@ -1,18 +1,18 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 
-export const theme = createMuiTheme({
+const theme = createMuiTheme({
   palette: {
     primary: {
       // light: será calculada com base em palette.primary.main,
-      main: '#cc8400',
+      main: '#094293',
       // dark: será calculada com base em palette.primary.main,
       // contrastText: será calculada para contrastar com palette.primary.main
     },
     secondary: {
-      light: '#ffbc40',
-      main: '#cc8400',
+      light: '#4040ff',
+      main: '#0000ff',
       // dark: será calculada com base palette.secondary.main,
-      contrastText: '#ed9121',
+      contrastText: '#5556eb',
     },
     // Usado por `getContrastText()` para maximizar o contraste entre
     // o plano de fundo e o texto.
@@ -23,3 +23,5 @@ export const theme = createMuiTheme({
     tonalOffset: 0.2,
   },
 });
+
+export default theme;

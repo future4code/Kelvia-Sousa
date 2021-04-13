@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import {theme} from '../Theme';
+import theme from '../Theme';
 import { ThemeProvider } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
+import {goToTripList, goToLogin} from '../routes/coordinator';
+import { useHistory } from 'react-router';
 
 const Div = styled.div`
     /*border: 5px solid black;
@@ -22,12 +24,13 @@ const H1 = styled.h1`
     /* border: 5px solid black; */
     margin: 0;
     font-size: 250px;
-    background: url('https://images.unsplash.com/photo-1614314007212-0257d6e2f7d8?ixid=MXwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MzR8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+    background: url('https://images.unsplash.com/photo-1451187863213-d1bcbaae3fa3?ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8OHw4NzA5MzQwMnx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60') no-repeat;
+    background-position: center;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     letter-spacing: 30px;
-    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-width: 3px;
     -webkit-text-stroke-color: #cc8400;
 `
 
@@ -41,15 +44,17 @@ const ButtonContainer =styled.div`
 `
 
 const HomePage = () => {
+    const history = useHistory();
+
     return(
         <ThemeProvider theme={theme}>
             <Div>
                 <H1>LABEX</H1>
                 <ButtonContainer>
-                <Button variant="contained" color='primary' style={{ fontSize: 30}}>
-                    Administrator
+                <Button onClick={() => goToLogin(history)} variant="contained" color='primary' style={{ fontSize: 30}}>
+                    Admin area
                 </Button>
-                <Button variant="contained" color='primary' style={{ fontSize: 30}}>
+                <Button onClick={() => goToTripList(history)} variant="contained" color='primary' style={{ fontSize: 30}}>
                     Travel List
                 </Button>
                 </ButtonContainer>
