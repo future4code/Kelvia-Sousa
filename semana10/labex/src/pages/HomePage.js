@@ -28,6 +28,10 @@ const H1 = styled.h1`
     letter-spacing: 30px;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #4040ff;
+    @media only screen and (max-width: 768px) {
+        font-size: 120px;
+        margin-top: 50px;;
+    }
 `
 
 const ButtonContainer =styled.div`
@@ -36,6 +40,15 @@ const ButtonContainer =styled.div`
     justify-content: space-evenly;
     position: absolute;
     top: 480px;
+    @media only screen and (max-width: 768px) {
+        position: absolute;
+        top: 350px;
+        display: flex;
+        flex-direction: column;
+        button{
+            margin-bottom: 10px;
+        }
+    }
 `
 
 const HomePage = () => {

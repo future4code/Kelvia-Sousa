@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import { useHistory } from 'react-router';
 import {goToAdminTripList} from '../routes/coordinator';
+import FormCreat from '../components/FormCreat';
+import Button from '@material-ui/core/Button';
 
 const Div = styled.div`
     width: 100%;
@@ -27,6 +29,7 @@ const Main = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 30px;
     li{
         list-style: none;
     }
@@ -35,12 +38,25 @@ const Main = styled.main`
 const CreateTripPage = () => {
     const history = useHistory();
 
+    useEffect(() =>{
+        const token = window.localStorage.getItem('token')
+    
+        if (token === null){
+            history.push('/login')
+        }
+    }, [history])
+
     return(
         <Div>
             <Header/>
             <KeyboardBackspaceIcon onClick={()=>{goToAdminTripList(history)}} style={{ fontSize: 50   }}/>
-            <h2>CreateTripPage</h2>
-            <Main></Main>
+            <Main>
+                <FormCreat/>
+                <Button variant="contained" 
+                    color='primary' 
+                    style={{ fontSize: 15}}
+                >Send</Button>
+            </Main>
             <Footer/>
         </Div>
     );

@@ -5,6 +5,9 @@ import Footer from '../components/Footer';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import { useHistory } from 'react-router';
 import {goToTripList} from '../routes/coordinator';
+import FormApp from '../components/FormApp';
+import Button from '@material-ui/core/Button';
+
 
 const Div = styled.div`
     width: 100%;
@@ -27,6 +30,7 @@ const Main = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 30px;
     li{
         list-style: none;
     }
@@ -39,9 +43,13 @@ const ApplicationFormPage = () => {
         <Div>
             <Header/>
             <KeyboardBackspaceIcon onClick={() => {goToTripList(history)}} style={{ fontSize: 50   }}/>
-            <h2>ApplicationFormPage</h2>
+            
             <Main>
-                
+            <FormApp/>
+            <Button variant="contained" 
+                    color='primary' 
+                    style={{ fontSize: 15}}
+            >Send</Button>
             </Main>
             <Footer/>
         </Div>

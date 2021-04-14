@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -33,6 +33,14 @@ const Main = styled.main`
 
 const TripDetailsPage = () => {
     const history = useHistory();
+
+    useEffect(() =>{
+        const token = window.localStorage.getItem('token')
+    
+        if (token === null){
+            history.push('/login')
+        }
+    }, [history])
 
     return(
         <Div>

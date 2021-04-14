@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -39,13 +39,22 @@ const Main = styled.main`
         background-color: #fff;
     }
 `
+
 const AdminHomePage = () => {
     const history = useHistory();
+
+    useEffect(() =>{
+        const token = window.localStorage.getItem('token')
+    
+        if (token === null){
+            history.push('/login')
+        }
+    }, [history])
 
     return(
         <Div>
             <Header/>
-            <KeyboardBackspaceIcon onClick={() => {goToHomePage(history)}} style={{ fontSize: 50   }}/>
+            <KeyboardBackspaceIcon onClick={() => {goToHomePage(history)}} style={{ fontSize: 50 }}/>
             <h2>AdminHomePage</h2>
             <Main>
             <li onClick={() => {goToAdminTripDetail(history)}} variant="contained" color='primary' style={{ fontSize: 15}}> Clickable list for details </li>
