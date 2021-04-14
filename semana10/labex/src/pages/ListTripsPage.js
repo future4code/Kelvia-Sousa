@@ -7,6 +7,7 @@ import useRequestData from '../hooks/useRequestData';
 import {goToHomePage, goToTripApplication} from '../routes/coordinator';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import { useHistory } from 'react-router';
+import FormApp from '../components/FormApp';
 
 const Div = styled.div`
     width: 100%;
@@ -38,6 +39,7 @@ const ListTripsPage = () => {
     const history = useHistory();
     const list = useRequestData('trips', []);
 
+
     console.log(list)
     return(
         <Div>
@@ -45,7 +47,13 @@ const ListTripsPage = () => {
             <KeyboardBackspaceIcon onClick={() => goToHomePage(history)} style={{ fontSize: 50}}/>
             <h2>Trips List</h2>
             <Main>
-            <Button onClick={() => goToTripApplication(history)} variant="contained" color='primary' style={{ fontSize: 15}}>Sing Up For A Trip</Button>
+                <FormApp/>
+                <Button onClick={() => goToTripApplication(history)} 
+                    variant="contained" 
+                    color='primary' 
+                    style={{ fontSize: 15}}>
+                        Sing Up For A Trip
+                </Button>
             </Main>
             <Footer/>
         </Div>
