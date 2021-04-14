@@ -5,6 +5,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import {fade, withStyles} from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import TextField from '@material-ui/core/TextField';
+import useInput from '../hooks/useInput';
 
 const Div = styled.div`
     margin: 10px;
@@ -53,31 +54,37 @@ const BootstrapInput = withStyles((theme) => ({
   }))(InputBase);
 
 const FormCreat = () => {
+    const [name, handleName] = useInput();
+    const [planet, handlePlanet] = useInput();
+    const [date, handleDate] = useInput();
+    const [description, handleDescription] = useInput();
+    const [durationInDays, handleDurationInDays] = useInput();
+
     return(
         <Div>
             <FormControl>
                 <InputLabel shrink htmlFor="bootstrap-input">
                 Name
                 </InputLabel>
-                <BootstrapInput type='text'/>
+                <BootstrapInput  onChange={handleName} value={name} type='text'/>
             </FormControl>
             <FormControl>
                 <InputLabel shrink htmlFor="bootstrap-input">
                 Planet
                 </InputLabel>
-                <BootstrapInput type='text'/>
+                <BootstrapInput  onChange={handlePlanet} value={planet} type='text'/>
             </FormControl>
             <FormControl>
                 <InputLabel shrink htmlFor="bootstrap-input">
                 Date
                 </InputLabel>
-                <BootstrapInput type='date'/>
+                <BootstrapInput  onChange={handleDate} value={date} type='date'/>
             </FormControl>
             <FormControl>
                 <InputLabel shrink htmlFor="bootstrap-input">
                 Description
                 </InputLabel>
-            <TextField
+            <TextField onChange={handleDescription} value={description} 
                 id="outlined-multiline-static"
                 multiline
                 rows={2}
@@ -89,7 +96,7 @@ const FormCreat = () => {
                 <InputLabel shrink htmlFor="bootstrap-input">
                 Duration(days)
                 </InputLabel>
-                <BootstrapInput type='number'/>
+                <BootstrapInput  onChange={handleDurationInDays} value={durationInDays} type='number'/>
             </FormControl>
         </Div>
     );

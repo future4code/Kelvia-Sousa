@@ -95,13 +95,13 @@ const LoginPage = () => {
         "https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/login", //usar a urlbase
         body
       )
-      .then((res) => {
-        console.log(res.data);
-        window.localStorage.setItem("token", res.data.token);
+      .then((response) => {
+        console.log(response.data);
+        window.localStorage.setItem("token", response.data.token);
         history.push("/admin/trips/list");
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
       });
   };
 
