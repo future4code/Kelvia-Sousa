@@ -19,6 +19,7 @@ const Div = styled.div`
     top: 15px;
     left: 50px;
     cursor: pointer;
+    color: gray;
   }
   svg:hover {
     transform: scale(1.4);
@@ -33,9 +34,9 @@ const Main = styled.main`
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  width: 30%;
+  width: 10px;
   height: 400px;
-  margin-right: 400px;
+  margin-right: 800px;
   li {
     list-style: none;
     margin: 50px 20px 5px 20px;

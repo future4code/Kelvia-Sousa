@@ -6,7 +6,6 @@ import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import { useHistory } from 'react-router';
 import {goToTripList} from '../routes/coordinator';
 import FormApp from '../components/FormApp';
-import Button from '@material-ui/core/Button';
 
 
 const Div = styled.div`
@@ -20,6 +19,7 @@ const Div = styled.div`
         top: 15px;
         left: 50px;
         cursor: pointer;
+        color: gray;
     }
     svg:hover {
         transform: scale(1.4)
@@ -39,6 +39,8 @@ const Main = styled.main`
 const ApplicationFormPage = () => {
     const history = useHistory();
 
+    
+
     return(
         <Div>
             <Header/>
@@ -46,10 +48,6 @@ const ApplicationFormPage = () => {
             
             <Main>
             <FormApp/>
-            <Button variant="contained" 
-                    color='primary' 
-                    style={{ fontSize: 15}}
-            >Send</Button>
             </Main>
             <Footer/>
         </Div>

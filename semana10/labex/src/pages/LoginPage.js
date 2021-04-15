@@ -10,8 +10,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import { fade, withStyles } from "@material-ui/core/styles";
 import InputBase from "@material-ui/core/InputBase";
 import Button from "@material-ui/core/Button";
-import useInput from "../hooks/useInput";
 import axios from "axios";
+import { useForm } from "../hooks/useForm";
 
 const BootstrapInput = withStyles((theme) => ({
   root: {
@@ -60,12 +60,13 @@ const Div = styled.div`
     top: 15px;
     left: 50px;
     cursor: pointer;
+    color: gray;
   }
   svg:hover {
     transform: scale(1.4);
   }
 `;
-const Main = styled.main`
+const Main = styled.form`
   min-height: 300px;
   display: flex;
   flex-direction: column;
@@ -79,20 +80,30 @@ const Main = styled.main`
   }
 `;
 
+const initialForm = {
+  email: "",
+  password: "",
+};
+
 const LoginPage = () => {
-  const [email, handleEmail] = useInput();
-  const [password, handlePassword] = useInput();
+  const [form, onChange, resetForm] = useForm(initialForm);
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    console.log(form);
+    resetForm();
+  };
   const history = useHistory();
 
   const login = () => {
     const body = {
-      email: email,
-      password: password,
+      email: form.email,
+      password: form.password,
     };
 
     axios
       .post(
-        "https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/login", //usar a urlbase
+        "https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/login",
         body
       )
       .then((response) => {
@@ -101,8 +112,8 @@ const LoginPage = () => {
         history.push("/admin/trips/list");
       })
       .catch((error) => {
-        console.log(error);
-      });
+        alert(error);
+      }); //usar a urlbase
   };
 
   return (
@@ -115,12 +126,12 @@ const LoginPage = () => {
         style={{ fontSize: 50 }}
       />
 
-      <Main>
+      <Main onSubmit={handleClick}>
         <FormControl>
           <InputLabel shrink htmlFor="bootstrap-input">
             Email
           </InputLabel>
-          <BootstrapInput type="email" value={email} onChange={handleEmail} />
+          <BootstrapInput name='email' type="email" value={form.email} onChange={onChange} />
         </FormControl>
         <FormControl>
           <InputLabel shrink htmlFor="bootstrap-input">
@@ -128,8 +139,9 @@ const LoginPage = () => {
           </InputLabel>
           <BootstrapInput
             type="password"
-            value={password}
-            onChange={handlePassword}
+            name="password"
+            value={form.password}
+            onChange={onChange}
           />
         </FormControl>
         <Button

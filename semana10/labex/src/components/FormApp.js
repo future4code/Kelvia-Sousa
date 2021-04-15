@@ -6,9 +6,10 @@ import { fade, withStyles } from "@material-ui/core/styles";
 import InputBase from "@material-ui/core/InputBase";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import useInput from "../hooks/useInput";
+import {useForm} from "../hooks/useForm";
+import Button from '@material-ui/core/Button';
 
-const Div = styled.div`
+const Form = styled.form`
   margin: 10px;
   display: flex;
   flex-direction: column;
@@ -63,27 +64,34 @@ function countryToFlag(isoCode) {
     : isoCode;
 }
 
-const FormApp = () => {
-  const [name, handleName] = useInput();
-  const [age, handleAge] = useInput();
-  const [application, handleApplication] = useInput();
-  const [profession, handleProfession] = useInput();
-  const [country, handleCountry] = useInput();
+const initialForm ={
+  name: '', age: '', application: '', profession: '', country: ''
+};
 
+const FormApp = () => {
+  const [form, onChange, resetForm] = useForm(initialForm);
+  
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    console.log(form);
+    resetForm();
+  };
+ 
   return (
-    <Div>
+    <Form onSubmit={handleClick}>
       <FormControl>
         <InputLabel shrink htmlFor="bootstrap-input">
           Name
         </InputLabel>
-        <BootstrapInput type="text" value={name} onChange={handleName} />
+        <BootstrapInput type="text" name='name' value={form.name} onChange={onChange} />
       </FormControl>
 
       <FormControl>
         <InputLabel shrink htmlFor="bootstrap-input">
           Age
         </InputLabel>
-        <BootstrapInput type="number" value={age} onChange={handleAge} />
+        <BootstrapInput type="number" min='18' name='age' value={form.age} onChange={onChange} />
       </FormControl>
 
       <FormControl>
@@ -96,9 +104,9 @@ const FormApp = () => {
           rows={2}
           defaultValue=""
           variant="outlined"
-          type="text"
-          onChange={handleApplication}
-          value={application}
+          type="text" 
+          onChange={onChange}
+          value={form.application}
         />
       </FormControl>
 
@@ -107,9 +115,9 @@ const FormApp = () => {
           Profession
         </InputLabel>
         <BootstrapInput
-          type="text"
-          value={profession}
-          onChange={handleProfession}
+          type="text" 
+          value={form.profession}
+          onChange={onChange}
         />
       </FormControl>
 
@@ -127,8 +135,8 @@ const FormApp = () => {
         renderInput={(params) => (
           <TextField
             {...params}
-            value={country}
-            onChange={handleCountry}
+            value={form.country}
+            onChange={onChange}
             label="Choose a country"
             variant="outlined"
             inputProps={{
@@ -138,7 +146,12 @@ const FormApp = () => {
           />
         )}
       />
-    </Div>
+      <Button variant="contained" 
+                    color='primary' 
+                    style={{ fontSize: 15}}
+            >Send</Button>
+           
+    </Form>
   );
 };
 

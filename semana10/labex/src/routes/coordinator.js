@@ -22,8 +22,8 @@ export const goToAdminTripCreate = (history) => {
     history.push('/admin/trips/create')
 };
 
-export const goToAdminTripDetail = (history) => {
-    history.push('/admin/trips/:id')
+export const goToAdminTripDetail = (history, id) => {
+    history.push(`/admin/trips/${id}`)
 };
 
 export const goToLastPage = (history) =>{

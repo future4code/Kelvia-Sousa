@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Button from "@material-ui/core/Button";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { goToHomePage, goToAdminTripCreate } from "../routes/coordinator";
 import axios from "axios";
 import IconButton from "@material-ui/core/IconButton";
@@ -21,6 +21,7 @@ const Div = styled.div`
     top: 15px;
     left: 50px;
     cursor: pointer;
+    color: gray;
   }
   > svg:hover {
     transform: scale(1.4);
@@ -35,16 +36,19 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: center;
   height: 450px;
   margin-top: 40px;
+  >button{
+    margin-top: 20px;
+  }
   li {
     list-style: none;
-    margin: 0px 80px 0px 40px;
+    margin: 0px 10px 0px 0px;
     background: transparent;
     h2 {
       text-align: center;
-      margin: 10px;
+      margin: 0;
       color: #094293;
     }
   }
@@ -57,26 +61,22 @@ const Main = styled.main`
     transform: scale(1.1);
     cursor: pointer;
   }
-`;
+`
+
 const ListContainer = styled.div`
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid #094293;
-  border-radius: 10px;
-  margin: 5px;
-  button {
-    margin-right: 50px;
-  }
+  justify-content: space-between;
+  margin-bottom: 5px;
 `;
 
 const AdminHomePage = () => {
   const [tripsList, setTripsList] = useState([]);
   const history = useHistory();
-  const [tripData, setTripData] = useState({});
+  const params = useParams();
 
   useEffect(() => {
     getTrips();
-    getTripDetail();
     const token = window.localStorage.getItem("token");
 
     if (token === null) {
@@ -91,51 +91,38 @@ const AdminHomePage = () => {
       )
       .then((response) => setTripsList(response.data))
       .catch((error) => console.log(error));
-  };
+  }; 
 
-  const getTripDetail = (id) => {
-    axios
-      .get(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trip/${id}`,
-        {
-          headers: {
-            auth: "token",
-          },
-        }
-      )
-      .then((response) => {
-        setTripData(response.data.tripData);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const tripDetail =
-    tripData.trips &&
-    tripData.trips.map((trip) => {
-      return (
-        <div key={trip.id}>
-          name: {trip.name}
-          Description:{trip.description}
-          Duration(days): {trip.durationInDays}
-          Date:{trip.date}
-        </div>
-      );
-    });
-  console.log(tripDetail);
+  const deleteTrip = (id) => {
+    if(window.confirm('This action will delete this trip. Do you really want to continue?')) {
+      const token = window.localStorage.getItem("token");
+      console.log(deleteTrip)
+        axios
+          .delete(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trips/${id}`,
+          {
+            headers: {
+              auth: token,
+            },
+          }
+          )
+          .then(() => getTrips())
+          
+          
+          .catch((error) => console.log(error))
+    } 
+  }
 
   const tripsComponents =
     tripsList.trips &&
     tripsList.trips.map((trip) => {
       return (
         <ListContainer>
-          <li onClick={tripDetail}>
+          <li onClick={() => history.push(`/admin/trips/${trip.id}`)}> 
             <h2>{trip.name}</h2>
             <p></p>
           </li>
           <IconButton color="primary" aria-label="delete">
-            <DeleteIcon />
+            <DeleteIcon onClick={() => deleteTrip(trip.id)}/>
           </IconButton>
         </ListContainer>
       );
@@ -144,7 +131,7 @@ const AdminHomePage = () => {
   const logout = () => {
     window.localStorage.removeItem("token");
     history.push("/login");
-  };
+  }; // - OK
 
   return (
     <Div>
