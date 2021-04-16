@@ -39,8 +39,6 @@ const Main = styled.main`
 const ApplicationFormPage = () => {
     const history = useHistory();
 
-    
-
     return(
         <Div>
             <Header/>

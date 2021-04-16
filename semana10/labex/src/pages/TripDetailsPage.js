@@ -19,10 +19,9 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  li {
-    list-style: none;
-  }
-`;
+  
+`
+
 
 const TripDetailsPage = () => {
   const history = useHistory();
@@ -69,12 +68,12 @@ const TripDetailsPage = () => {
       <Header />
       <h2>TripDetailsPage</h2>
       <Main>
-      <div key={tripData.id}>
-        name: {tripData.name}
-        Description:{tripData.description}
-        Duration(days): {tripData.durationInDays}
-        Date:{tripData.date}
-      </div>
+      <li key={tripData.id}>
+        <p><span>Name:</span> {tripData.name}</p>
+        <p><span>Description:</span> {tripData.description}</p>
+        <p><span>Duration(days):</span>  {tripData.durationInDays}</p>
+        <p><span>Date:</span> {tripData.date}</p>
+      </li>
       <Button
         onClick={() => {
           goToAdminTripList(history);

@@ -116,6 +116,8 @@ const LoginPage = () => {
       }); //usar a urlbase
   };
 
+  
+
   return (
     <Div>
       <Header />
@@ -127,13 +129,13 @@ const LoginPage = () => {
       />
 
       <Main onSubmit={handleClick}>
-        <FormControl>
+        <FormControl required>
           <InputLabel shrink htmlFor="bootstrap-input">
             Email
           </InputLabel>
-          <BootstrapInput name='email' type="email" value={form.email} onChange={onChange} />
+          <BootstrapInput inputProps={{ pattern: "(/$|.+@.+./)"}} name='email' type="email" required value={form.email} onChange={onChange}  />
         </FormControl>
-        <FormControl>
+        <FormControl required>
           <InputLabel shrink htmlFor="bootstrap-input">
             Password
           </InputLabel>
@@ -142,6 +144,7 @@ const LoginPage = () => {
             name="password"
             value={form.password}
             onChange={onChange}
+            
           />
         </FormControl>
         <Button

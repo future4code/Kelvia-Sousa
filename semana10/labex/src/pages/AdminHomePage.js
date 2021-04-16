@@ -28,7 +28,11 @@ const Div = styled.div`
   }
   > button {
     position: absolute;
-    top: 560px;
+    top: 520px;
+    right: 140px;
+  }
+  >button:hover {
+    transform: scale(1.2);
   }
 `;
 const Main = styled.main`
@@ -40,7 +44,10 @@ const Main = styled.main`
   height: 450px;
   margin-top: 40px;
   >button{
-    margin-top: 20px;
+    margin-top: 10px;
+  }
+  >button:hover {
+    transform: scale(1.2);
   }
   li {
     list-style: none;
