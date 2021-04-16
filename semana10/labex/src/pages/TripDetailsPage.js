@@ -19,6 +19,21 @@ const Main = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
+  div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 40%;
+    h2{
+      text-align: center;
+      margin: 0;
+    }
+    p{
+      text-align: center;
+      margin: 0;
+      
+    }
+  }
   
 `
 
@@ -50,30 +65,107 @@ const TripDetailsPage = () => {
         }
       )
       .then((response) => {
-        setTripData(response.data.trip);        
+        setTripData(response.data.trip);   
+        console.log(response.data)     
       })
       .catch((error) => {
         console.log(error);
       });
   }; 
 
+  const decideCandidate = (approve, candidateId) => {
+
+    const token = window.localStorage.getItem('token')
+
+    const body = {
+      approve: approve
+    }
+
+    axios
+      .put(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trips/${tripData.id}/candidates/${candidateId}/decide`, body ,
+      {
+        headers:{
+          auth: token
+        }
+      }
+      )
+      .then(() => {
+        alert('success!')
+        getTripDetail() 
+      })
+      .catch((error) => alert(error))
+  }
+
+  const candidates = tripData.candidates &&
+    tripData.candidates.map((person) => { 
+      return (
+        <div>
+          <p>{person.name}</p>
+          <p>{person.age}</p>
+          <p>{person.applicationText}</p>
+          <p>{person.profession}</p>
+          <p>{person.country}</p>
+          <p>{person.trip}</p>
+          <Button
+        onClick={() => {decideCandidate(true, person.id)}}
+        variant="contained"
+        color="primary"
+        style={{ fontSize: 15 }}
+      >
+        Approve
+      </Button>
+      <Button
+        onClick={() => {decideCandidate(false, person.id)}}
+        variant="contained"
+        color="primary"
+        style={{ fontSize: 15 }}
+      >
+        Disapprove
+      </Button>
+        </div>
+      )
+    })
+
+    const approved = tripData.candidates &&
+    tripData.approved.map((person) => { 
+      return (
+        <div>
+          <p>{person.name}</p>
+          <p>{person.age}</p>
+          <p>{person.applicationText}</p>
+          <p>{person.profession}</p>
+          <p>{person.country}</p>
+          <p>{person.trip}</p>
+        </div>
+      )
+    })
+
   useEffect (() => {
     
     getTripDetail(params.id);
   
-  }, [params.id, getTripDetail])
+  }, [params.id])
 
   return (
     <Div>
       <Header />
-      <h2>TripDetailsPage</h2>
+      
       <Main>
+      <h3>Trip Detail</h3>
       <li key={tripData.id}>
-        <p><span>Name:</span> {tripData.name}</p>
+        <h3>{tripData.name}</h3>
         <p><span>Description:</span> {tripData.description}</p>
         <p><span>Duration(days):</span>  {tripData.durationInDays}</p>
         <p><span>Date:</span> {tripData.date}</p>
       </li>
+      <h3>Candidates</h3>
+      <div>
+        {candidates}
+      </div>
+      <h3>Approved</h3>
+      <div>
+      {approved}
+      </div>
       <Button
         onClick={() => {
           goToAdminTripList(history);

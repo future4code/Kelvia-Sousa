@@ -10,9 +10,6 @@ import { useHistory } from "react-router";
 const Div = styled.div`
   width: 100%;
   margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   svg {
     position: absolute;
     top: 15px;
@@ -25,11 +22,10 @@ const Div = styled.div`
   }
 `;
 const Main = styled.main`
-  min-height: 430px;
+  height: 680px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-top: 30px;
+  justify-content: center;
   li {
     list-style: none;
   }
@@ -39,8 +35,9 @@ const CreateTripPage = () => {
   const history = useHistory();
   
   return (
-    <Div>
+    <div>
       <Header />
+    <Div>
       <KeyboardBackspaceIcon
         onClick={() => {
           goToAdminTripList(history);
@@ -49,10 +46,10 @@ const CreateTripPage = () => {
       />
       <Main>
         <FormCreat />
-        
       </Main>
-      <Footer />
     </Div>
+    <Footer />
+    </div>
   );
 };
 

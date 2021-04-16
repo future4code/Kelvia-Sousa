@@ -15,7 +15,8 @@ const Div = styled.div`
   margin: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
+ 
+  border: 1px solid black;
   > svg {
     position: absolute;
     top: 15px;
@@ -28,7 +29,7 @@ const Div = styled.div`
   }
   > button {
     position: absolute;
-    top: 520px;
+    top: 700px;
     right: 140px;
   }
   >button:hover {
@@ -36,13 +37,13 @@ const Div = styled.div`
   }
 `;
 const Main = styled.main`
-  min-height: 430px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  height: 450px;
-  margin-top: 40px;
+  justify-content: center;
+  height: 680px;
+  
   >button{
     margin-top: 10px;
   }
@@ -141,8 +142,9 @@ const AdminHomePage = () => {
   }; // - OK
 
   return (
+    <div>
+       <Header />
     <Div>
-      <Header />
       <KeyboardBackspaceIcon
         onClick={() => {
           goToHomePage(history);
@@ -170,8 +172,9 @@ const AdminHomePage = () => {
       >
         Logout
       </Button>
-      <Footer />
     </Div>
+    <Footer />
+    </div>
   );
 };
 

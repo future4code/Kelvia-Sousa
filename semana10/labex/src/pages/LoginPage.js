@@ -54,7 +54,6 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   svg {
     position: absolute;
     top: 15px;
@@ -68,15 +67,20 @@ const Div = styled.div`
 `;
 const Main = styled.form`
   min-height: 300px;
+  height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 130px;
+  justify-content: center;
+  
   input {
+    font-size: 30px;
     margin-bottom: 20px;
   }
   button {
     margin-top: 30px;
+    width: 150px;
+    
   }
 `;
 
@@ -119,8 +123,10 @@ const LoginPage = () => {
   
 
   return (
+    <div>
+    <Header/>
     <Div>
-      <Header />
+      
       <KeyboardBackspaceIcon
         onClick={() => {
           goToHomePage(history);
@@ -151,13 +157,15 @@ const LoginPage = () => {
           onClick={login}
           variant="contained"
           color="primary"
-          style={{ fontSize: 15 }}
+          style={{ fontSize: 22 }}
         >
           Login
         </Button>
       </Main>
-      <Footer />
+      
     </Div>
+    <Footer />
+    </div>
   );
 };
 

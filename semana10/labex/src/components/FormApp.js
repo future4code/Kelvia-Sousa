@@ -5,7 +5,6 @@ import InputLabel from "@material-ui/core/InputLabel";
 import { fade, withStyles } from "@material-ui/core/styles";
 import InputBase from "@material-ui/core/InputBase";
 import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import {useForm} from "../hooks/useForm";
 import Button from '@material-ui/core/Button';
 import axios from "axios";
@@ -58,18 +57,9 @@ const BootstrapInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
-function countryToFlag(isoCode) {
-  return typeof String.fromCodePoint !== "undefined"
-    ? isoCode
-        .toUpperCase()
-        .replace(/./g, (char) =>
-          String.fromCodePoint(char.charCodeAt(0) + 127397)
-        )
-    : isoCode;
-}
 
 const initialForm ={
-  trip: '', name: '', age: '', application: '', profession: '', country: ''
+  trip: '', name: '', age: '', applicationText: '', profession: '', country: ''
 };
 
 const FormApp = (props) => {
@@ -85,28 +75,26 @@ const FormApp = (props) => {
     resetForm();
   };
 
-  const applyToTrip = (id) => {
-    const body ={
-        
-        name: form.name,
-        age: form.age,
-        applicationText: form.application,
-        profession: form.profession,
-        country: form.country,
-    };
-    console.log('fomr id', form.trip)
+  const applyToTrip = () => {
+    const body = {
+      name: form.name,
+      age: form.age,
+      applicationText: form.applicationText,
+      profession: form.profession,
+      country: form.country
+    }
+    console.log(body)
+    console.log('form id', form.trip)
+
     axios
-      .post(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trips/${form.trip}/apply`, 
-        body)
-        .then((response)=> {
-          console.log(response.data);
-          alert('Success! ')
-          history.push('/trips/list');
-        })
-        .catch((error)=>{
-          alert(error)
-        });
+    .post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trips/${form.trip}/apply`, body)
+    .then((res) => {
+      alert('Your application was successuful ')
+      history.push('/trips/list');
+    })
+    .catch((error)=>{
+      alert(error)
+    });
 }
 
   useEffect(() => {
@@ -131,6 +119,15 @@ const FormApp = (props) => {
       );
     });
 
+    const countryToSelect = 
+    countries.map((country) => {
+      
+      return (
+        <MenuItem key={country.label} value={country.label} >{country.label}</MenuItem>
+      );
+    });
+
+    
  
   return (
     <Form onSubmit={handleClick}>
@@ -148,14 +145,14 @@ const FormApp = (props) => {
         <InputLabel shrink htmlFor="bootstrap-input">
           Name
         </InputLabel>
-        <BootstrapInput placeholder='Your Name' type="text" name='name' value={form.name} onChange={onChange} error helperText="what?"/>
+        <BootstrapInput  inputProps={{ minlength: 3}} placeholder='Your Name' type="text" name='name' value={form.name} onChange={onChange} error helperText="what?"/>
       </FormControl>
 
       <FormControl required>
         <InputLabel shrink htmlFor="bootstrap-input">
           Age
         </InputLabel>
-        <BootstrapInput   type="number" min={18} name='age' value={form.age} onChange={onChange} />
+        <BootstrapInput placeholder='+18'  type="number" inputProps={{ min: 18}} name='age' value={form.age} onChange={onChange} />
       </FormControl>
 
       <FormControl required>
@@ -170,9 +167,9 @@ const FormApp = (props) => {
           variant="outlined"
           type="text" 
           onChange={onChange}
-          value={form.application}
-          type='text'
-          name='application'
+          value={form.applicationText}
+          name='applicationText'
+          inputProps={{ minlength: 30}}
         />
       </FormControl>
 
@@ -185,34 +182,19 @@ const FormApp = (props) => {
           value={form.profession}
           onChange={onChange}
           name='profession'
+          placeholder='ex. Developer'
         />
       </FormControl>
 
-      <Autocomplete 
-        style={{ width: 200 }}
-        options={countries}
-        autoHighlight
-        getOptionLabel={(option) => option.label}
-        renderOption={(option) => (
-          <React.Fragment>
-            <span>{countryToFlag(option.code)}</span>
-            {option.label} ({option.code}) +{option.phone}
-          </React.Fragment>
-        )}
-        renderInput={(params) => (
-          <TextField required
-            {...params}
-            value={form.country}
-            onChange={onChange}
-            label="Choose a country"
-            variant="outlined"
-            inputProps={{
-              ...params.inputProps,
-              autoComplete: "new-password", // disable autocomplete and autofill
-            }}
-          />
-        )}
-      />
+      <FormControl variant="outlined">
+        <InputLabel>Choose a Country</InputLabel>
+        <Select name='country' value={form.country} onChange={onChange}>
+          
+          
+          {countryToSelect}
+          
+        </Select>
+      </FormControl>
       <Button onClick={applyToTrip}
       variant="contained" 
                     color='primary' 

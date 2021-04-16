@@ -13,11 +13,19 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 
 const Form = styled.form`
-  margin: 10px;
   display: flex;
   flex-direction: column;
+  
   > div {
     margin: 5px;
+  }
+  input {
+    font-size: 20px;
+  }
+  button {
+    margin-top: 30px;
+    width: 150px;
+    margin-left: 50px;
   }
 `;
 
@@ -99,8 +107,8 @@ const FormCreat = () => {
         body,
         {
           headers: {
-            auth: token,
-          },
+            auth: token
+          }
         }
       )
       .then((response) => {
@@ -125,15 +133,15 @@ const FormCreat = () => {
           onChange={onChange}
           value={form.name}
           type="text"
-          inputProps={{ pattern: "[a-z]{5}"}}
+          inputProps={{ minlength: 5}}
         />
       </FormControl>
 
       <FormControl required variant="outlined">
-        <InputLabel>Planet</InputLabel>
+        <InputLabel >Planet</InputLabel>
         <Select value={form.planet} onChange={onChange} name="planet">
           <MenuItem value="">
-            <em>Select</em>
+            <em></em>
           </MenuItem>
           <MenuItem value={"Mercury"}>Mercury</MenuItem>
           <MenuItem value={"Venus"}>Venus</MenuItem>
@@ -155,6 +163,7 @@ const FormCreat = () => {
           onChange={onChange}
           value={form.date}
           type="date"
+          
         />
       </FormControl>
 
@@ -171,7 +180,8 @@ const FormCreat = () => {
           rows={2}
           defaultValue={""}
           variant="outlined"
-          inputProps={{ pattern: "(/[a-z]){30}/)"}}
+          inputProps={{ minlength: 30}}
+          placeholder='Trip details'
         />
       </FormControl>
       <FormControl required>
@@ -183,7 +193,8 @@ const FormCreat = () => {
           onChange={onChange}
           value={form.durationInDays}
           type="number"
-          inputProps={{ pattern: "(/[50-300]/)"}}
+          inputProps={{ min:50 }}
+          placeholder='Minimum 50 Days'
         />
       </FormControl>
       <Button

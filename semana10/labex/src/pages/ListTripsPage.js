@@ -9,10 +9,12 @@ import { useHistory } from "react-router";
 import axios from "axios";
 
 const Div = styled.div`
-  width: 100%;
+  width: 99%;
   margin: auto;
+  height: 680px;
   display: flex;
   flex-direction: column;
+  justify-content: center; 
   align-items: center;
   svg {
     position: absolute;
@@ -25,21 +27,21 @@ const Div = styled.div`
     transform: scale(1.4);
   }
   button {
-    margin-top: 30px;
+    position: absolute;
+    top: 680px;
   }
 `;
 const Main = styled.main`
-  min-height: 430px;
+  width: 99%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  width: 10px;
-  height: 400px;
-  margin-right: 800px;
+  justify-content: center;
   li {
     list-style: none;
-    margin: 50px 20px 5px 20px;
+    width: 250px;
+    margin: 15px;
     h2 {
       text-align: center;
       margin: 0;
@@ -48,8 +50,10 @@ const Main = styled.main`
     p {
       margin: 0;
       word-wrap: break-word;
+      font-size: 18px;
       span {
         font-weight: bold;
+        color: #094293;
       }
     }
   }
@@ -76,7 +80,6 @@ const ListTripsPage = (props) => {
     tripsList.trips &&
     tripsList.trips.map((trip) => {
       return (
-        <div>
           <li>
             <h2>{trip.name}</h2>
             <p>
@@ -96,13 +99,13 @@ const ListTripsPage = (props) => {
               {trip.date}
             </p>
           </li>
-        </div>
       );
     });
 
   return (
+    <div>
+       <Header />
     <Div>
-      <Header />
       <KeyboardBackspaceIcon
         onClick={() => goToHomePage(history)}
         style={{ fontSize: 50 }}
@@ -116,8 +119,10 @@ const ListTripsPage = (props) => {
       >
         Sing Up For A Trip
       </Button>
-      <Footer />
+     
     </Div>
+    <Footer />
+    </div>
   );
 };
 
