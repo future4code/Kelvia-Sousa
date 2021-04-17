@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
-import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import { useHistory } from "react-router";
-import { goToHomePage, goToAdminTripCreate } from "../routes/coordinator";
+import { goToAdminTripCreate } from "../routes/coordinator";
 import axios from "axios";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";

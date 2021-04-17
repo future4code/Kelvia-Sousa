@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import { useHistory } from "react-router";
 import { goToTripList } from "../routes/coordinator";
 import FormApp from "../components/FormApp";

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import { goToHomePage } from "../routes/coordinator";
 import { useHistory } from "react-router";
 import FormControl from "@material-ui/core/FormControl";
