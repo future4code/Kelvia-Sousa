@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import { goToAdminTripList } from "../routes/coordinator";
 import FormCreat from "../components/FormCreat";
@@ -36,7 +34,6 @@ const CreateTripPage = () => {
   
   return (
     <div>
-      <Header />
     <Div>
       <KeyboardBackspaceIcon
         onClick={() => {
@@ -48,7 +45,6 @@ const CreateTripPage = () => {
         <FormCreat />
       </Main>
     </Div>
-    <Footer />
     </div>
   );
 };

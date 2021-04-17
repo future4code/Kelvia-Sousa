@@ -138,7 +138,7 @@ const FormCreat = () => {
       </FormControl>
 
       <FormControl required variant="outlined">
-        <InputLabel >Planet</InputLabel>
+        <InputLabel  >Planet</InputLabel>
         <Select value={form.planet} onChange={onChange} name="planet">
           <MenuItem value="">
             <em></em>
@@ -168,7 +168,7 @@ const FormCreat = () => {
       </FormControl>
 
       <FormControl required >
-        <InputLabel shrink htmlFor="bootstrap-input">
+        <InputLabel >
           Description
         </InputLabel>
         <TextField
@@ -181,7 +181,7 @@ const FormCreat = () => {
           defaultValue={""}
           variant="outlined"
           inputProps={{ minlength: 30}}
-          placeholder='Trip details'
+          
         />
       </FormControl>
       <FormControl required>

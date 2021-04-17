@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import { useHistory } from 'react-router';
 import {goToTripList} from '../routes/coordinator';
@@ -11,8 +9,6 @@ import FormApp from '../components/FormApp';
 const Div = styled.div`
     width: 100%;
     margin: auto;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     svg{
         position: absolute;
@@ -26,14 +22,12 @@ const Div = styled.div`
     }
 `
 const Main = styled.main`
+    height: 680px;
     min-height: 430px; 
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 30px;
-    li{
-        list-style: none;
-    }
+    justify-content: center;
 `
 
 const ApplicationFormPage = () => {
@@ -41,13 +35,11 @@ const ApplicationFormPage = () => {
 
     return(
         <Div>
-            <Header/>
             <KeyboardBackspaceIcon onClick={() => {goToTripList(history)}} style={{ fontSize: 50   }}/>
             
             <Main>
             <FormApp/>
             </Main>
-            <Footer/>
         </Div>
     );
 };

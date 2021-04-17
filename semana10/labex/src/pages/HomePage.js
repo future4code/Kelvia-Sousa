@@ -7,11 +7,13 @@ import {goToTripList, goToLogin} from '../routes/coordinator';
 import { useHistory } from 'react-router';
 
 const Div = styled.div`
-    height: 99vh;
+    height: 70vh;
     display: flex;
     justify-content: center;
     margin: auto;
-    
+    @media only screen and (max-width: 768px) {
+        
+    }
 `
 const H1 = styled.h1`
     width: 50%;
@@ -27,9 +29,16 @@ const H1 = styled.h1`
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: #4040ff;
     @media only screen and (max-width: 768px) {
-        margin-right: 80px;
-        font-size: 90px;
-        margin-top: 50px;;
+        height: 20vh;
+        background: url('https://images.unsplash.com/photo-1451187863213-d1bcbaae3fa3?ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8OHw4NzA5MzQwMnx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60') repeat;
+        background-clip: text;
+        background-position: center;
+        -webkit-background-clip: text;
+        color: transparent;
+        letter-spacing: 15px;
+        font-size: 60px;
+        margin-top: 50px;
+        text-align: center;
     }
 `
 
@@ -41,7 +50,7 @@ const ButtonContainer =styled.div`
     top: 480px;
     @media only screen and (max-width: 768px) {
         position: absolute;
-        top: 350px;
+        top: 250px;
         display: flex;
         flex-direction: column;
         button{

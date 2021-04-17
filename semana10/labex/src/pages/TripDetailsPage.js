@@ -1,36 +1,54 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import { useHistory, useParams } from "react-router";
 import { goToAdminTripList } from "../routes/coordinator";
 import axios from 'axios';
 import Button from "@material-ui/core/Button";
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 const Div = styled.div`
-  width: 100%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+  svg {
+    position: absolute;
+    top: 15px;
+    left: 50px;
+    cursor: pointer;
+    color: gray;
+  }
+  svg:hover {
+    transform: scale(1.4);
+  }
+`
 const Main = styled.main`
   min-height: 430px;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
+  margin-top: 20px;
+  h3{
+      margin: 0 0 5px 0;
+      color: #094293;
+    }
+  li{
+    list-style: none;
+    text-align: center;
+    width: 450px;
+  }
   div{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    min-width: 40%;
-    h2{
-      text-align: center;
-      margin: 0;
-    }
+    justify-content: center;
+    width: 100%;
+    
     p{
       text-align: center;
       margin: 0;
+      word-wrap: break-word;
+    }
+    button{
+      width: 100px;
+      margin: 2px;
       
     }
   }
@@ -99,18 +117,17 @@ const TripDetailsPage = () => {
   const candidates = tripData.candidates &&
     tripData.candidates.map((person) => { 
       return (
-        <div>
-          <p>{person.name}</p>
-          <p>{person.age}</p>
-          <p>{person.applicationText}</p>
-          <p>{person.profession}</p>
-          <p>{person.country}</p>
-          <p>{person.trip}</p>
+        <li>
+          <p>Name: {person.name}</p>
+          <p>Age: {person.age}</p>
+          <p>Application Text:{person.applicationText}</p>
+          <p>Profession: {person.profession}</p>
+          <p>Country: {person.country}</p>
           <Button
         onClick={() => {decideCandidate(true, person.id)}}
         variant="contained"
         color="primary"
-        style={{ fontSize: 15 }}
+        style={{ fontSize: 12 }}
       >
         Approve
       </Button>
@@ -118,25 +135,24 @@ const TripDetailsPage = () => {
         onClick={() => {decideCandidate(false, person.id)}}
         variant="contained"
         color="primary"
-        style={{ fontSize: 15 }}
+        style={{ fontSize: 12 }}
       >
         Disapprove
       </Button>
-        </div>
+        </li>
       )
     })
 
     const approved = tripData.candidates &&
     tripData.approved.map((person) => { 
       return (
-        <div>
-          <p>{person.name}</p>
-          <p>{person.age}</p>
-          <p>{person.applicationText}</p>
-          <p>{person.profession}</p>
-          <p>{person.country}</p>
-          <p>{person.trip}</p>
-        </div>
+        <li>
+          <p>Name: {person.name}</p>
+          <p>Age: {person.age}</p>
+          <p>Application Text: {person.applicationText}</p>
+          <p>Profession{person.profession}</p>
+          <p>Country: {person.country}</p>
+        </li>
       )
     })
 
@@ -148,15 +164,18 @@ const TripDetailsPage = () => {
 
   return (
     <Div>
-      <Header />
       
+      <KeyboardBackspaceIcon
+        onClick={() => goToAdminTripList(history)}
+        style={{ fontSize: 50 }}
+      />
       <Main>
-      <h3>Trip Detail</h3>
       <li key={tripData.id}>
         <h3>{tripData.name}</h3>
-        <p><span>Description:</span> {tripData.description}</p>
-        <p><span>Duration(days):</span>  {tripData.durationInDays}</p>
-        <p><span>Date:</span> {tripData.date}</p>
+        <p>{tripData.planet}</p>
+        <p>{tripData.description}</p>
+        <p>{tripData.durationInDays} Days</p>
+        <p>Date: {tripData.date}</p>
       </li>
       <h3>Candidates</h3>
       <div>
@@ -166,19 +185,8 @@ const TripDetailsPage = () => {
       <div>
       {approved}
       </div>
-      <Button
-        onClick={() => {
-          goToAdminTripList(history);
-        }}
-        variant="contained"
-        color="primary"
-        style={{ fontSize: 15 }}
-      >
-        Back
-      </Button>
       </Main>
-
-      <Footer />
+    
     </Div>
   );
 };

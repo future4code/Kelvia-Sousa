@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import Button from "@material-ui/core/Button";
 import { goToHomePage, goToTripApplication } from "../routes/coordinator";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
@@ -104,7 +102,6 @@ const ListTripsPage = (props) => {
 
   return (
     <div>
-       <Header />
     <Div>
       <KeyboardBackspaceIcon
         onClick={() => goToHomePage(history)}
@@ -119,9 +116,7 @@ const ListTripsPage = (props) => {
       >
         Sing Up For A Trip
       </Button>
-     
     </Div>
-    <Footer />
     </div>
   );
 };

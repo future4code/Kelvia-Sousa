@@ -124,7 +124,6 @@ const LoginPage = () => {
 
   return (
     <div>
-    <Header/>
     <Div>
       
       <KeyboardBackspaceIcon
@@ -164,7 +163,6 @@ const LoginPage = () => {
       </Main>
       
     </Div>
-    <Footer />
     </div>
   );
 };

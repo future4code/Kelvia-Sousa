@@ -13,6 +13,10 @@ const Div = styled.div`
     align-items: flex-end;
     position: fixed;
     top: 770px;
+    @media only screen and (max-width: 768px) {
+        position: absolute;
+        top: 510px;
+    }
 `
 
 const Footer = () => {

@@ -16,9 +16,16 @@ const Form = styled.form`
   margin: 10px;
   display: flex;
   flex-direction: column;
-  
+  input{
+    font-size: 25px;
+  }
   > div {
     margin: 5px;
+  }
+  button{
+    margin-top: 30px;
+    width: 200px;
+    margin-left: 60px;
   }
 `;
 
@@ -170,6 +177,7 @@ const FormApp = (props) => {
           value={form.applicationText}
           name='applicationText'
           inputProps={{ minlength: 30}}
+          placeholder='Why should we choose you?'
         />
       </FormControl>
 

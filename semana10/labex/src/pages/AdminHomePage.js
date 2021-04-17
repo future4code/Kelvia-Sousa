@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import Button from "@material-ui/core/Button";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import { useHistory, useParams } from "react-router";
@@ -11,12 +9,10 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const Div = styled.div`
-  width: 100%;
+  width: 99%;
   margin: auto;
   display: flex;
   flex-direction: column;
- 
-  border: 1px solid black;
   > svg {
     position: absolute;
     top: 15px;
@@ -143,7 +139,7 @@ const AdminHomePage = () => {
 
   return (
     <div>
-       <Header />
+       
     <Div>
       <KeyboardBackspaceIcon
         onClick={() => {
@@ -173,7 +169,7 @@ const AdminHomePage = () => {
         Logout
       </Button>
     </Div>
-    <Footer />
+    
     </div>
   );
 };
