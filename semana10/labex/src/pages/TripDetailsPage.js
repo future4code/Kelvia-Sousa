@@ -23,7 +23,8 @@ const Div = styled.div`
   > button:hover {
     transform: scale(1.2);
   }
-`;
+  
+`
 const TripDetail = styled.ul`
   display: flex;
   flex-direction: column;
@@ -34,6 +35,13 @@ const TripDetail = styled.ul`
       color: lightSkyBlue;
     }
   }
+  @media only screen and (max-width: 768px) {
+    h2 {
+      font-size: 16px;
+      margin: 0;
+      margin-right: 60px;
+    }
+  }
 `;
 
 const Main = styled.main`
@@ -42,7 +50,6 @@ const Main = styled.main`
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-
   h3 {
     margin-top: 0;
     color: #094293;
@@ -51,19 +58,8 @@ const Main = styled.main`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: rgb(2, 0, 36);
-    background: linear-gradient(
-      90deg,
-      rgba(2, 0, 36, 1) 0%,
-      rgba(0, 212, 255, 0.8211659663865546) 0%,
-      rgba(0, 212, 255, 1) 0%,
-      rgba(1, 158, 199, 1) 95%
-    );
-    border-radius: 10px;
     list-style: none;
     text-align: center;
-    width: 350px;
-    height: 200px;
     margin: 5px;
     span {
       font-weight: bold;
@@ -78,6 +74,7 @@ const Main = styled.main`
     -webkit-margin-before: 1em;
     -webkit-margin-after: 1em;
     p {
+      font-size: 18px;
       margin: 0;
       word-wrap: break-word;
     }
@@ -86,7 +83,15 @@ const Main = styled.main`
       margin: 2px;
     }
   }
-`;
+  @media only screen and (max-width: 768px) {
+    div {
+      width: 450px;
+      margin: 0;
+    }
+    
+  }
+
+`
 
 const TripDetailsPage = () => {
   const history = useHistory();
@@ -156,15 +161,15 @@ const TripDetailsPage = () => {
             <span> Age:</span> {person.age}
           </p>
           <p>
-            <span>Application Text:</span>
-            {person.applicationText}
-          </p>
-          <p>
             <span>Profession:</span>
             {person.profession}
           </p>
           <p>
             <span>Country:</span> {person.country}
+          </p>
+          <p>
+            <span>Application Text:</span>
+            {person.applicationText}
           </p>
           <div>
             <Button
@@ -199,18 +204,6 @@ const TripDetailsPage = () => {
         <li>
           <p>
             <span>Name:</span> {person.name}
-            <span> Age:</span> {person.age}
-          </p>
-          <p>
-            <span>Application Text:</span>
-            {person.applicationText}
-          </p>
-          <p>
-            <span>Profession:</span>
-            {person.profession}
-          </p>
-          <p>
-            <span>Country:</span> {person.country}
           </p>
         </li>
       );
@@ -247,9 +240,9 @@ const TripDetailsPage = () => {
           </h2>
         </TripDetail>
         <h3>Candidates</h3>
-        <div>{candidates}</div>
+        <div>{candidates && candidates.length > 0 ? candidates : <p>There are no pending candidates</p>}</div>
         <h3>Approved</h3>
-        <div>{approved}</div>
+        <div>{approved && approved.length > 0 ? approved : <p>There are no approved candidates</p>}</div>
       </Main>
     </Div>
   );
