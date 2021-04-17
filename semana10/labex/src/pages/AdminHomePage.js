@@ -2,54 +2,62 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
-import { useHistory, useParams } from "react-router";
+import { useHistory } from "react-router";
 import { goToHomePage, goToAdminTripCreate } from "../routes/coordinator";
 import axios from "axios";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const Div = styled.div`
-  width: 99%;
+  width: 100%;
+  height: 100vh;
   margin: auto;
-  display: flex;
-  flex-direction: column;
-  > svg {
-    position: absolute;
-    top: 15px;
-    left: 50px;
-    cursor: pointer;
-    color: gray;
-  }
-  > svg:hover {
-    transform: scale(1.4);
-  }
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 71, 121, 1) 13%,
+    rgba(0, 212, 255, 1) 100%
+  );
   > button {
     position: absolute;
-    top: 700px;
-    right: 140px;
+    top: 20px;
+    left: 30px;
   }
-  >button:hover {
+  > button:hover {
     transform: scale(1.2);
   }
 `;
+
 const Main = styled.main`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  height: 680px;
-  
-  >button{
-    margin-top: 10px;
+  height: 95vh;
+  > button {
+    margin-top: 20px;
+    margin-right: 60px;
+    position: absolute;
+    top: 80px;
   }
-  >button:hover {
+  > button:hover {
     transform: scale(1.2);
   }
   li {
     list-style: none;
     margin: 0px 10px 0px 0px;
-    background: transparent;
+    background: rgb(0, 212, 255);
+    background: linear-gradient(
+      90deg,
+      rgba(0, 212, 255, 1) 13%,
+      rgba(0, 212, 255, 1) 46%,
+      rgba(1, 158, 199, 1) 100%,
+      rgba(2, 0, 36, 1) 100%
+    );
+    border-radius: 5px;
+
     h2 {
       text-align: center;
       margin: 0;
@@ -65,19 +73,26 @@ const Main = styled.main`
     transform: scale(1.1);
     cursor: pointer;
   }
-`
+`;
 
 const ListContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 5px;
+  svg {
+    transform: scale(1.5);
+    cursor: pointer;
+    margin-left: 20px;
+  }
+  svg:hover {
+    transform: scale(2.3);
+  }
 `;
 
 const AdminHomePage = () => {
   const [tripsList, setTripsList] = useState([]);
   const history = useHistory();
-  const params = useParams();
 
   useEffect(() => {
     getTrips();
@@ -95,38 +110,42 @@ const AdminHomePage = () => {
       )
       .then((response) => setTripsList(response.data))
       .catch((error) => console.log(error));
-  }; 
+  };
 
   const deleteTrip = (id) => {
-    if(window.confirm('This action will delete this trip. Do you really want to continue?')) {
+    if (
+      window.confirm(
+        "This action will delete this trip. Do you really want to continue?"
+      )
+    ) {
       const token = window.localStorage.getItem("token");
-      console.log(deleteTrip)
-        axios
-          .delete(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trips/${id}`,
+      console.log(deleteTrip);
+      axios
+        .delete(
+          `https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trips/${id}`,
           {
             headers: {
               auth: token,
             },
           }
-          )
-          .then(() => getTrips())
-          
-          
-          .catch((error) => console.log(error))
-    } 
-  }
+        )
+        .then(() => getTrips())
+
+        .catch((error) => console.log(error));
+    }
+  };
 
   const tripsComponents =
     tripsList.trips &&
     tripsList.trips.map((trip) => {
       return (
         <ListContainer>
-          <li onClick={() => history.push(`/admin/trips/${trip.id}`)}> 
+          <li onClick={() => history.push(`/admin/trips/${trip.id}`)}>
             <h2>{trip.name}</h2>
             <p></p>
           </li>
           <IconButton color="primary" aria-label="delete">
-            <DeleteIcon onClick={() => deleteTrip(trip.id)}/>
+            <DeleteIcon onClick={() => deleteTrip(trip.id)} />
           </IconButton>
         </ListContainer>
       );
@@ -138,15 +157,7 @@ const AdminHomePage = () => {
   }; // - OK
 
   return (
-    <div>
-       
     <Div>
-      <KeyboardBackspaceIcon
-        onClick={() => {
-          goToHomePage(history);
-        }}
-        style={{ fontSize: 50 }}
-      />
       <Main>
         {tripsComponents}
         <Button
@@ -169,8 +180,6 @@ const AdminHomePage = () => {
         Logout
       </Button>
     </Div>
-    
-    </div>
   );
 };
 

@@ -1,31 +1,43 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import { fade, withStyles } from "@material-ui/core/styles";
 import InputBase from "@material-ui/core/InputBase";
 import TextField from "@material-ui/core/TextField";
-import {useForm} from "../hooks/useForm";
-import Button from '@material-ui/core/Button';
+import { useForm } from "../hooks/useForm";
+import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { useHistory } from "react-router";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 
 const Form = styled.form`
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 212, 255, 0.8211659663865546) 0%,
+    rgba(0, 212, 255, 1) 0%,
+    rgba(1, 158, 199, 1) 95%
+  );
+  border-radius: 10px;
+  height: 550px;
+  width: 420px;
   margin: 10px;
   display: flex;
   flex-direction: column;
-  input{
-    font-size: 25px;
+  input {
+    font-size: 20px;
+    width: 450px;
   }
   > div {
     margin: 5px;
   }
-  button{
+  button {
     margin-top: 30px;
     width: 200px;
-    margin-left: 60px;
+    margin-left: 110px;
   }
 `;
 
@@ -38,8 +50,7 @@ const BootstrapInput = withStyles((theme) => ({
   input: {
     borderRadius: 4,
     position: "relative",
-    backgroundColor: theme.palette.common.white,
-    border: "1px solid #ced4da",
+    border: "1px solid silver",
     fontSize: 16,
     width: "auto",
     padding: "10px 12px",
@@ -64,17 +75,19 @@ const BootstrapInput = withStyles((theme) => ({
   },
 }))(InputBase);
 
-
-const initialForm ={
-  trip: '', name: '', age: '', applicationText: '', profession: '', country: ''
+const initialForm = {
+  trip: "",
+  name: "",
+  age: "",
+  applicationText: "",
+  profession: "",
+  country: "",
 };
 
 const FormApp = (props) => {
   const history = useHistory();
   const [form, onChange, resetForm] = useForm(initialForm);
   const [tripsList, setTripsList] = useState([]);
-
-  
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -88,21 +101,24 @@ const FormApp = (props) => {
       age: form.age,
       applicationText: form.applicationText,
       profession: form.profession,
-      country: form.country
-    }
-    console.log(body)
-    console.log('form id', form.trip)
+      country: form.country,
+    };
+    console.log(body);
+    console.log("form id", form.trip);
 
     axios
-    .post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trips/${form.trip}/apply`, body)
-    .then((res) => {
-      alert('Your application was successuful ')
-      history.push('/trips/list');
-    })
-    .catch((error)=>{
-      alert(error)
-    });
-}
+      .post(
+        `https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trips/${form.trip}/apply`,
+        body
+      )
+      .then((res) => {
+        alert("Your application was successuful ");
+        history.push("/trips/list");
+      })
+      .catch((error) => {
+        alert("You have to fill in all the fields correctly");
+      });
+  };
 
   useEffect(() => {
     getTrips(props.trips);
@@ -120,46 +136,58 @@ const FormApp = (props) => {
   const tripsToSelect =
     tripsList.trips &&
     tripsList.trips.map((trip) => {
-      
       return (
-        <MenuItem key={trip.id} value={trip.id} >{trip.name}</MenuItem>
+        <MenuItem key={trip.id} value={trip.id}>
+          {trip.name}
+        </MenuItem>
       );
     });
 
-    const countryToSelect = 
-    countries.map((country) => {
-      
-      return (
-        <MenuItem key={country.label} value={country.label} >{country.label}</MenuItem>
-      );
-    });
+  const countryToSelect = countries.map((country) => {
+    return (
+      <MenuItem key={country.label} value={country.label}>
+        {country.label}
+      </MenuItem>
+    );
+  });
 
-    
- 
   return (
     <Form onSubmit={handleClick}>
       <FormControl variant="outlined">
         <InputLabel>Choose a Trip</InputLabel>
-        <Select name='trip' value={form.trip} onChange={onChange}>
-          
-          
+        <Select name="trip" value={form.trip} onChange={onChange}>
           {tripsToSelect}
-          
         </Select>
       </FormControl>
 
-      <FormControl required >
+      <FormControl required>
         <InputLabel shrink htmlFor="bootstrap-input">
           Name
         </InputLabel>
-        <BootstrapInput  inputProps={{ minlength: 3}} placeholder='Your Name' type="text" name='name' value={form.name} onChange={onChange} error helperText="what?"/>
+        <BootstrapInput
+          inputProps={{ minlength: 3 }}
+          placeholder="Your Name"
+          type="text"
+          name="name"
+          value={form.name}
+          onChange={onChange}
+          error
+          helperText="what?"
+        />
       </FormControl>
 
       <FormControl required>
         <InputLabel shrink htmlFor="bootstrap-input">
           Age
         </InputLabel>
-        <BootstrapInput placeholder='+18'  type="number" inputProps={{ min: 18}} name='age' value={form.age} onChange={onChange} />
+        <BootstrapInput
+          placeholder="+18"
+          type="number"
+          inputProps={{ min: 18 }}
+          name="age"
+          value={form.age}
+          onChange={onChange}
+        />
       </FormControl>
 
       <FormControl required>
@@ -172,12 +200,12 @@ const FormApp = (props) => {
           rows={2}
           defaultValue=""
           variant="outlined"
-          type="text" 
+          type="text"
           onChange={onChange}
           value={form.applicationText}
-          name='applicationText'
-          inputProps={{ minlength: 30}}
-          placeholder='Why should we choose you?'
+          name="applicationText"
+          inputProps={{ minlength: 30 }}
+          placeholder="Why should we choose you?"
         />
       </FormControl>
 
@@ -186,29 +214,28 @@ const FormApp = (props) => {
           Profession
         </InputLabel>
         <BootstrapInput
-          type="text" 
+          type="text"
           value={form.profession}
           onChange={onChange}
-          name='profession'
-          placeholder='ex. Developer'
+          name="profession"
+          placeholder="ex. Developer"
         />
       </FormControl>
 
       <FormControl variant="outlined">
         <InputLabel>Choose a Country</InputLabel>
-        <Select name='country' value={form.country} onChange={onChange}>
-          
-          
+        <Select name="country" value={form.country} onChange={onChange}>
           {countryToSelect}
-          
         </Select>
       </FormControl>
-      <Button onClick={applyToTrip}
-      variant="contained" 
-                    color='primary' 
-                    style={{ fontSize: 15}}
-            >Send</Button>
-           
+      <Button
+        onClick={applyToTrip}
+        variant="contained"
+        color="primary"
+        style={{ fontSize: 15 }}
+      >
+        Send
+      </Button>
     </Form>
   );
 };

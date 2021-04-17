@@ -15,17 +15,29 @@ import MenuItem from "@material-ui/core/MenuItem";
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 212, 255, 0.8211659663865546) 0%,
+    rgba(0, 212, 255, 1) 0%,
+    rgba(1, 158, 199, 1) 95%
+  );
+  border-radius: 10px;
+  height: 490px;
+  width: 400px;
+
   > div {
     margin: 5px;
   }
   input {
     font-size: 20px;
+    width: 500px;
   }
   button {
     margin-top: 30px;
     width: 150px;
-    margin-left: 50px;
+    margin-left: 130px;
   }
 `;
 
@@ -38,8 +50,7 @@ const BootstrapInput = withStyles((theme) => ({
   input: {
     borderRadius: 4,
     position: "relative",
-    backgroundColor: theme.palette.common.white,
-    border: "1px solid #ced4da",
+    border: "1px solid silver",
     fontSize: 16,
     width: "auto",
     padding: "10px 12px",
@@ -107,8 +118,8 @@ const FormCreat = () => {
         body,
         {
           headers: {
-            auth: token
-          }
+            auth: token,
+          },
         }
       )
       .then((response) => {
@@ -117,28 +128,28 @@ const FormCreat = () => {
         history.push("/admin/trips/list");
       })
       .catch((error) => {
-        alert('You have to fill in all the fields correctly');
+        alert("You have to fill in all the fields correctly");
       });
   };
 
   return (
     <Form onSubmit={handleClick}>
-      <FormControl  required>
+      <FormControl required>
         <InputLabel shrink htmlFor="bootstrap-input">
           Name
         </InputLabel>
-        <BootstrapInput 
-          placeholder='Trip name'
+        <BootstrapInput
+          placeholder="Trip name"
           name="name"
           onChange={onChange}
           value={form.name}
           type="text"
-          inputProps={{ minlength: 5}}
+          inputProps={{ minlength: 5 }}
         />
       </FormControl>
 
       <FormControl required variant="outlined">
-        <InputLabel  >Planet</InputLabel>
+        <InputLabel>Planet</InputLabel>
         <Select value={form.planet} onChange={onChange} name="planet">
           <MenuItem value="">
             <em></em>
@@ -154,7 +165,7 @@ const FormCreat = () => {
         </Select>
       </FormControl>
 
-      <FormControl required  >
+      <FormControl required>
         <InputLabel shrink htmlFor="bootstrap-input">
           Date
         </InputLabel>
@@ -163,14 +174,11 @@ const FormCreat = () => {
           onChange={onChange}
           value={form.date}
           type="date"
-          
         />
       </FormControl>
 
-      <FormControl required >
-        <InputLabel >
-          Description
-        </InputLabel>
+      <FormControl required>
+        <InputLabel>Description</InputLabel>
         <TextField
           name="description"
           onChange={onChange}
@@ -180,8 +188,7 @@ const FormCreat = () => {
           rows={2}
           defaultValue={""}
           variant="outlined"
-          inputProps={{ minlength: 30}}
-          
+          inputProps={{ minlength: 30 }}
         />
       </FormControl>
       <FormControl required>
@@ -193,8 +200,8 @@ const FormCreat = () => {
           onChange={onChange}
           value={form.durationInDays}
           type="number"
-          inputProps={{ min:50 }}
-          placeholder='Minimum 50 Days'
+          inputProps={{ min: 50 }}
+          placeholder="Minimum 50 Days"
         />
       </FormControl>
       <Button

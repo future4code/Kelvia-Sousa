@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import { goToHomePage } from "../routes/coordinator";
 import { useHistory } from "react-router";
@@ -50,37 +48,62 @@ const BootstrapInput = withStyles((theme) => ({
 
 const Div = styled.div`
   width: 100%;
+  height: 100vh;
   margin: auto;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  svg {
+  justify-content: center;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 71, 121, 1) 13%,
+    rgba(0, 212, 255, 1) 100%
+  );
+
+  > button {
     position: absolute;
-    top: 15px;
+    top: 10px;
     left: 50px;
     cursor: pointer;
-    color: gray;
   }
-  svg:hover {
-    transform: scale(1.4);
+  > Button:hover {
+    transform: scale(1.1);
   }
 `;
 const Main = styled.form`
-  min-height: 300px;
-  height: 600px;
+  background: rgb(0, 212, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 212, 255, 1) 13%,
+    rgba(2, 0, 36, 1) 85%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  border-radius: 10px;
+  height: 400px;
+  width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+
   input {
     font-size: 30px;
     margin-bottom: 20px;
+    width: 450px;
   }
   button {
     margin-top: 30px;
     width: 150px;
-    
+  }
+  @media only screen and (max-width: 768px) {
+    height: 550px;
+    width: 350px;
+  }
+  input {
+    font-size: 20px;
+    margin-bottom: 20px;
+    width: 280px;
   }
 `;
 
@@ -120,36 +143,44 @@ const LoginPage = () => {
       }); //usar a urlbase
   };
 
-  
-
   return (
-    <div>
     <Div>
-      
-      <KeyboardBackspaceIcon
+      <Button
         onClick={() => {
           goToHomePage(history);
         }}
-        style={{ fontSize: 50 }}
-      />
+        variant="contained"
+        color="primary"
+        style={{ fontSize: 22 }}
+      >
+        Home
+      </Button>
 
       <Main onSubmit={handleClick}>
         <FormControl required>
           <InputLabel shrink htmlFor="bootstrap-input">
             Email
           </InputLabel>
-          <BootstrapInput inputProps={{ pattern: "(/$|.+@.+./)"}} name='email' type="email" required value={form.email} onChange={onChange}  />
+          <BootstrapInput
+            placeholder="Email*"
+            inputProps={{ pattern: "(/$|.+@.+./)" }}
+            name="email"
+            type="email"
+            required
+            value={form.email}
+            onChange={onChange}
+          />
         </FormControl>
         <FormControl required>
           <InputLabel shrink htmlFor="bootstrap-input">
             Password
           </InputLabel>
           <BootstrapInput
+            placeholder="Password*"
             type="password"
             name="password"
             value={form.password}
             onChange={onChange}
-            
           />
         </FormControl>
         <Button
@@ -161,9 +192,7 @@ const LoginPage = () => {
           Login
         </Button>
       </Main>
-      
     </Div>
-    </div>
   );
 };
 

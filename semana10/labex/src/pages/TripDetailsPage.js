@@ -2,59 +2,91 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useHistory, useParams } from "react-router";
 import { goToAdminTripList } from "../routes/coordinator";
-import axios from 'axios';
+import axios from "axios";
 import Button from "@material-ui/core/Button";
-import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 const Div = styled.div`
-  svg {
+  height: 100vh;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 71, 121, 1) 13%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  > button {
     position: absolute;
-    top: 15px;
+    top: 20px;
     left: 50px;
     cursor: pointer;
-    color: gray;
   }
-  svg:hover {
-    transform: scale(1.4);
+  > button:hover {
+    transform: scale(1.2);
   }
-`
+`;
+const TripDetail = styled.ul`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  h2 {
+    margin: 0;
+    span {
+      color: lightSkyBlue;
+    }
+  }
+`;
+
 const Main = styled.main`
   min-height: 430px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 20px;
-  h3{
-      margin: 0 0 5px 0;
-      color: #094293;
-    }
-  li{
+
+  h3 {
+    margin-top: 0;
+    color: #094293;
+  }
+  li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(0, 212, 255, 0.8211659663865546) 0%,
+      rgba(0, 212, 255, 1) 0%,
+      rgba(1, 158, 199, 1) 95%
+    );
+    border-radius: 10px;
     list-style: none;
     text-align: center;
-    width: 450px;
+    width: 350px;
+    height: 200px;
+    margin: 5px;
+    span {
+      font-weight: bold;
+    }
   }
-  div{
+  div {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    
-    p{
-      text-align: center;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    p {
       margin: 0;
       word-wrap: break-word;
     }
-    button{
+    button {
       width: 100px;
       margin: 2px;
-      
     }
   }
-  
-`
-
+`;
 
 const TripDetailsPage = () => {
   const history = useHistory();
@@ -69,9 +101,8 @@ const TripDetailsPage = () => {
     }
   }, [history]);
 
- 
   const getTripDetail = (id) => {
-    const token = window.localStorage.getItem('token')
+    const token = window.localStorage.getItem("token");
 
     axios
       .get(
@@ -83,110 +114,143 @@ const TripDetailsPage = () => {
         }
       )
       .then((response) => {
-        setTripData(response.data.trip);   
-        console.log(response.data)     
+        setTripData(response.data.trip);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }; 
+  };
 
   const decideCandidate = (approve, candidateId) => {
-
-    const token = window.localStorage.getItem('token')
+    const token = window.localStorage.getItem("token");
 
     const body = {
-      approve: approve
-    }
+      approve: approve,
+    };
 
     axios
-      .put(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trips/${tripData.id}/candidates/${candidateId}/decide`, body ,
-      {
-        headers:{
-          auth: token
+      .put(
+        `https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trips/${tripData.id}/candidates/${candidateId}/decide`,
+        body,
+        {
+          headers: {
+            auth: token,
+          },
         }
-      }
       )
       .then(() => {
-        alert('success!')
-        getTripDetail() 
+        alert("success!");
+        getTripDetail();
       })
-      .catch((error) => alert(error))
-  }
+      .catch((error) => alert(error));
+  };
 
-  const candidates = tripData.candidates &&
-    tripData.candidates.map((person) => { 
+  const candidates =
+    tripData.candidates &&
+    tripData.candidates.map((person) => {
       return (
         <li>
-          <p>Name: {person.name}</p>
-          <p>Age: {person.age}</p>
-          <p>Application Text:{person.applicationText}</p>
-          <p>Profession: {person.profession}</p>
-          <p>Country: {person.country}</p>
-          <Button
-        onClick={() => {decideCandidate(true, person.id)}}
-        variant="contained"
-        color="primary"
-        style={{ fontSize: 12 }}
-      >
-        Approve
-      </Button>
-      <Button
-        onClick={() => {decideCandidate(false, person.id)}}
-        variant="contained"
-        color="primary"
-        style={{ fontSize: 12 }}
-      >
-        Disapprove
-      </Button>
+          <p>
+            <span>Name:</span> {person.name}
+            <span> Age:</span> {person.age}
+          </p>
+          <p>
+            <span>Application Text:</span>
+            {person.applicationText}
+          </p>
+          <p>
+            <span>Profession:</span>
+            {person.profession}
+          </p>
+          <p>
+            <span>Country:</span> {person.country}
+          </p>
+          <div>
+            <Button
+              onClick={() => {
+                decideCandidate(true, person.id);
+              }}
+              variant="contained"
+              color="primary"
+              style={{ fontSize: 12 }}
+            >
+              Approve
+            </Button>
+            <Button
+              onClick={() => {
+                decideCandidate(false, person.id);
+              }}
+              variant="contained"
+              color="primary"
+              style={{ fontSize: 12 }}
+            >
+              Disapprove
+            </Button>
+          </div>
         </li>
-      )
-    })
+      );
+    });
 
-    const approved = tripData.candidates &&
-    tripData.approved.map((person) => { 
+  const approved =
+    tripData.candidates &&
+    tripData.approved.map((person) => {
       return (
         <li>
-          <p>Name: {person.name}</p>
-          <p>Age: {person.age}</p>
-          <p>Application Text: {person.applicationText}</p>
-          <p>Profession{person.profession}</p>
-          <p>Country: {person.country}</p>
+          <p>
+            <span>Name:</span> {person.name}
+            <span> Age:</span> {person.age}
+          </p>
+          <p>
+            <span>Application Text:</span>
+            {person.applicationText}
+          </p>
+          <p>
+            <span>Profession:</span>
+            {person.profession}
+          </p>
+          <p>
+            <span>Country:</span> {person.country}
+          </p>
         </li>
-      )
-    })
+      );
+    });
 
-  useEffect (() => {
-    
+  useEffect(() => {
     getTripDetail(params.id);
-  
-  }, [params.id])
+  }, [params.id]);
 
   return (
     <Div>
-      
-      <KeyboardBackspaceIcon
+      <Button
         onClick={() => goToAdminTripList(history)}
-        style={{ fontSize: 50 }}
-      />
+        variant="contained"
+        color="primary"
+        style={{ fontSize: 15 }}
+      >
+        Back
+      </Button>
+
       <Main>
-      <li key={tripData.id}>
-        <h3>{tripData.name}</h3>
-        <p>{tripData.planet}</p>
-        <p>{tripData.description}</p>
-        <p>{tripData.durationInDays} Days</p>
-        <p>Date: {tripData.date}</p>
-      </li>
-      <h3>Candidates</h3>
-      <div>
-        {candidates}
-      </div>
-      <h3>Approved</h3>
-      <div>
-      {approved}
-      </div>
+        <TripDetail key={tripData.id}>
+          <h2>{tripData.name}</h2>
+          <h2>
+            <span>Where? </span>
+            {tripData.planet}!
+          </h2>
+          <h2>
+            <span>Details: </span>
+            {tripData.description}
+          </h2>
+          <h2>
+            {tripData.durationInDays} <span>days</span> - {tripData.date}
+          </h2>
+        </TripDetail>
+        <h3>Candidates</h3>
+        <div>{candidates}</div>
+        <h3>Approved</h3>
+        <div>{approved}</div>
       </Main>
-    
     </Div>
   );
 };
