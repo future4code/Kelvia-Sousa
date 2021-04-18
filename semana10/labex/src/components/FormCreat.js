@@ -89,7 +89,6 @@ const FormCreat = () => {
 
   const handleClick = (event) => {
     event.preventDefault();
-    console.log(form);
     resetForm();
   };
 
@@ -145,6 +144,7 @@ const FormCreat = () => {
           value={form.name}
           type="text"
           inputProps={{ minlength: 5 }}
+          error
         />
       </FormControl>
 

@@ -1,31 +1,31 @@
 export const goToHomePage = (history) => {
-    history.push('/')
+  history.push("/");
 };
 
 export const goToTripList = (history) => {
-    history.push('/trips/list')
+  history.push("/trips/list");
 };
 
 export const goToTripApplication = (history) => {
-    history.push('/trips/application')
+  history.push("/trips/application");
 };
 
 export const goToLogin = (history) => {
-    history.push('/login')
+  history.push("/login");
 };
 
 export const goToAdminTripList = (history) => {
-    history.push('/admin/trips/list')
+  history.push("/admin/trips/list");
 };
 
 export const goToAdminTripCreate = (history) => {
-    history.push('/admin/trips/create')
+  history.push("/admin/trips/create");
 };
 
 export const goToAdminTripDetail = (history, id) => {
-    history.push(`/admin/trips/${id}`)
+  history.push(`/admin/trips/${id}`);
 };
 
-export const goToLastPage = (history) =>{
-    history.goBack();
+export const goToLastPage = (history) => {
+  history.goBack();
 };

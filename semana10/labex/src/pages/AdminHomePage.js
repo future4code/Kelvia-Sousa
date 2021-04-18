@@ -6,6 +6,7 @@ import { goToAdminTripCreate } from "../routes/coordinator";
 import axios from "axios";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { baseUrl } from "../constants/url";
 
 const Div = styled.div`
   width: 100%;
@@ -51,16 +52,15 @@ const Main = styled.main`
     background: linear-gradient(
       90deg,
       rgba(0, 212, 255, 1) 13%,
-      rgba(0, 212, 255, 1) 46%,
-      rgba(1, 158, 199, 1) 100%,
-      rgba(2, 0, 36, 1) 100%
+      rgba(2, 0, 36, 1) 85%,
+      rgba(0, 212, 255, 1) 100%
     );
-    border-radius: 5px;
+    border-radius: 10px;
 
     h2 {
       text-align: center;
       margin: 0;
-      color: #094293;
+      color: white;
     }
   }
   p {
@@ -104,11 +104,9 @@ const AdminHomePage = () => {
 
   const getTrips = () => {
     axios
-      .get(
-        "https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trips"
-      )
+      .get(`${baseUrl}/trips`)
       .then((response) => setTripsList(response.data))
-      .catch((error) => console.log(error));
+      .catch((error) => alert(error));
   };
 
   const deleteTrip = (id) => {
@@ -118,19 +116,15 @@ const AdminHomePage = () => {
       )
     ) {
       const token = window.localStorage.getItem("token");
-      console.log(deleteTrip);
-      axios
-        .delete(
-          `https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trips/${id}`,
-          {
-            headers: {
-              auth: token,
-            },
-          }
-        )
-        .then(() => getTrips())
 
-        .catch((error) => console.log(error));
+      axios
+        .delete(`${baseUrl}/trips/${id}`, {
+          headers: {
+            auth: token,
+          },
+        })
+        .then(() => getTrips())
+        .catch((error) => alert(error));
     }
   };
 
@@ -153,7 +147,7 @@ const AdminHomePage = () => {
   const logout = () => {
     window.localStorage.removeItem("token");
     history.push("/login");
-  }; // - OK
+  };
 
   return (
     <Div>

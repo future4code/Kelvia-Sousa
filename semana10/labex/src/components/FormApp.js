@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -11,6 +11,7 @@ import axios from "axios";
 import { useHistory } from "react-router";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import { useRequestData } from "../hooks/useRequestData";
 
 const Form = styled.form`
   background: rgb(2, 0, 36);
@@ -84,14 +85,13 @@ const initialForm = {
   country: "",
 };
 
-const FormApp = (props) => {
+const FormApp = () => {
   const history = useHistory();
   const [form, onChange, resetForm] = useForm(initialForm);
-  const [tripsList, setTripsList] = useState([]);
+  const tripsList = useRequestData("/trips", []);
 
   const handleClick = (event) => {
     event.preventDefault();
-    console.log(form);
     resetForm();
   };
 
@@ -103,8 +103,6 @@ const FormApp = (props) => {
       profession: form.profession,
       country: form.country,
     };
-    console.log(body);
-    console.log("form id", form.trip);
 
     axios
       .post(
@@ -118,19 +116,6 @@ const FormApp = (props) => {
       .catch((error) => {
         alert("You have to fill in all the fields correctly");
       });
-  };
-
-  useEffect(() => {
-    getTrips(props.trips);
-  }, [props.trips]);
-
-  const getTrips = () => {
-    axios
-      .get(
-        "https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trips"
-      )
-      .then((response) => setTripsList(response.data))
-      .catch((error) => console.log(error));
   };
 
   const tripsToSelect =
@@ -153,7 +138,7 @@ const FormApp = (props) => {
 
   return (
     <Form onSubmit={handleClick}>
-      <FormControl variant="outlined">
+      <FormControl required variant="outlined">
         <InputLabel>Choose a Trip</InputLabel>
         <Select name="trip" value={form.trip} onChange={onChange}>
           {tripsToSelect}
@@ -219,10 +204,11 @@ const FormApp = (props) => {
           onChange={onChange}
           name="profession"
           placeholder="ex. Developer"
+          inputProps={{ minlength: 10 }}
         />
       </FormControl>
 
-      <FormControl variant="outlined">
+      <FormControl required variant="outlined">
         <InputLabel>Choose a Country</InputLabel>
         <Select name="country" value={form.country} onChange={onChange}>
           {countryToSelect}

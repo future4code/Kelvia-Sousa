@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import { goToHomePage, goToTripApplication } from "../routes/coordinator";
 import { useHistory } from "react-router";
-import axios from "axios";
+import { useRequestData } from "../hooks/useRequestData";
 
 const Div = styled.div`
   width: 100%;
@@ -55,7 +55,7 @@ const Main = styled.main`
       rgba(0, 212, 255, 1) 0%,
       rgba(1, 158, 199, 1) 95%
     );
-    border-radius: 10px;
+    border-radius: 5px;
     list-style: none;
     width: 250px;
     margin: 10px;
@@ -99,22 +99,9 @@ const Main = styled.main`
   }
 `;
 
-const ListTripsPage = (props) => {
-  const [tripsList, setTripsList] = useState([]);
+const ListTripsPage = () => {
+  const tripsList = useRequestData("/trips", []);
   const history = useHistory();
-
-  useEffect(() => {
-    getTrips(props.trips);
-  }, [props.trips]);
-
-  const getTrips = () => {
-    axios
-      .get(
-        "https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trips"
-      )
-      .then((response) => setTripsList(response.data))
-      .catch((error) => console.log(error));
-  };
 
   const tripsComponents =
     tripsList.trips &&

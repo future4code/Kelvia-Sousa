@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router";
 import { goToAdminTripList } from "../routes/coordinator";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
+import { baseUrl } from "../constants/url";
 
 const Div = styled.div`
   height: 100vh;
@@ -23,8 +24,7 @@ const Div = styled.div`
   > button:hover {
     transform: scale(1.2);
   }
-  
-`
+`;
 const TripDetail = styled.ul`
   display: flex;
   flex-direction: column;
@@ -88,10 +88,8 @@ const Main = styled.main`
       width: 450px;
       margin: 0;
     }
-    
   }
-
-`
+`;
 
 const TripDetailsPage = () => {
   const history = useHistory();
@@ -110,20 +108,17 @@ const TripDetailsPage = () => {
     const token = window.localStorage.getItem("token");
 
     axios
-      .get(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trip/${params.id}`,
-        {
-          headers: {
-            auth: token,
-          },
-        }
-      )
+      .get(`${baseUrl}/trip/${params.id}`, {
+        headers: {
+          auth: token,
+        },
+      })
       .then((response) => {
         setTripData(response.data.trip);
         console.log(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        alert(error);
       });
   };
 
@@ -136,7 +131,7 @@ const TripDetailsPage = () => {
 
     axios
       .put(
-        `https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/trips/${tripData.id}/candidates/${candidateId}/decide`,
+        `${baseUrl}/trips/${tripData.id}/candidates/${candidateId}/decide`,
         body,
         {
           headers: {
@@ -145,7 +140,11 @@ const TripDetailsPage = () => {
         }
       )
       .then(() => {
-        alert("success!");
+        if (approve) {
+          alert("Candidate has been added to the list of approved!");
+        } else {
+          alert("Candidate was disapproved");
+        }
         getTripDetail();
       })
       .catch((error) => alert(error));
@@ -240,9 +239,21 @@ const TripDetailsPage = () => {
           </h2>
         </TripDetail>
         <h3>Candidates</h3>
-        <div>{candidates && candidates.length > 0 ? candidates : <p>There are no pending candidates</p>}</div>
+        <div>
+          {candidates && candidates.length > 0 ? (
+            candidates
+          ) : (
+            <p>There are no pending candidates</p>
+          )}
+        </div>
         <h3>Approved</h3>
-        <div>{approved && approved.length > 0 ? approved : <p>There are no approved candidates</p>}</div>
+        <div>
+          {approved && approved.length > 0 ? (
+            approved
+          ) : (
+            <p>There are no approved candidates</p>
+          )}
+        </div>
       </Main>
     </Div>
   );

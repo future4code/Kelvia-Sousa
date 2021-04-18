@@ -9,6 +9,7 @@ import InputBase from "@material-ui/core/InputBase";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { useForm } from "../hooks/useForm";
+import { baseUrl } from "../constants/url";
 
 const BootstrapInput = withStyles((theme) => ({
   root: {
@@ -116,7 +117,6 @@ const LoginPage = () => {
 
   const handleClick = (event) => {
     event.preventDefault();
-    console.log(form);
     resetForm();
   };
   const history = useHistory();
@@ -128,10 +128,7 @@ const LoginPage = () => {
     };
 
     axios
-      .post(
-        "https://us-central1-labenu-apis.cloudfunctions.net/labeX/kelvia-santos-cruz/login",
-        body
-      )
+      .post(`${baseUrl}/login`, body)
       .then((response) => {
         console.log(response.data);
         window.localStorage.setItem("token", response.data.token);
