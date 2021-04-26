@@ -5,10 +5,13 @@ import {RegisterPage} from '../pages/register/RegisterPage';
 import {FeedPage} from '../pages/feed/FeedPage';
 import {PostPage} from '../pages/post/PostPage';
 import {ErrorPage} from '../pages/error/ErrorPage';
+import { Header } from '../components/header/Header';
+
 
 export const Router = () => {
   return (
     <BrowserRouter>
+      <Header/>
       <Switch>
         <Route exact path="/login">
            <LoginPage/>
