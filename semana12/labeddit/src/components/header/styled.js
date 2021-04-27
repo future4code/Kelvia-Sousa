@@ -21,5 +21,6 @@ export const HeaderContainer = styled.div`
   }
   span{
     margin-right: 20px;
+    font-size: 14px;
   }
 ` 

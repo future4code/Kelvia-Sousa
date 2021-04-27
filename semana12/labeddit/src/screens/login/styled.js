@@ -36,6 +36,7 @@ export const InputsContainer = styled.form`
   margin-top: 20vh;
  input{
    border: none;
+   width: 15vw;
    background: none;
    border-bottom: 1px solid lightGray;
    margin: 20px 0;
@@ -65,7 +66,7 @@ export const InputsContainer = styled.form`
       padding: 10px;
       border-radius: 4px;
       box-shadow: 2px 12px 20px 15px lightGray;
-      margin-bottom: 20px;
+      margin-bottom: 15vh;
      &:hover{
       border: 0.5px solid #778a73;
      }

@@ -12,7 +12,7 @@ export const RegisterPage = () => {
 
   return (
     <RegisterContainer>
-      <InputsContainer OnSubmit={onSubmitForm}>
+      <InputsContainer onSubmit={onSubmitForm}>
      <input 
     placeholder={'Nome'}
     type={"text"}
