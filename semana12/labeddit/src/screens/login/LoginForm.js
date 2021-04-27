@@ -1,11 +1,11 @@
 import axios from "axios";
 import React from "react";
+import { InputsContainer } from "./styled";
+import {BASE_URL} from '../../constants/Url';
 import { useHistory } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
-import { InputsContainer } from "./styled";
-import {BASE_URL} from '../../constants/Url'
-import { useUnprotectedPage } from '../../hooks/useUnprotectedPage';
 import { goToFeed } from "../../routes/Coordinator";
+import { useUnprotectedPage } from '../../hooks/useUnprotectedPage';
 
 export const LoginForm = ({setRightButtonText}) => {
   useUnprotectedPage();

@@ -10,6 +10,10 @@ export const goToFeed = (history) => {
 export const goToPost = (history, id) => {
   history.push(`/post/${id}`)
 }
+
+export const goToCreatePost = (history) => {
+  history.push('/create')
+}
 export const goToLastPage = (history) => {
   history.goBack()
 }

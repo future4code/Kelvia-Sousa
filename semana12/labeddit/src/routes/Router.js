@@ -5,6 +5,7 @@ import {RegisterPage} from '../screens/register/RegisterPage';
 import {FeedPage} from '../screens/feed/FeedPage';
 import {PostPage} from '../screens/post/PostPage';
 import {ErrorPage} from '../screens/error/ErrorPage';
+import { CreatePage } from '../screens/createPost/CreatePage';
 
 
 export const Router = ({setRightButtonText}) => {
@@ -20,6 +21,10 @@ export const Router = ({setRightButtonText}) => {
 
         <Route exact path="/">
           <FeedPage/>
+        </Route>
+
+        <Route exact path="/create">
+          <CreatePage/>
         </Route>
 
         <Route exact path="/post/:id">
