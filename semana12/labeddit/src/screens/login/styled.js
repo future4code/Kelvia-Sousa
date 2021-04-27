@@ -36,7 +36,6 @@ export const InputsContainer = styled.form`
   margin-top: 20vh;
  input{
    border: none;
-   width: 15vw;
    background: none;
    border-bottom: 1px solid lightGray;
    margin: 20px 0;
@@ -61,8 +60,8 @@ export const InputsContainer = styled.form`
      font-weight: bold;
      letter-spacing: 3px;
      cursor: pointer;
-     color: gray;
-    background-color: #FBFFDE;
+     color: #FBFFDE;
+    background-color: gray;
       padding: 10px;
       border-radius: 4px;
       box-shadow: 2px 12px 20px 15px lightGray;

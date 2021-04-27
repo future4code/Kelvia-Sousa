@@ -36,8 +36,8 @@ export const InputsContainer = styled.form`
      font-weight: bold;
      letter-spacing: 3px;
      cursor: pointer;
-     color: gray;
-      background-color: #FBFFDE;
+     color:  #FBFFDE;
+      background-color:gray;
       padding: 10px;
       border-radius: 4px;
       box-shadow: 2px 12px 20px 15px lightGray;
