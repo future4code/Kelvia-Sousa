@@ -1,9 +1,12 @@
 import React from 'react';
+import error from '../../assets/errorImage.png';
+import {ErroContainer} from './styled'
 
 export const ErrorPage = () => {
   return (
-    <div>
-      <h1> Página não Encontrada </h1>
-    </div>
+    <ErroContainer>
+      <img src={error}/>
+      <h1> Erro 404 - Página não Encontrada </h1>
+    </ErroContainer>
   )
 }
