@@ -5,15 +5,15 @@ import { useForm } from "../../hooks/useForm";
 import { InputsContainer } from "./styled";
 import {BASE_URL} from '../../constants/Url'
 import { useUnprotectedPage } from '../../hooks/useUnprotectedPage';
+import { goToFeed } from "../../routes/Coordinator";
 
-export const LoginForm = () => {
+export const LoginForm = ({setRightButtonText}) => {
   useUnprotectedPage();
   const history = useHistory();
-
   const [form, onChange, clear] = useForm({email: "", password: "",});
 
   const handleClick = (event) => {
-    login()
+    login(setRightButtonText)
     event.preventDefault();
     
   };
@@ -24,10 +24,11 @@ export const LoginForm = () => {
       console.log(response.data)
       window.localStorage.setItem("token", response.data.token)
       clear();
-      history.push('/')
+      goToFeed(history)
+      setRightButtonText('Logout')
     })
     .catch((error) => {
-      alert('Não foi possível concluir a solicitação. Verifique se os dados digitados estão corretos');
+      alert(error.response.data.message);
     });
   }
 

@@ -4,12 +4,12 @@ import {goToRegister} from '../../routes/Coordinator';
 import { LoginForm } from './LoginForm';
 import { LoginContainer} from './styled';
 
-export const LoginPage = () => {
+export const LoginPage = ({setRightButtonText}) => {
   const history = useHistory()
 
   return (
     <LoginContainer>
-      <LoginForm/>
+      <LoginForm setRightButtonText={setRightButtonText}/>
     <span>Não possui conta?</span>
     <button type={"submit"} onClick={() => goToRegister(history)} >CADASTRE-SE</button>
     </LoginContainer>

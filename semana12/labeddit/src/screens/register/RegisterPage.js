@@ -3,11 +3,11 @@ import { RegisterForm } from './RegisterForm';
 import { RegisterContainer} from './styled';
 
 
-export const RegisterPage = () => {
+export const RegisterPage = ({setRightButtonText}) => {
   
   return (
     <RegisterContainer>
-      <RegisterForm/>
+      <RegisterForm  setRightButtonText={setRightButtonText}/>
     </RegisterContainer>
   )
 }
