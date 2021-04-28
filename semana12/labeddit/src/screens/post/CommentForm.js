@@ -22,7 +22,7 @@ export const CommentForm = () => {
       }
     })
     .then((response) => {
-     alert('Comentário adicionado com sucesso')
+      console.log(response.data)
     clear();
     window.location.reload()
     })
@@ -34,12 +34,11 @@ export const CommentForm = () => {
   return (
     <InputsContainer onSubmit={handleClick}>
  <textarea
-        placeholder={"Texto"}
+        placeholder={""}
         type={"text"}
         name={"text"}
         value={form.text}
         onChange={onChange}
-        required
       />
 <button type={"submit"} onclick={()=> createComment()}> ENVIAR COMENTÁRIO </button>
 </InputsContainer>

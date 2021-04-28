@@ -1,14 +1,14 @@
 import React from 'react';
 import { useProtectedPage } from '../../hooks/useProtectedPage';
 import {CreateForm} from './CreateFom';
+import {Container} from './styled'
 
 export const CreatePage = () => {
   useProtectedPage()
   
   return (
-    <div>
-      <h1> Crie aqui </h1>
+    <Container>
       < CreateForm/>
-    </div>
+    </Container>
   )
 }

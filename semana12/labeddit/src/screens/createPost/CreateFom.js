@@ -44,8 +44,8 @@ export const CreateForm = () => {
         required
       />
 
-      <textarea
-        placeholder={"Texto"}
+      <textarea rows='10'
+        placeholder={"Escreva seu texto"}
         type={"text"}
         name={"text"}
         value={form.text}

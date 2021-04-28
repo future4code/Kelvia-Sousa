@@ -1,42 +1,58 @@
 import styled from 'styled-components';
 
 export const PostContainer = styled.div`
-  margin-top: 40px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0;
   div{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    border:  1px solid black;
     width: 80%;
   }
-  h3, h4 {
-    margin: 0;
+  
+  h5,h2{
+    text-align: center;
+    width: 90%;
   }
+  h3 {
+    text-transform: uppercase;
+    box-shadow: 2px 12px 20px 15px lightGray;
+    border-radius: 5px;
+    padding-right: 20px;
+  }
+  img{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin: 0 10px;
+  }
+  
 ` 
 
-export const CommentContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 100%;
+export const CommentsContainer = styled.div`
+background-color: #FBFFDE;  
+box-shadow: 2px 12px 20px 15px lightGray;
+border-radius: 5px;
+margin-top: 10px;
+align-items: center;
+text-transform: capitalize;
 `
 
 export const InputsContainer = styled.form`
+display: flex;
+flex-direction: column;
   textarea {
   border: none;
    background: none;
-   border-bottom: 1px solid lightGray;
-   margin: 20px 0;
-   padding: 15px;
+   border-bottom: 3px solid lightGray;
+   margin-bottom: 20px ;
    outline: none;
    text-align: center;
-   letter-spacing: 2px;
-   font-size: 16px;
+   font-size: 13px;
    font-weight: bold;
    
    &:hover{
@@ -44,19 +60,22 @@ export const InputsContainer = styled.form`
    }
   }
   button{
-     background: none;
      border: none;
-     font-weight: bold;
      letter-spacing: 3px;
      cursor: pointer;
-     color: #FBFFDE;
-    background-color: gray;
+     color:  #FBFFDE;
+      background-color:gray;
       padding: 10px;
       border-radius: 4px;
       box-shadow: 2px 12px 20px 15px lightGray;
-      margin-bottom: 15vh;
+      
      &:hover{
       border: 0.5px solid #778a73;
      }
    }
+`
+
+export const Data = styled.div`
+    font-size: 20px;
+    text-transform: capitalize;
 `

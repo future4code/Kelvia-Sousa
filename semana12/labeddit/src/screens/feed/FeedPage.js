@@ -5,6 +5,7 @@ import {CardPosts} from '../../components/cardPosts/CardPosts';
 import  {CardsContainer, FeedContainer} from './styled';
 import {goToCreatePost, goToPost} from '../../routes/Coordinator';
 import { useHistory } from "react-router-dom";
+import writer from '../../assets/write.png'
 
 export const FeedPage = () => {
   useProtectedPage()
@@ -30,7 +31,7 @@ export const FeedPage = () => {
 
   return (
     <FeedContainer>
-      <button type="button" onClick={() => goToCreatePost(history)}> Escreva Seu Post </button>
+      <img src={writer} onClick={() => goToCreatePost(history)}/>
     <CardsContainer>
       {postsComponent}
     </CardsContainer>

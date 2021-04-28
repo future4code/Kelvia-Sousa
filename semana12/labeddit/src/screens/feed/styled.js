@@ -1,22 +1,15 @@
 import styled from 'styled-components';
 
 export const FeedContainer = styled.div`
-   button{
-     background: none;
-     border: none;
-     font-weight: bold;
-     letter-spacing: 3px;
-     cursor: pointer;
-     background-color: #FBFFDE;
-     color: gray ;
+  margin-top: 50px;
+   >img{
+      cursor: pointer;
+     width: 100px;
       padding: 10px;
-      border-radius: 4px;
+      position: fixed;
+      margin: 60vh  0px 0px 10px;
       box-shadow: 2px 12px 20px 15px lightGray;
-      margin: 5vh 0;
-      margin-left: 43vw;
-     &:hover{
-      border: 0.4px solid #778a73;
-     }
+      border-radius: 50px;
 ` 
 
 export const CardsContainer = styled.div`
