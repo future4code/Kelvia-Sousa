@@ -1,5 +1,7 @@
 import React from 'react';
 import {PostCards} from './styled';
+import com from '../../assets/comment.png'
+import up from '../../assets/up.png'
 
 export const CardPosts = (props) => {
   return (
@@ -7,19 +9,20 @@ export const CardPosts = (props) => {
       <p>
         {props.name}
       </p>
-      <h3>
+      <h4>
        {props.title}
-      </h3>
-      <div>
+      </h4>
+      <>
         {props.text}
-      </div>
+      </>
       <span>
         {props.date}
       </span>
       <div>
-        <p>{props.votes}</p>
-        <p>{props.comment}</p>
-        <p>{props.userVote}</p>
+        <span>
+          <img src={up} />                 
+          {props.votes}</span>
+        <span> <img src={com} />{props.comment}</span>
       </div>
     </PostCards>
   )

@@ -9,13 +9,11 @@ import { goToFeed } from "../../routes/Coordinator";
 
 export const CreateForm = () => {
   const history = useHistory();
-  const [form, onChange, clear] = useForm({title: "", text: "",});
+  const [form, onChange, clear] = useForm({title: "", text: ""});
 
   const handleClick = (event) => {
-    createPost() 
+     createPost() 
      event.preventDefault();
-     clear();
-     console.log(form)
    };
   
    const createPost = () => {
@@ -26,11 +24,12 @@ export const CreateForm = () => {
       }
     })
     .then((response) => {
-      alert(response.data.message)
+      alert('Postagem criada com sucesso')
+      clear();
       goToFeed(history)
     })
     .catch((error) => {
-      console.log(error.response.data.message);
+      alert(error)
     });
   }
 
