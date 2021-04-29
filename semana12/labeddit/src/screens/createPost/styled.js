@@ -61,6 +61,16 @@ export const InputsContainer = styled.form`
       border: 0.5px solid #778a73;
      }
    }
+   @media (max-width: 600px) {
+    margin: 100px 0;
+    textarea{
+      margin-top: 60px;
+    }
+    button{
+      margin-top: 400px;
+    }
+
+}
 `
 
 export const Container = styled.div`

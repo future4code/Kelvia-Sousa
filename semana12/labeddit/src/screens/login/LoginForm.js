@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {useState} from "react";
+import React from "react";
 import { InputsContainer } from "./styled";
 import {BASE_URL} from '../../constants/Url';
 import { useHistory } from "react-router-dom";
@@ -27,10 +27,7 @@ export const LoginForm = ({setRightButtonText}) => {
       goToFeed(history)
       setRightButtonText('Logout')
     })
-    .catch((error) => {
-      
-      alert(error.response.data.message);
-    });
+    .catch((error) => alert(error.response.data.message))
   }
 
   return (

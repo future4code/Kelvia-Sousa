@@ -30,6 +30,12 @@ img{
       border: 0.5px solid #778a73;
      }
  }
+ @media (max-width: 600px) {
+    img{
+      width: 100px;
+      margin-top: 50px;
+    }
+ }
 `
 export const InputsContainer = styled.form`
   display: flex;

@@ -5,7 +5,9 @@ background-color: #FBFFDE;
 box-shadow: 2px 12px 20px 15px lightGray;
 border-radius: 5px;
 h3{
-  margin-top: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
 }
 img{
   width: 35px;
@@ -19,23 +21,33 @@ img{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 30vw;
-  height: 30vh;
+  width: 22vw;
+  height: 31vh;
   margin-bottom: 10px;
   cursor: pointer;
   &:hover{
-    p, h3, h4{
+    p, h3{
       color: gray;
+      
     }
   }
   h4{
     text-align: center;
+    color: #8b0000;
   }
   >div{
-    width: 90%;
+    width: 95%;
+    height: 10px;
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid lightGray;
+    span{
+     margin-top: 25px;
+    }
   }
+  @media (max-width: 600px) {
+    width: 90vw;
+    height: 35vh;
+    
 
+  }
 `

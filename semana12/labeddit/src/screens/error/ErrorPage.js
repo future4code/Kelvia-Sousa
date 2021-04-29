@@ -5,7 +5,7 @@ import {ErroContainer} from './styled'
 export const ErrorPage = () => {
   return (
     <ErroContainer>
-      <img src={error}/>
+      <img src={error} alt="logo sad"/>
       <h1> Erro 404 - Página não Encontrada </h1>
     </ErroContainer>
   )

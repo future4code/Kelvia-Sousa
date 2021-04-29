@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { useParams } from "react-router-dom";
-import { useRequestData } from "../../hooks/useRequestData";
 import { PostContainer, Data, CommentsContainer } from "./styled";
 import { CommentForm } from "./CommentForm";
-import up from "../../assets/voteUp.png";
-import down from "../../assets/voteDown.png";
-import user from "../../assets/user.png";
-import author from "../../assets/author.png";
 import { BASE_URL } from "../../constants/Url";
 import axios from "axios";
+import { BiDownvote, BiUpvote } from "react-icons/bi";
+
+import { FaUserAlt} from "react-icons/fa";
 
 export const PostPage = () => {
   useProtectedPage();
@@ -91,14 +89,15 @@ export const PostPage = () => {
       return (
         <CommentsContainer>
           <h4>
-            <img src={user} />
+            <FaUserAlt />
             {comment.username}
           </h4>
           <p>{comment.text}</p>
           <span>
-            <img src={up} onClick={() => voteComment(1, comment.id)} />
+            <BiUpvote onClick={() => voteComment(1, comment.id)}/>
+            
             {comment.votesCount}
-            <img src={down} onClick={() => voteComment(-1, comment.id)} />
+            <BiDownvote onClick={() => voteComment(-1, comment.id)} />
           </span>
           <span>
              {time(comment.createdAt)}
@@ -118,9 +117,9 @@ export const PostPage = () => {
         {post.post && post.post.username}  
         <span>{time(post.post && post.post.createdAt)}</span>
         <span>
-        <img src={up} onClick={() => vote(1)} />
+        <BiUpvote onClick={() => vote(1)} />
         {post.post && post.post.votesCount}
-        <img src={down} onClick={() => vote(-1)} />
+        <BiDownvote onClick={() => vote(-1)} />
       </span>
         </p>
         

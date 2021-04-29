@@ -2,22 +2,22 @@ import styled from 'styled-components';
 
 export const PostContainer = styled.div`
   width: 100%;
+  height: 89vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0;
-  /* border: 1px solid black; */
   h2{
     text-align: center;
-    width: 90%;
+    width: 100%;
     margin-top: 8px;
   }
   h5{
     text-align: center;
     margin: 0;
     overflow: auto;
-    width: 90vw;
+    width: 100vw;
     font-weight: 500;
     font-size: 17px;
   }
@@ -36,15 +36,16 @@ export const Data = styled.div`
         font-size: 15px;
         
         &:last-child{
-          img{
-           width: 15px;
-           height: 15px;
-           cursor: pointer;
-           margin: 0 7px;
-          }
+          cursor: pointer;
         }
       }
     }
+    @media (max-width: 600px) {
+      p{
+        width: 100vw;
+      }
+
+  }
 `
 
 export const InputsContainer = styled.form`
@@ -77,6 +78,12 @@ align-items: center;
       box-shadow: 2px 12px 20px 15px lightGray;
       width: 100px;
    }
+   @media (max-width: 600px) {
+    textarea{
+      width: 250px;
+    }
+
+}
 `
 export const CommentsContainer = styled.div`
   display: flex;
@@ -84,25 +91,33 @@ export const CommentsContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   background-color: #FBFFDE;  
-  margin: 10px 0;
+  margin: 3px 0;
   width: 98%;
+  
+  h4{
+    margin:0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70px;
+  }
   p{
-    width: 75%;
-    overflow: auto;
+    width: 70%;
     text-align: center;
-    height: 50px;
-    font-size: 18px;
+    font-size: 16px;
   }
   img{
     width:22px;
   }
   span{
-        img{
-          width:15px;
-          height: 15px;
-          cursor: pointer;
-          margin: 0 7px;
-        }
+    
+      cursor: pointer;
+   
   }
+  @media (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    line-height: 20px;
+}
 `
 
