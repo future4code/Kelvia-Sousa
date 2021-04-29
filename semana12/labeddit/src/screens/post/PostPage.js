@@ -16,6 +16,15 @@ export const PostPage = () => {
   const params = useParams();
   const post = useRequestData(`/posts/${params.id}`, {});
 
+  const time = (milliseconds) => {
+    const date =   new Date(milliseconds)
+    return (
+      date.toLocaleDateString('pt-br')
+    )
+  }
+  console.log(time(post.post && post.post.createdAt))
+
+
   const vote = (userDirection) => {
     if (post.post.userVoteDirection !== 0) {
       const body = {
@@ -71,7 +80,6 @@ export const PostPage = () => {
     post.post &&
     post.post.comments &&
     post.post.comments.map((comment) => {
-      console.log(comment);
       return (
         <CommentsContainer>
           <h4>
@@ -86,29 +94,14 @@ export const PostPage = () => {
           </p>
           <span>
             {" "}
-            <img src={calendar} /> {comment.createdAt}
+            <img src={calendar} /> {time(comment.createdAt)}
           </span>
-          {/* {timeStampOnPost(comment.createdAt)}  */}
+           
         </CommentsContainer>
       );
     });
 
-  const timeStampOnPost = (time) => {
-    var date = new Date(time);
-    return (
-      <>
-        {date.getDate() +
-          "/" +
-          (date.getMonth() + 1) +
-          "/" +
-          date.getFullYear() +
-          " às " +
-          date.getHours() +
-          ":" +
-          date.getMinutes()}
-      </>
-    );
-  };
+  
 
   return (
     <PostContainer>
@@ -116,11 +109,10 @@ export const PostPage = () => {
       <h5>{post.post && post.post.text}</h5>
       <Data>
         <p>
-          {post.post && post.post.username}
-          {post.post && post.post.createdAt}
+        {post.post && post.post.username} 
         </p>
+        {time(post.post && post.post.createdAt)}
       </Data>
-      {/* {timeStampOnPost(comment.createdAt)} */}
       <span>
         <img src={up} onClick={() => vote(1)} />
         {post.post && post.post.votesCount}
