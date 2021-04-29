@@ -4,12 +4,19 @@ export const InputsContainer = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 450px;
+  max-width: 800px;
+  height: 50vh;
   align-items: center;
-  margin-top: 20vh;
+  margin-top: 70px;
+  background-color: #FBFFDE;
+  box-shadow: 2px 12px 20px 15px lightGray;
+  margin-bottom: 15vh;
+  border-radius: 6px;
+  
  input{
    border: none;
    background: none;
+   border-bottom: 1px solid lightGray;
    margin: 20px 0;
    padding: 15px;
    outline: none;
@@ -17,22 +24,20 @@ export const InputsContainer = styled.form`
    letter-spacing: 2px;
    font-size: 16px;
    font-weight: bold;
-   color: gray;
    &:hover{
     border-bottom: 2px solid lightGray;
    }
  }
  textarea{
-   width: 80%;
+   width: 40vw;
   border: none;
    background: none;
-   margin-bottom: 20px;
    outline: none;
+   margin-top: 40px;
    text-align: center;
    font-size: 16px;
    font-weight: bold;
    border-bottom: 1px solid lightGray;
-   color: gray;
  }
  span{
    color: gray;
@@ -44,8 +49,10 @@ export const InputsContainer = styled.form`
      font-weight: bold;
      letter-spacing: 3px;
      cursor: pointer;
+     position: absolute;
+     margin-top: 400px;
      color: #FBFFDE;
-    background-color: gray;
+      background-color: gray;
       padding: 10px;
       border-radius: 4px;
       box-shadow: 2px 12px 20px 15px lightGray;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useProtectedPage } from '../../hooks/useProtectedPage';
 import { useRequestData } from "../../hooks/useRequestData";
 import {CardPosts} from '../../components/cardPosts/CardPosts';
@@ -11,6 +11,11 @@ export const FeedPage = () => {
   useProtectedPage()
   const history = useHistory();
   const posts = useRequestData('/posts', [])
+
+  const [searchTerm, setSearchTerm] = useState('')
+  console.log(searchTerm)
+ 
+ const titlesFilter = posts.title && posts.title.filter(() => posts.title && posts.title.includes(searchTerm))
 
   const onClickPost = (id) => {
     goToPost(history, id)
@@ -30,12 +35,15 @@ export const FeedPage = () => {
   })
 
   return (
+    <>
+    <input type='text' placeholder='Busca' value={searchTerm} onChange={event => {setSearchTerm(event.target.value)}}/>
     <FeedContainer>
       <img src={writer} onClick={() => goToCreatePost(history)}/>
     <CardsContainer>
       {postsComponent}
     </CardsContainer>
     </FeedContainer>
+    </>
   )
 }
 

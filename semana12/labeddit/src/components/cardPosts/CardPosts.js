@@ -14,12 +14,10 @@ export const CardPosts = (props) => {
       <span>{props.date}</span>
       <div>
         <span>
-          <img src={up} />
-          {props.votes}
+          {props.votes} Votos
         </span>
         <span>
-          <img src={com} />
-          {props.comment}
+          {props.comment} Comentários
         </span>
       </div>
     </PostCards>

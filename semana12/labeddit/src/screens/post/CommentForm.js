@@ -5,7 +5,7 @@ import {useParams} from 'react-router-dom';
 import axios from 'axios';
 import { BASE_URL } from '../../constants/Url';
 
-export const CommentForm = () => {
+export const CommentForm = (props) => {
   const params = useParams()
   const [form, onChange, clear] = useForm({text: ""});
 
@@ -21,13 +21,12 @@ export const CommentForm = () => {
         Authorization: localStorage.getItem('token')
       }
     })
-    .then((response) => {
-      console.log(response.data)
+    .then(() => {
     clear();
-    window.location.reload()
+    props.getPost()
     })
     .catch((error) => {
-      console.log(error.data.message)
+      alert(error.data.message)
     });
   }
 
@@ -40,7 +39,7 @@ export const CommentForm = () => {
         value={form.text}
         onChange={onChange}
       />
-<button type={"submit"} onclick={()=> createComment()}> ENVIAR COMENTÁRIO </button>
+<button type={"submit"} onclick={()=> createComment()}> ENVIAR </button>
 </InputsContainer>
 )
 }

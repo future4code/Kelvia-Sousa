@@ -21,7 +21,6 @@ export const LoginForm = ({setRightButtonText}) => {
   const login = () => {
     axios.post(`${BASE_URL}/login`, form)
     .then((response) => {
-      console.log(response.data)
       localStorage.setItem("token", response.data.token)
       clear();
       

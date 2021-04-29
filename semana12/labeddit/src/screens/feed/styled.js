@@ -4,10 +4,10 @@ export const FeedContainer = styled.div`
   margin-top: 50px;
    >img{
       cursor: pointer;
-     width: 100px;
+     width: 70px;
       padding: 10px;
       position: fixed;
-      margin: 60vh  0px 0px 10px;
+      margin: 65vh  0px 0px 10px;
       box-shadow: 2px 12px 20px 15px lightGray;
       border-radius: 50px;
 ` 

@@ -7,14 +7,27 @@ import { CommentForm } from "./CommentForm";
 import up from "../../assets/voteUp.png";
 import down from "../../assets/voteDown.png";
 import user from "../../assets/user.png";
-import calendar from "../../assets/calendar.png";
+import author from "../../assets/author.png";
 import { BASE_URL } from "../../constants/Url";
 import axios from "axios";
 
 export const PostPage = () => {
   useProtectedPage();
   const params = useParams();
-  const post = useRequestData(`/posts/${params.id}`, {});
+  const [post, setPost ] = useState({})
+
+  useEffect(() => {
+    getPost()
+  }, [])
+
+  const getPost =  () => {
+    axios.get(`${BASE_URL}/posts/${params.id}`, {headers:{
+      Authorization: localStorage.getItem('token')
+    }})
+    .then((response) => {
+      setPost(response.data)
+    })
+  }
 
   const time = (milliseconds) => {
     const date =   new Date(milliseconds)
@@ -22,8 +35,6 @@ export const PostPage = () => {
       date.toLocaleDateString('pt-br')
     )
   }
-  console.log(time(post.post && post.post.createdAt))
-
 
   const vote = (userDirection) => {
     if (post.post.userVoteDirection !== 0) {
@@ -36,11 +47,10 @@ export const PostPage = () => {
             Authorization: localStorage.getItem("token"),
           },
         })
-        .then((response) => {
-          window.location.reload();
-          console.log(response);
+        .then(() => {
+          getPost()
         })
-        .catch((error) => console.log(error));
+        .catch((error) => alert(error.data.message));
     } else {
       const body = {
         direction: userDirection,
@@ -52,10 +62,9 @@ export const PostPage = () => {
           },
         })
         .then((response) => {
-          window.location.reload();
-          console.log(response);
+          getPost()
         })
-        .catch((error) => console.log(error));
+        .catch((error) => alert(error.data.message));
     }
   };
 
@@ -69,11 +78,10 @@ export const PostPage = () => {
           Authorization: localStorage.getItem("token"),
         },
       })
-      .then((response) => {
-        window.location.reload();
-        console.log(response);
+      .then(() => {
+        getPost();
       })
-      .catch((error) => console.log(error));
+      .catch((error) => alert(error.data.message));
   };
 
   const comments =
@@ -87,39 +95,43 @@ export const PostPage = () => {
             {comment.username}
           </h4>
           <p>{comment.text}</p>
-          <p>
+          <span>
             <img src={up} onClick={() => voteComment(1, comment.id)} />
             {comment.votesCount}
             <img src={down} onClick={() => voteComment(-1, comment.id)} />
-          </p>
-          <span>
-            {" "}
-            <img src={calendar} /> {time(comment.createdAt)}
           </span>
-           
+          <span>
+             {time(comment.createdAt)}
+          </span>
         </CommentsContainer>
       );
     });
 
-  
 
   return (
     <PostContainer>
       <h2>{post.post && post.post.title}</h2>
       <h5>{post.post && post.post.text}</h5>
+
       <Data>
         <p>
-        {post.post && post.post.username} 
-        </p>
-        {time(post.post && post.post.createdAt)}
-      </Data>
-      <span>
+        {post.post && post.post.username}  
+        <span>{time(post.post && post.post.createdAt)}</span>
+        <span>
         <img src={up} onClick={() => vote(1)} />
         {post.post && post.post.votesCount}
         <img src={down} onClick={() => vote(-1)} />
       </span>
+        </p>
+        
+      </Data>
+
+      
+
       <h4>Deixe seu comentário</h4>
-      <CommentForm />
+
+      <CommentForm getPost={getPost}/>
+
       <h4>Comentários</h4>
 
       {comments}

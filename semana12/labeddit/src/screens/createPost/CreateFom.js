@@ -12,7 +12,6 @@ export const CreateForm = () => {
   const [form, onChange, clear] = useForm({title: "", text: ""});
 
   const handleClick = (event) => {
-     createPost() 
      event.preventDefault();
    };
   
@@ -44,15 +43,15 @@ export const CreateForm = () => {
         required
       />
 
-      <textarea rows='10'
-        placeholder={"Escreva seu texto"}
+      <textarea rows='7'
+        placeholder={"Texto"}
         type={"text"}
         name={"text"}
         value={form.text}
         onChange={onChange}
         required
       />
-      <button type={"submit"}  onClick={createPost} >POSTAR</button>
+      <button type={"submit"}  onClick={createPost} >ENVIAR</button>
     </InputsContainer>
   )
 }

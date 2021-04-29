@@ -7,57 +7,63 @@ export const PostContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0;
-  div{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 80%;
-  }
-  
-  h5,h2{
+  /* border: 1px solid black; */
+  h2{
     text-align: center;
     width: 90%;
+    margin-top: 8px;
   }
-  h3 {
-    text-transform: uppercase;
-    box-shadow: 2px 12px 20px 15px lightGray;
-    border-radius: 5px;
-    padding-right: 20px;
-  }
-  img{
-    width: 20px;
-    height: 15px;
-    cursor: pointer;
-    margin: 0 10px;
+  h5{
+    text-align: center;
+    margin: 0;
+    overflow: auto;
+    width: 90vw;
+    font-weight: 500;
+    font-size: 17px;
   }
   
 ` 
-
-export const CommentsContainer = styled.div`
-background-color: #FBFFDE;  
-box-shadow: 2px 12px 20px 15px lightGray;
-border-radius: 5px;
-margin-top: 10px;
-align-items: center;
-text-transform: capitalize;
-
+export const Data = styled.div`
+    font-size: 20px;
+    text-transform: capitalize;
+    p{
+      width: 30vw;
+      text-align: center;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      span{
+        font-size: 15px;
+        
+        &:last-child{
+          img{
+           width: 15px;
+           height: 15px;
+           cursor: pointer;
+           margin: 0 7px;
+          }
+        }
+      }
+    }
 `
 
 export const InputsContainer = styled.form`
 display: flex;
 flex-direction: column;
+align-items: center;
   textarea {
   border: none;
    background: none;
-   border-bottom: 3px solid lightGray;
+   border-bottom: 1px solid lightGray;
    margin-bottom: 20px ;
    outline: none;
    text-align: center;
    font-size: 13px;
    font-weight: bold;
-   
+   width: 500px;
    &:hover{
     border-bottom: 2px solid lightGray;
+    border-bottom: 3px solid lightGray;
    }
   }
   button{
@@ -66,17 +72,37 @@ flex-direction: column;
      cursor: pointer;
      color:  #FBFFDE;
       background-color:gray;
-      padding: 10px;
+      padding: 6px 0;
       border-radius: 4px;
       box-shadow: 2px 12px 20px 15px lightGray;
-      
-     &:hover{
-      border: 0.5px solid #778a73;
-     }
+      width: 100px;
    }
 `
-
-export const Data = styled.div`
-    font-size: 20px;
-    text-transform: capitalize;
+export const CommentsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #FBFFDE;  
+  margin: 10px 0;
+  width: 98%;
+  p{
+    width: 75%;
+    overflow: auto;
+    text-align: center;
+    height: 50px;
+    font-size: 18px;
+  }
+  img{
+    width:22px;
+  }
+  span{
+        img{
+          width:15px;
+          height: 15px;
+          cursor: pointer;
+          margin: 0 7px;
+        }
+  }
 `
+

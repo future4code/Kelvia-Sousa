@@ -39,9 +39,3 @@ img{
   }
 
 `
-
-export const Text = styled.div`
-  overflow: hidden;
-  width: 10px;
-  border: 1px solid gray;
-` 
