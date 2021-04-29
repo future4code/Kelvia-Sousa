@@ -1,14 +1,14 @@
-import React from 'react';
-import { useProtectedPage } from '../../hooks/useProtectedPage';
-import {CreateForm} from './CreateFom';
-import {Container} from './styled'
+import React from "react";
+import { Container } from "./styled";
+import { CreateForm } from "./CreateFom";
+import { useProtectedPage } from "../../hooks/useProtectedPage";
 
 export const CreatePage = () => {
-  useProtectedPage()
-  
+  useProtectedPage();
+
   return (
     <Container>
-      < CreateForm/>
+      <CreateForm />
     </Container>
-  )
-}
+  );
+};

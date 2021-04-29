@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useState, useEffect } from "react";
 import { BASE_URL } from "../constants/Url";
 
 export const useRequestData = (endpoint, initialState) => {
@@ -7,11 +7,10 @@ export const useRequestData = (endpoint, initialState) => {
 
   useEffect(() => {
     axios
-      .get(`${BASE_URL}${endpoint}` , 
-      {
+      .get(`${BASE_URL}${endpoint}`, {
         headers: {
-          Authorization: localStorage.getItem('token')
-        }
+          Authorization: localStorage.getItem("token"),
+        },
       })
       .then((response) => setData(response.data))
       .catch((error) => alert(error.response.data.message));

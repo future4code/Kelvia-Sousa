@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const HeaderContainer = styled.div`
   width: 100%;
   height: 60px;
-  background: #FBFFDE;
+  background: #fbffde;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   box-shadow: 2px 12px 20px 15px lightGray;
-  img{
+  img {
     width: 20px;
   }
   button {
@@ -25,8 +25,8 @@ export const HeaderContainer = styled.div`
   button:hover {
     transform: scale(1.1);
   }
-  span{
+  span {
     margin-right: 20px;
     font-size: 14px;
   }
-` 
+`;

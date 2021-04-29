@@ -1,20 +1,19 @@
 export const goToLogin = (history) => {
-  history.push('/login')
-}
+  history.push("/login");
+};
 export const goToRegister = (history) => {
-  history.push('/register')
-}
+  history.push("/register");
+};
 export const goToFeed = (history) => {
-  history.push('/')
-}
+  history.push("/");
+};
 export const goToPost = (history, id) => {
-  history.push(`/post/${id}`)
-}
+  history.push(`/post/${id}`);
+};
 
 export const goToCreatePost = (history) => {
-  history.push('/create')
-}
+  history.push("/create");
+};
 export const goToLastPage = (history) => {
-  history.goBack()
-}
-
+  history.goBack();
+};

@@ -1,38 +1,37 @@
 import React from "react";
-import {InputsContainer} from './styled';
+import axios from "axios";
+import { InputsContainer } from "./styled";
 import { useHistory } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
-import {BASE_URL} from '../../constants/Url';
-import axios from 'axios'
+import { BASE_URL } from "../../constants/Url";
 import { goToFeed } from "../../routes/Coordinator";
-
 
 export const CreateForm = () => {
   const history = useHistory();
-  const [form, onChange, clear] = useForm({title: "", text: ""});
+  const [form, onChange, clear] = useForm({ title: "", text: "" });
 
   const handleClick = (event) => {
-     event.preventDefault();
-   };
-  
-   const createPost = () => {
-    axios
-    .post(`${BASE_URL}/posts`, form, { 
-      headers: {
-        Authorization: localStorage.getItem('token')
-      }
-    })
-    .then((response) => {
-      alert('Postagem criada com sucesso')
-      clear();
-      goToFeed(history)
-    })
-    .catch((error) => {
-      alert(error)
-    });
-  }
+    event.preventDefault();
+  };
 
-  return(
+  const createPost = () => {
+    axios
+      .post(`${BASE_URL}/posts`, form, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        alert("Postagem criada com sucesso");
+        clear();
+        goToFeed(history);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
+  return (
     <InputsContainer onSubmit={handleClick}>
       <input
         placeholder={"Título"}
@@ -43,7 +42,8 @@ export const CreateForm = () => {
         required
       />
 
-      <textarea rows='7'
+      <textarea
+        rows="7"
         placeholder={"Texto"}
         type={"text"}
         name={"text"}
@@ -51,9 +51,9 @@ export const CreateForm = () => {
         onChange={onChange}
         required
       />
-      <button type={"submit"}  onClick={createPost} >ENVIAR</button>
+      <button type={"submit"} onClick={createPost}>
+        ENVIAR
+      </button>
     </InputsContainer>
-  )
-}
-
-
+  );
+};

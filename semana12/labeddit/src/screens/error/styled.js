@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const ErroContainer = styled.div`
   display: flex;
@@ -7,7 +7,7 @@ export const ErroContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 80vh;
-  img{
+  img {
     margin-right: 100px;
   }
-`
+`;

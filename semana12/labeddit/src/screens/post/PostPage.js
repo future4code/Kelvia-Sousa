@@ -1,38 +1,39 @@
-import React, { useEffect, useState } from "react";
-import { useProtectedPage } from "../../hooks/useProtectedPage";
-import { useParams } from "react-router-dom";
-import { PostContainer, Data, CommentsContainer } from "./styled";
-import { CommentForm } from "./CommentForm";
-import { BASE_URL } from "../../constants/Url";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+import { BASE_URL } from "../../constants/Url";
+import React, { useEffect, useState } from "react";
+import { CommentForm } from "./CommentForm";
 import { BiDownvote, BiUpvote } from "react-icons/bi";
+import { useProtectedPage } from "../../hooks/useProtectedPage";
+import { PostContainer, Data, CommentsContainer } from "./styled";
 
-import { FaUserAlt} from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa";
 
 export const PostPage = () => {
   useProtectedPage();
   const params = useParams();
-  const [post, setPost ] = useState({})
+  const [post, setPost] = useState({});
 
   useEffect(() => {
-    getPost()
-  }, [])
+    getPost();
+  }, []);
 
-  const getPost =  () => {
-    axios.get(`${BASE_URL}/posts/${params.id}`, {headers:{
-      Authorization: localStorage.getItem('token')
-    }})
-    .then((response) => {
-      setPost(response.data)
-    })
-  }
+  const getPost = () => {
+    axios
+      .get(`${BASE_URL}/posts/${params.id}`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        setPost(response.data);
+      });
+  };
 
   const time = (milliseconds) => {
-    const date =   new Date(milliseconds)
-    return (
-      date.toLocaleDateString('pt-br')
-    )
-  }
+    const date = new Date(milliseconds);
+    return date.toLocaleDateString("pt-br");
+  };
 
   const vote = (userDirection) => {
     if (post.post.userVoteDirection !== 0) {
@@ -46,7 +47,7 @@ export const PostPage = () => {
           },
         })
         .then(() => {
-          getPost()
+          getPost();
         })
         .catch((error) => alert(error.data.message));
     } else {
@@ -60,7 +61,7 @@ export const PostPage = () => {
           },
         })
         .then((response) => {
-          getPost()
+          getPost();
         })
         .catch((error) => alert(error.data.message));
     }
@@ -94,18 +95,15 @@ export const PostPage = () => {
           </h4>
           <p>{comment.text}</p>
           <span>
-            <BiUpvote onClick={() => voteComment(1, comment.id)}/>
-            
+            <BiUpvote onClick={() => voteComment(1, comment.id)} />
+
             {comment.votesCount}
             <BiDownvote onClick={() => voteComment(-1, comment.id)} />
           </span>
-          <span>
-             {time(comment.createdAt)}
-          </span>
+          <span>{time(comment.createdAt)}</span>
         </CommentsContainer>
       );
     });
-
 
   return (
     <PostContainer>
@@ -114,22 +112,19 @@ export const PostPage = () => {
 
       <Data>
         <p>
-        {post.post && post.post.username}  
-        <span>{time(post.post && post.post.createdAt)}</span>
-        <span>
-        <BiUpvote onClick={() => vote(1)} />
-        {post.post && post.post.votesCount}
-        <BiDownvote onClick={() => vote(-1)} />
-      </span>
+          {post.post && post.post.username}
+          <span>{time(post.post && post.post.createdAt)}</span>
+          <span>
+            <BiUpvote onClick={() => vote(1)} />
+            {post.post && post.post.votesCount}
+            <BiDownvote onClick={() => vote(-1)} />
+          </span>
         </p>
-        
       </Data>
-
-      
 
       <h4>Deixe seu comentário</h4>
 
-      <CommentForm getPost={getPost}/>
+      <CommentForm getPost={getPost} />
 
       <h4>Comentários</h4>
 
