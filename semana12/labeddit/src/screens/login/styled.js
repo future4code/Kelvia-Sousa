@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const LoginContainer = styled.div`
+img{
+  width: 150px;
+  margin-top: 10px;
+}
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +37,6 @@ export const InputsContainer = styled.form`
   width: 80vw;
   max-width: 450px;
   align-items: center;
-  margin-top: 20vh;
  input{
    border: none;
    background: none;
@@ -69,6 +72,11 @@ export const InputsContainer = styled.form`
      &:hover{
       border: 0.5px solid #778a73;
      }
+   }
+   img{
+     width: 30px;
+     transform: rotate(330deg);
+    animation-delay: 3s;
    }
 
 `

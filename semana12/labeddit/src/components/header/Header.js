@@ -3,7 +3,8 @@ import format from 'date-fns/format';
 import ptBR from 'date-fns/locale/pt-BR';
 import { HeaderContainer } from './styled';
 import {useHistory} from 'react-router-dom';
-import {goToLogin, goToFeed} from '../../routes/Coordinator'
+import {goToLogin, goToFeed} from '../../routes/Coordinator';
+import logo from '../../assets/logo.png';
 
 export const Header = ({rightButtonText, setRightButtonText}) => {
   const history = useHistory()
@@ -29,7 +30,8 @@ export const Header = ({rightButtonText, setRightButtonText}) => {
 
   return(
     <HeaderContainer>
-      <button type="button" onClick={() => goToFeed(history)} >LabEddit</button>
+      <button type="button" onClick={() => goToFeed(history)} >LabEddit <img src={logo} alt="logo"/></button>
+      
        <div>
         <button type="button" onClick={rightButtonAction}>{rightButtonText}</button>
         <span>{currentDate}</span>

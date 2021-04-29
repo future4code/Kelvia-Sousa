@@ -1,11 +1,12 @@
 import axios from "axios";
-import React from "react";
+import React, {useState} from "react";
 import { InputsContainer } from "./styled";
 import {BASE_URL} from '../../constants/Url';
 import { useHistory } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import { goToFeed } from "../../routes/Coordinator";
 import { useUnprotectedPage } from '../../hooks/useUnprotectedPage';
+
 
 export const LoginForm = ({setRightButtonText}) => {
   useUnprotectedPage();
@@ -15,19 +16,20 @@ export const LoginForm = ({setRightButtonText}) => {
   const handleClick = (event) => {
     login(setRightButtonText)
     event.preventDefault();
-    
   };
 
   const login = () => {
     axios.post(`${BASE_URL}/login`, form)
     .then((response) => {
       console.log(response.data)
-      window.localStorage.setItem("token", response.data.token)
+      localStorage.setItem("token", response.data.token)
       clear();
+      
       goToFeed(history)
       setRightButtonText('Logout')
     })
     .catch((error) => {
+      
       alert(error.response.data.message);
     });
   }

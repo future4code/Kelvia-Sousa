@@ -8,7 +8,7 @@ h3{
   margin-top: 0;
 }
 img{
-  width: 25px;
+  width: 35px;
 }
   p{
       font-weight: bold;

@@ -26,7 +26,7 @@ export const PostContainer = styled.div`
   }
   img{
     width: 20px;
-    height: 20px;
+    height: 15px;
     cursor: pointer;
     margin: 0 10px;
   }
@@ -40,6 +40,7 @@ border-radius: 5px;
 margin-top: 10px;
 align-items: center;
 text-transform: capitalize;
+
 `
 
 export const InputsContainer = styled.form`

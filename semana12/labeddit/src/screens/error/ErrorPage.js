@@ -1,5 +1,5 @@
 import React from 'react';
-import error from '../../assets/errorImage.png';
+import error from '../../assets/errorLogo.png';
 import {ErroContainer} from './styled'
 
 export const ErrorPage = () => {

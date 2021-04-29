@@ -9,6 +9,9 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   box-shadow: 2px 12px 20px 15px lightGray;
+  img{
+    width: 20px;
+  }
   button {
     font-weight: bold;
     cursor: pointer;
