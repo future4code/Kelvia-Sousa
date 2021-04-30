@@ -30,6 +30,7 @@ export const PostCards = styled.div`
     color: #8b0000;
     margin: 5px 0;
     max-width:95%;
+    overflow: hidden;
   }
   h6{
     margin: 0;
@@ -43,7 +44,7 @@ export const PostCards = styled.div`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin: 3px 0;
+    margin: 0;
 
    &:first-child{
     
