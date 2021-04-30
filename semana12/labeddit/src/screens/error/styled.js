@@ -10,4 +10,10 @@ export const ErroContainer = styled.div`
   img {
     margin-right: 100px;
   }
+  @media only screen and (max-width: 600px) {
+    text-align: center;
+    img{
+      margin: 0;
+    }
+  }
 `;
