@@ -10,6 +10,7 @@ export const FeedContainer = styled.div`
     margin: 65vh 0px 0px 10px;
     box-shadow: 2px 12px 20px 15px lightGray;
     border-radius: 50px;
+    border: 1px solid lightblue;
   }
   @media (max-width: 600px) {
     > img {

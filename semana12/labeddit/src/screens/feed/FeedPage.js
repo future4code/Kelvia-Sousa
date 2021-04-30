@@ -16,6 +16,11 @@ export const FeedPage = () => {
     goToPost(history, id);
   };
 
+  const time = (milliseconds) => {
+    const date = new Date(milliseconds);
+    return date.toLocaleDateString("pt-br");
+  };
+
   const postsComponent =
     posts.posts &&
     posts.posts.map((post) => {
@@ -24,6 +29,8 @@ export const FeedPage = () => {
           key={post.id}
           name={post.username}
           title={post.title}
+          text={post.text}
+          date={time(post.createdAt)}
           votes={post.votesCount}
           comment={post.commentsCount}
           onClick={() => onClickPost(post.id)}

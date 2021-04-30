@@ -12,17 +12,12 @@ export const PostCards = styled.div`
   img {
     width: 35px;
   }
-  p {
-    font-weight: bold;
-    text-transform: capitalize;
-    margin: 0;
-  }
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 22vw;
-  height: 31vh;
+  height: 33vh;
   margin-bottom: 10px;
   cursor: pointer;
   &:hover {
@@ -34,6 +29,17 @@ export const PostCards = styled.div`
   h4 {
     text-align: center;
     color: #8b0000;
+    margin: 8px 0;
+    max-width:95%;
+  }
+  p{
+    font-size:0.875rem;
+    margin-top: 0.5rem;
+    max-width:80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 3px 0;
   }
   > div {
     width: 95%;

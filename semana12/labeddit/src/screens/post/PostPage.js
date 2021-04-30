@@ -121,13 +121,8 @@ export const PostPage = () => {
           </span>
         </p>
       </Data>
-
       <h4>Deixe seu comentário</h4>
-
       <CommentForm getPost={getPost} />
-
-      <h4>Comentários</h4>
-
       {comments}
     </PostContainer>
   );

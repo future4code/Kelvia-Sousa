@@ -11,8 +11,8 @@ export const CardPosts = (props) => {
         {props.name}
       </h3>
       <h4>{props.title}</h4>
-      <>{props.text}</>
-      <span>{props.date}</span>
+      <p>{props.text}</p>
+      <p>{props.date}</p>
       <div>
         <span>
           {props.votes} <FaVoteYea />{" "}

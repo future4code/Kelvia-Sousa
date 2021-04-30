@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const PostContainer = styled.div`
   width: 100%;
-  height: 89vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,6 +20,7 @@ export const PostContainer = styled.div`
     font-weight: 500;
     font-size: 17px;
   }
+  
 `;
 export const Data = styled.div`
   font-size: 20px;
@@ -66,6 +66,7 @@ export const InputsContainer = styled.form`
     }
   }
   button {
+    margin-bottom: 40px;
     border: none;
     letter-spacing: 3px;
     cursor: pointer;
@@ -77,6 +78,7 @@ export const InputsContainer = styled.form`
     width: 100px;
   }
   @media (max-width: 600px) {
+    
     textarea {
       width: 250px;
     }
@@ -95,8 +97,7 @@ export const CommentsContainer = styled.div`
     margin: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 70px;
+    width: 120px;
   }
   p {
     width: 70%;
