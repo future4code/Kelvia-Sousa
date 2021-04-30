@@ -11,6 +11,7 @@ export const PostContainer = styled.div`
     text-align: center;
     width: 100%;
     margin-top: 8px;
+    color: #8b0000;
   }
   h5 {
     text-align: center;
@@ -20,7 +21,17 @@ export const PostContainer = styled.div`
     font-weight: 500;
     font-size: 17px;
   }
-  
+  @media (max-width: 600px) {
+    h2{
+      width: 95%;
+      font-size: 20px;
+      margin-top: 20px;
+    }
+    h5{
+      width: 95vw;
+      font-size: 15px;
+    }
+  }
 `;
 export const Data = styled.div`
   font-size: 20px;
@@ -42,6 +53,7 @@ export const Data = styled.div`
   @media (max-width: 600px) {
     p {
       width: 100vw;
+      font-size: 18px;
     }
   }
 `;
@@ -94,13 +106,13 @@ export const CommentsContainer = styled.div`
   width: 98%;
 
   h4 {
-    margin: 0;
+    margin-top: 10px;
     display: flex;
     align-items: center;
-    width: 120px;
+    width: 140px;
   }
   p {
-    width: 70%;
+    width: 76%;
     text-align: center;
     font-size: 16px;
   }
@@ -114,5 +126,13 @@ export const CommentsContainer = styled.div`
     display: flex;
     flex-direction: column;
     line-height: 20px;
+    p {
+    width: 90%;
+    text-align: center;
+    font-size: 16px;
+  }
+  span{
+    margin-bottom: 10px;
+  }
   }
 `;
