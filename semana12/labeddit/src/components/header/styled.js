@@ -21,6 +21,7 @@ export const HeaderContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 15px;
   }
   button:hover {
     transform: scale(1.1);

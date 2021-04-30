@@ -21,16 +21,20 @@ export const PostCards = styled.div`
   margin-bottom: 10px;
   cursor: pointer;
   &:hover {
-    p,
-    h3 {
+    p{
       color: gray;
     }
   }
   h4 {
     text-align: center;
     color: #8b0000;
-    margin: 8px 0;
+    margin: 5px 0;
     max-width:95%;
+  }
+  h6{
+    margin: 0;
+    font-size: 10px;
+    letter-spacing: 1px;
   }
   p{
     font-size:0.875rem;
@@ -40,6 +44,10 @@ export const PostCards = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 3px 0;
+
+   &:first-child{
+    
+    }
   }
   > div {
     width: 95%;
@@ -47,7 +55,7 @@ export const PostCards = styled.div`
     display: flex;
     justify-content: space-between;
     span {
-      margin-top: 25px;
+      margin-top: 10px;
     }
   }
   @media (max-width: 600px) {
