@@ -7,6 +7,7 @@ export const PostContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0;
+  
   h2 {
     text-align: center;
     width: 100%;
@@ -37,11 +38,12 @@ export const Data = styled.div`
   font-size: 20px;
   text-transform: capitalize;
   p {
-    width: 30vw;
+    width: 100vw;
     text-align: center;
     display: flex;
     justify-content: space-around;
     align-items: center;
+   
     span {
       font-size: 15px;
 
@@ -53,8 +55,9 @@ export const Data = styled.div`
   @media (max-width: 600px) {
     p {
       width: 100vw;
-      font-size: 18px;
+      font-size: 12px;
     }
+    
   }
 `;
 
@@ -108,8 +111,8 @@ export const CommentsContainer = styled.div`
   h4 {
     margin-top: 10px;
     display: flex;
-    align-items: center;
-    width: 140px;
+    justify-content: center;
+    
   }
   p {
     width: 76%;

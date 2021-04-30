@@ -8,6 +8,10 @@ export const PostCards = styled.div`
     margin: 0;
     display: flex;
     align-items: center;
+    max-width:80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   img {
     width: 35px;

@@ -93,7 +93,7 @@ export const PostPage = () => {
             <FaUserAlt />
             {comment.username}
           </h4>
-          <p>{comment.text}</p>
+          <p>{(typeof(comment.text) === 'string') ? comment.text : "Não foi possível exibir este comentário"}</p>
           <span>
             <BiUpvote onClick={() => voteComment(1, comment.id)} />
 

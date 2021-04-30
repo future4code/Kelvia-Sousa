@@ -42,6 +42,7 @@ export const RegisterForm = ({ setRightButtonText }) => {
         name={"username"}
         value={form.username}
         onChange={onChange}
+        pattern={"(.*[a-z]){2}"}
         required
       />
       <input
