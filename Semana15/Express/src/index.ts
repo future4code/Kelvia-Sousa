@@ -87,7 +87,6 @@ app.get("/countries/:id", (req: Request, res: Response) => {
 
 //4
 app.put("/countries/edit/:id", (req: Request, res: Response) => {
-
   try {
   const {name, capital} = req.body
 
@@ -98,23 +97,31 @@ app.put("/countries/edit/:id", (req: Request, res: Response) => {
   if(index < 0){
     throw new Error("Could not find country with specified id");
   }
-
+ 
   const newInformation : country ={
     id:countries[index].id,
-    name: name,
-    capital: capital,
+    name: typeof(name) === "string" ? name : countries[index].name,
+    capital: typeof(capital) === "string" ? capital : countries[index].capital,
     continent:countries[index].continent
   }
 
-  res.status(200).send(newInformation)
+  const country = [...countries]
+  country[index] = newInformation
+
+  res
+  .status(200)
+  .send(country)
     
   } catch (error) {
     res.status(400).send({ message: error.message });
   }
-  
-  
 }); 
 
+app.put('/countries/edit', (req: Request, res: Response) => {
+  res
+  .status(400)
+  .send({message: "Type something"})
+})
 
 
 app.listen(3003, () => {
