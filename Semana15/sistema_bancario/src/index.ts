@@ -112,25 +112,21 @@ app.get('/customers/:name/:cpf' , (req: Request, res: Response) => {
 app.put('/customers/add', (req: Request, res: Response) => {
   try {
     const { name, cpf,  newBalance } = req.body
-
-    const add: AddBalance = {
-      name,
-      cpf,
-      newBalance
-    }
+    
     const result = customers.findIndex(customer => customer.name === name && customer.cpf === cpf )
     if (result === -1) {
       throw new Error("Client not found");
     }
     const date = new Date()
     const trans: Transactions = {
-      amountSpent: customers[result].balance + newBalance,
+      amountSpent: newBalance,
       spentDate: date.toLocaleDateString(),
       description: "new",
       type: "bu"
     }
   customers[result].statement.push(trans) 
-    res.status(200).send(result)
+  customers[result].balance += newBalance
+    res.status(200).send({message: "saldo alterado", C: customers[result].balance})
   } catch (error) {
     res.status(400).send({message: error.message});
   }
@@ -148,11 +144,15 @@ app.post('/customers/open', (req: Request, res: Response) => {
       statement: [],
     }
 
+  /*   if(newCustomer.cpf in customers.map(customer => customer.cpf)) {
+      throw new Error("CPF já cadastrado");
+    } */
+
     // caso a idade seja menor que 18
    /*   if(){
       throw new Error("To create an account you need to be over 18") 
     }  */
-
+    customers.push(newCustomer)
     res.status(200).send({ message: "Account successfully opened", customer: newCustomer})
 
   } catch (error) {
