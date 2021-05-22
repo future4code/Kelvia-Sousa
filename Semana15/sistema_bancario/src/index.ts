@@ -22,6 +22,7 @@ type AccountInfo = {
   statement: Transactions[];
 };
 
+
 type AddBalance = {
   name: string;
   cpf: string;
@@ -135,7 +136,7 @@ app.put("/customers/add", (req: Request, res: Response) => {
 
 //abrir conta
 app.post("/customers/open", (req: Request, res: Response) => {
-  try {
+  try {    
     const { name, cpf, birthDate } = req.body;
     const newCustomer: AccountInfo = {
       name,
@@ -145,7 +146,7 @@ app.post("/customers/open", (req: Request, res: Response) => {
       statement: [],
     };
 
-    const result = customers.findIndex((customer) => customer.cpf);
+    const result = customers.findIndex(customer => customer.cpf )
 
     if (customers.findIndex((customer) => customer.cpf === cpf) !== -1) {
       throw new Error("CPF já cadastrado");
@@ -168,7 +169,7 @@ app.post("/customers/open", (req: Request, res: Response) => {
     }
     const birt = new Date(birthDate);
 
-    if (!moreThan18Years(birt)) {
+    if (!moreThan18Years(birt)  ) {
       throw new Error("You must be over 18");
     }
 
@@ -184,19 +185,19 @@ app.post("/customers/open", (req: Request, res: Response) => {
 //pagar conta
 app.post("/customers/payment", (req: Request, res: Response) => {
   try {
-    const cpfValid = req.params.cpf;
-    const { amountSpent, spentDate, description } = req.body;
+    const cpfValid = req.params.cpf
+    const {amountSpent, spentDate, description} = req.body
 
     const payBill: Transactions = {
       amountSpent,
       spentDate,
       description,
-    };
-
-    if (!(cpfValid in customers)) {
-      throw new Error("client not found");
     }
 
+    if(!(cpfValid in customers)){
+      throw new Error("client not found");
+    }
+     
     res.status(200).send();
   } catch (error) {
     res.status(400).send({ message: error.message });
