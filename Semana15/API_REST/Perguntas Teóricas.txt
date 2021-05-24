@@ -1,0 +1,11 @@
+1
+a - O endpoint para mostrar toda a lista é o .GET
+b - A entidade ( ou seja o path - caminho) manipulado é o "/users/all "
+
+2)
+a - Passei os parâmetros de type para a requisição por um filter.
+b - acredito que através do enum que já determina quais tipos são válidos para cada objeto.
+
+
+
+4) Não vi diferença e não considero o método ideal, pois entendo que PUT seja apropriado para fazer alterações 
