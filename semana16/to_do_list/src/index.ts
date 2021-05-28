@@ -143,9 +143,6 @@ app.put('/task', async (req:Request, res: Response) => {
 })
 
 // 5 Pegar tarefa pelo id juntar user e task 
-
-
-
 const getTaskById = async (id:string): Promise<any> => {
   const result = await connection.raw(`
   SELECT t.id, t.title, t.description, DATE_FORMAT(t.limitDate,'%d/%m/%Y') AS LimitDate, t.status, t.creatorUserId, u.name FROM Task t JOIN ToDoList u ON t.creatorUserId = u.id  WHERE t.id ='${id}'
@@ -154,20 +151,28 @@ const getTaskById = async (id:string): Promise<any> => {
 }
 app.get('/task/:id', async (req: Request, res: Response) => {
   try {
-    // Formatar data
-    /* function dateFormat(date: string): string {
-      const split = date.split('-')
-      const dateFormat = split[2] + "/" + split[1] + "/" + split[0]
-      return dateFormat
-    } */
-
     const id = req.params.id
     let result =  await getTaskById(id)
-    /* result = dateFormat(await connection("ToDoList")) */
 
-    res.send(result);  
+    res.status(200).send(result);  
   } catch (error) {
     res.status(500).send("An unexpected error occurred");
   }
 })
 
+//7 - Pegar tarefas criadas por um usuário
+const getTaskByUser = async (id: string ): Promise<any> => {
+  const result = await connection.raw(`
+  SELECT t.id, t.title, t.description, DATE_FORMAT(t.limitDate,'%d/%m/%Y') AS LimitDate, t.status, t.creatorUserId, u.name FROM Task t JOIN ToDoList u ON t.creatorUserId = u.id  WHERE t.creatorUserId ='${id}'
+  `)
+	return result[0]
+}
+app.get('/task?creatorUserId=id', async (req: Request, res: Response)=>{
+ try {
+  const creatorUserId = req.query.creatorUserId as string
+  const result = await getTaskByUser(creatorUserId)
+  res.status(200).send(result);
+ } catch (error) {
+   res.status(400).send({ message: error.message });
+ }
+ } )
