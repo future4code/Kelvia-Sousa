@@ -17,6 +17,31 @@ type task = {
   creatorUserId: string
 }
 
+
+// 6 - Pegar todos os usuários
+
+const getAllUsers = async (): Promise<any> => {
+  const result = await connection.raw(`
+    SELECT id, nickname FROM ToDoList 
+  `)
+	return result[0]
+}
+
+app.get("/user/all", async (req: Request, res: Response) =>{
+  try {
+
+    const result = await getAllUsers()
+
+    if(!result){
+      throw new Error("Empty Table");
+    }
+
+    res.status(200).send({Users: result})
+  } catch (error) {
+    res.status(400).send({ message: error.message });
+  }
+} )
+
 //1 - Criar usuário
 app.put('/user', async (req: Request, res: Response)=>{
   try {
@@ -133,3 +158,4 @@ app.get('/task/:id', async (req: Request, res: Response) => {
     res.status(500).send("An unexpected error occurred");
   }
 })
+
