@@ -8,7 +8,7 @@ type user = {
   nickname: string,
   email: string
 }
-
+//1 - Criar usuário
 app.put('/user', async (req: Request, res: Response)=>{
   try {
     
@@ -29,3 +29,24 @@ app.put('/user', async (req: Request, res: Response)=>{
     res.status(400).send({ message: error.message });
   }
 })
+
+//2 - Pegar usuário pelo id
+const getUserById = async (id: string): Promise<any> => {
+  const result = await connection.raw(`
+    SELECT id, nickname FROM ToDoList WHERE id = '${id}'
+  `)
+	return result[0]
+}
+app.get('/user/:id', async (req: Request, res: Response) => {
+  try {
+
+    const id = req.params.id
+    const result =  await getUserById(id)
+
+    res.send(result);  
+  } catch (error) {
+    res.status(500).send("An unexpected error occurred");
+  }
+})
+
+// 3 - Editar usuário
