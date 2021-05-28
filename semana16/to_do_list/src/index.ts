@@ -12,7 +12,7 @@ type user = {
 type task = {
   title: string,
   description: string,
-  limitDate: Date,
+  limitDate: string,
   status: string
   creatorUserId: string
 }
@@ -113,24 +113,28 @@ app.post('/user/edit/:id', async (req: Request, res: Response)=> {
 
 // 4 - Criar tarefa
 
+function formatarData(date: string): string {
+  const split = date.split('/')
+  const dateFormat = split[2] + "-" + split[1] + "-" + split[0]
+  return dateFormat
+}
+
 app.put('/task', async (req:Request, res: Response) => {
   try {
 
     if(!req.body.title || !req.body.description || !req.body.limitDate || !req.body.creatorUserId){
       throw new Error("All fields are required");
     }
-
+    
     const newTask: task = {
       title: req.body.title, 
       description: req.body.description, 
-      limitDate: req.body.limitDate,
+      limitDate: formatarData(req.body.limitDate),
       status: req.body.status,
       creatorUserId: req.body.creatorUserId
     }
 
     await connection('Task').insert(newTask)
-
-    // transformar a data
 
     res.status(200).send("Success")
   } catch (error) {
@@ -138,20 +142,28 @@ app.put('/task', async (req:Request, res: Response) => {
   }
 })
 
-// 5 Pegar tarefa pelo id juntar user e task
+// 5 Pegar tarefa pelo id juntar user e task 
+
+
+
 const getTaskById = async (id:string): Promise<any> => {
   const result = await connection.raw(`
-  SELECT t.id, t.title, t.description, t.limitDate, t.status, t.creatorUserId, u.name FROM Task t JOIN ToDoList u ON t.creatorUserId = u.id  WHERE t.id ='${id}'
+  SELECT t.id, t.title, t.description, DATE_FORMAT(t.limitDate,'%d/%m/%Y') AS LimitDate, t.status, t.creatorUserId, u.name FROM Task t JOIN ToDoList u ON t.creatorUserId = u.id  WHERE t.id ='${id}'
   `)
 	return result[0]
 }
 app.get('/task/:id', async (req: Request, res: Response) => {
   try {
-
-    //converter data
+    // Formatar data
+    /* function dateFormat(date: string): string {
+      const split = date.split('-')
+      const dateFormat = split[2] + "/" + split[1] + "/" + split[0]
+      return dateFormat
+    } */
 
     const id = req.params.id
-    const result =  await getTaskById(id)
+    let result =  await getTaskById(id)
+    /* result = dateFormat(await connection("ToDoList")) */
 
     res.send(result);  
   } catch (error) {
