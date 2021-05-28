@@ -18,6 +18,29 @@ type task = {
 }
 
 
+//8 Pesquisar usuário 
+const searchUser = async(name: string): Promise<any> => {
+  const result = await connection.raw(`
+  SELECT  id, nickname FROM ToDoList 
+  `)
+	return result[0]
+}
+app.get('/userSearch', async (req: Request, res: Response)=>{
+  try {
+    const name = req.query.name as string
+    const result = await searchUser(name)
+    // como fazer o filtro?
+
+    if(name === "" ){
+      throw new Error("Enter the name");
+    }
+    
+    res.status(200).send({User: result})
+  } catch (error) {
+    res.status(400).send({ message: error.message });
+  }
+})
+
 // 6 - Pegar todos os usuários
 
 const getAllUsers = async (): Promise<any> => {
@@ -142,6 +165,31 @@ app.put('/task', async (req:Request, res: Response) => {
   }
 })
 
+//7 - Pegar tarefas criadas por um usuário 
+const getTaskByUser = async (id: string ): Promise<any> => {
+  const result = await connection.raw(`
+  SELECT t.id, t.title, t.description, DATE_FORMAT(t.limitDate,'%d/%m/%Y') AS LimitDate, t.status, t.creatorUserId, u.name FROM Task t JOIN ToDoList u ON t.creatorUserId = u.id  WHERE t.creatorUserId ='${id}'
+  `)
+	return result[0]
+}
+
+app.get('/task', async (req: Request, res: Response)=>{
+ try {
+
+  const creatorUserId = req.query.creatorUserId as string
+  const result = await getTaskByUser(creatorUserId)
+
+  if(creatorUserId === ""){
+    throw new Error("Enter the id");
+  }
+
+  res.status(200).send({Tasks: result})
+
+ } catch (error) {
+   res.status(400).send({ message: error.message });
+ }
+ } )
+
 // 5 Pegar tarefa pelo id juntar user e task 
 const getTaskById = async (id:string): Promise<any> => {
   const result = await connection.raw(`
@@ -154,25 +202,9 @@ app.get('/task/:id', async (req: Request, res: Response) => {
     const id = req.params.id
     let result =  await getTaskById(id)
 
-    res.status(200).send(result);  
+    res.status(200).send({Task: result});  
   } catch (error) {
     res.status(500).send("An unexpected error occurred");
   }
 })
 
-//7 - Pegar tarefas criadas por um usuário
-const getTaskByUser = async (id: string ): Promise<any> => {
-  const result = await connection.raw(`
-  SELECT t.id, t.title, t.description, DATE_FORMAT(t.limitDate,'%d/%m/%Y') AS LimitDate, t.status, t.creatorUserId, u.name FROM Task t JOIN ToDoList u ON t.creatorUserId = u.id  WHERE t.creatorUserId ='${id}'
-  `)
-	return result[0]
-}
-app.get('/task?creatorUserId=id', async (req: Request, res: Response)=>{
- try {
-  const creatorUserId = req.query.creatorUserId as string
-  const result = await getTaskByUser(creatorUserId)
-  res.status(200).send(result);
- } catch (error) {
-   res.status(400).send({ message: error.message });
- }
- } )
