@@ -90,7 +90,21 @@ app.get("/teacher/:type",  async (req: Request,res: Response): Promise<void> =>{
       res.send(error.message || error.sqlMessage)
    }
 })
+//3
+app.get("/limit",  async (req: Request,res: Response): Promise<void> =>{
+   try { 
+      const name = req.query.name as string 
+      const page = Number(req.query.page)  || 1
 
+      const result = await connection.raw(`
+      SELECT id, name, email, type FROM aula49_exercicio WHERE name LIKE "%${name}%" LIMIT 5 OFFSET ${5* (page - 1)};
+   `)
+      const teachers: teacher[] = result
+      res.status(200).send({FiveTeachers: teachers[0], page})
+   } catch (error) {
+      res.send(error.message || error.sqlMessage)
+   }
+})
 
 
 
