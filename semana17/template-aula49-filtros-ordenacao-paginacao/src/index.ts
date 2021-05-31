@@ -29,10 +29,11 @@ type teacher = {
    email: string,
    type: string
 }
-
+//1.a
 app.get("/teacher/search",  async (req: Request,res: Response): Promise<void> =>{
    try { 
       const name = req.query.name as string 
+
      if(!name){
          res.statusCode = 404
          throw new Error("No teacher found")
@@ -47,6 +48,31 @@ app.get("/teacher/search",  async (req: Request,res: Response): Promise<void> =>
    }
 })
 
+//2
+app.get("/teacher/:name",  async (req: Request,res: Response): Promise<void> =>{
+   try { 
+      const name = req.params.name as string 
+      const orderBy = req.query.orderBy as string || "type" 
+      const orderType = req.query.orderType as string || "DESC"
+
+      // caso o usuário não passe nenhum parâmetro, a ordenação deve ser por email. FAZER
+     if(!name){
+      res.statusCode = 404
+      throw new Error("No teacher found")
+      }
+
+      const result = await connection.raw(`
+      SELECT id, name, email, type FROM aula49_exercicio WHERE name LIKE "%${name}%" ORDER BY ${orderBy} ${orderType.toUpperCase()};
+   `)
+      const teachers: teacher[] = result
+      res.status(200).send({teachers: teachers[0]})
+   } catch (error) {
+      res.send(error.message || error.sqlMessage)
+   }
+})
+
+
+//1.b
 app.get("/teacher/:type",  async (req: Request,res: Response): Promise<void> =>{
    try { 
       const type = req.params.type as string 
@@ -64,6 +90,7 @@ app.get("/teacher/:type",  async (req: Request,res: Response): Promise<void> =>{
       res.send(error.message || error.sqlMessage)
    }
 })
+
 
 
 
