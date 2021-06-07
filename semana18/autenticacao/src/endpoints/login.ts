@@ -13,10 +13,6 @@ export default async function login(req: Request, res: Response) {
     if (email.indexOf("@") === -1) {
       throw new Error("Invalid email");
     }
-    if (password.length < 6) {
-      throw new Error("Invalid password");
-    }
-
     const [user] = await connection("User").where({ email });
 
     if (!user) {
