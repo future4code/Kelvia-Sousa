@@ -1,0 +1,12 @@
+# @name signup
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "email": "kel@labenu.com" ,
+   "password": "123456"
+}
+
+###
+GET http://localhost:3003/user/email
