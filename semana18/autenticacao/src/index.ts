@@ -6,4 +6,4 @@ import { generateId } from './services/idGenerator';
 
 
 app.post('/user/signup', createUser);
-app.get('/user/email', getUserByEmail);
+app.get('/user/:email', getUserByEmail);

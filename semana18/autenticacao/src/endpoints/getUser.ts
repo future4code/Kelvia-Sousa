@@ -6,13 +6,13 @@ export default async function getUserByEmail (
   res: Response
 ): Promise<void> {
   try {
-    const userEmail = req.query.email as string
+    const {email} = req.params
 
     const result = await connection.raw(
-      `SELECT * FROM User WHERE email LIKE "%${userEmail}%"`
+      `SELECT * FROM User WHERE email = "${email}"`
     )    
 
-    res.status(201).send(result[0]);
+    res.status(200).send(result[0]);
 
    } catch (error) {
       res.status(400).send({ message: error.message})
