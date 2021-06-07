@@ -16,7 +16,8 @@ GET http://localhost:3003/user/kel@labenu.com
 ###
 POST http://localhost:3003/user/login
 Content-Type: application/json
+
 {
    "email": "kel@labenu.com" ,
-   "password": "123458"
+   "password": "123456"
 }

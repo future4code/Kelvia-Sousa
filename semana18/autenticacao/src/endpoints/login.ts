@@ -10,26 +10,21 @@ export default async function login(req: Request, res: Response) {
     if (!email || !password) {
       throw new Error("Please fill all fields");
     }
-
     if (email.indexOf("@") === -1) {
       throw new Error("Invalid email");
     }
-
     if (password.length < 6) {
       throw new Error("Invalid password");
     }
 
-    const queryResult = await connection.raw(
-      `  SELECT * User  where email = "${email}" `)
-
-    const user = queryResult[0][0];
+    const [user] = await connection("User").where({ email });
 
     if (!user) {
       throw new Error("User not found");
     }
 
     if (user.password !== password) {
-      throw new Error("Invalid Credentials");
+      throw new Error("Invalid password");
     }
 
     const token: string = generateToken({
