@@ -15,7 +15,7 @@ export function generateToken(payload: authenticationData): string {
       payload,
       process.env.JWT_KEY!,
       {
-         expiresIn: "12h"
+         expiresIn: "1min"
       });
 }
 
