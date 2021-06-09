@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 import connection from "../connection";
 import { generateToken } from "../services/authenticator";
 import generateId from "../services/idGenerator";
-import { user, userRole } from "../types";
+import { user, userAddress, userRole } from "../types";
 import { hash } from "../services/hashManager";
+import { getAddressInfo } from "../services/getAddress";
 
 export default async function createUser(
    req: Request,
@@ -11,11 +12,11 @@ export default async function createUser(
 ): Promise<void> {
    try {
 
-      const { name, nickname, email, password, role, zipCode, number} = req.body
+      const { name, nickname, email, password, role, PostalCode, number} = req.body
 
-      if (!name || !nickname || !email || !password || !role) {
+      if (!name || !nickname || !email || !password || !role || !PostalCode || !number) {
          res.statusCode = 422
-         throw new Error("Preencha os campos 'name','nickname', 'password', 'email' e 'role'")
+         throw new Error("Fill in all the fields")
       }
 
       if(role.toUpperCase() !== userRole.ADMIN && role.toUpperCase() !== userRole.NORMAL){
@@ -31,20 +32,28 @@ export default async function createUser(
          throw new Error('Email já cadastrado')
       }
 
+      const getAddressByCep = await getAddressInfo(PostalCode)
+
       const id: string = generateId();
-
-      const cypherText = await hash(password);
-
-      const newUser: user = { id, name, nickname, email, password: cypherText, role }
-     
-
-      await connection('to_do_list_users')
-         .insert(newUser)
-
       
+      const cypherText = await hash(password);
+      const newUser: user = { id, name, nickname, email, password: cypherText, role}
+      
+      const newAddress : userAddress = {
+         id,
+         street: getAddressByCep?.street,
+         number,
+         neighborhood: getAddressByCep?.neighborhood,
+         PostalCode,
+         city: getAddressByCep?.city,
+         state: getAddressByCep?.state,
+         user_id: newUser.id
+      }
+      
+      await connection('to_do_list_users').insert(newUser)
+      await connection("Adress").insert(newAddress)
 
       const token: string = generateToken({ id, role })
-
       res.status(201).send({ token })
 
    } catch (error) {

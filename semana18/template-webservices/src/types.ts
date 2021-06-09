@@ -24,12 +24,23 @@ export type user = {
    name: string,
     nickname: string, 
    password: string, 
-   role: userRole
+   role: userRole,
 }
 
 export type userAddress = {
-   street: string
-   neighborhood: string
-   city: string
+   id: string
+   PostalCode: number
+   street: string | undefined
+   number: number
+   neighborhood: string | undefined
+   city: string | undefined
+   state: string | undefined
+   user_id: string
+}
+
+export type address = {
+   street: string,
+   neighborhood: string,
+   city: string,
    state: string
 }
