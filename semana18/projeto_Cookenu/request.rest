@@ -19,17 +19,21 @@ Content-Type: application/json
 
 ### 
 
-GET http://localhost:3003/profile
-Content-Type: application/json
-Authorization: 
+GET http://localhost:3003/user/profile
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhYWE0Njk1LWMwMTktNGEyMS1iYWVjLTFiN2M1ZDgwNGNkMSIsImlhdCI6MTYyMzM0ODM4MSwiZXhwIjoxNjIzMzkxNTgxfQ.5At0AkRN0jcYXrVqvdOQHjhO7hnv7FqY3i_XqZYy_d4
 
 ###
 
 POST http://localhost:3003/create/recipe
 Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhYWE0Njk1LWMwMTktNGEyMS1iYWVjLTFiN2M1ZDgwNGNkMSIsImlhdCI6MTYyMzM0ODM4MSwiZXhwIjoxNjIzMzkxNTgxfQ.5At0AkRN0jcYXrVqvdOQHjhO7hnv7FqY3i_XqZYy_d4
 
 {
-   "title": "Purê de batata", 
-   "description": "erva as batatas com casca até que um garfo entre facilmente dentro dela. Escorra toda água. Retire a casca das batatas. Amasse todas as batatas com garfo em outro recipiente depois reserve.Coloque na panela em fogo baixo 1 colher de margarina. Coloque as batatas aos poucos e mexa.Coloque o leite e mexa. Sal a gosto." ,
-   "userId": "8aaa4695-c019-4a21-baec-1b7c5d804cd1"
+   "title": "brigadeiro", 
+   "description": "Com o brigadeiro frio, passe manteiga, água ou óleo de coco nas mão e com uma colher pequena pegue porções do doce e enrole rapidamente, e então passe pelo granulado." 
 }
+
+###
+
+GET http://localhost:3003/recipe/6683df1f-443b-42f6-9cb1-92af389ed329
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhYWE0Njk1LWMwMTktNGEyMS1iYWVjLTFiN2M1ZDgwNGNkMSIsImlhdCI6MTYyMzM0ODM4MSwiZXhwIjoxNjIzMzkxNTgxfQ.5At0AkRN0jcYXrVqvdOQHjhO7hnv7FqY3i_XqZYy_d4
