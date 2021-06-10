@@ -16,3 +16,20 @@ Content-Type: application/json
   "email": "keldev9@gmail.com",
   "password": "123456"
 }
+
+### 
+
+GET http://localhost:3003/profile
+Content-Type: application/json
+Authorization: 
+
+###
+
+POST http://localhost:3003/create/recipe
+Content-Type: application/json
+
+{
+   "title": "Purê de batata", 
+   "description": "erva as batatas com casca até que um garfo entre facilmente dentro dela. Escorra toda água. Retire a casca das batatas. Amasse todas as batatas com garfo em outro recipiente depois reserve.Coloque na panela em fogo baixo 1 colher de margarina. Coloque as batatas aos poucos e mexa.Coloque o leite e mexa. Sal a gosto." ,
+   "userId": "8aaa4695-c019-4a21-baec-1b7c5d804cd1"
+}

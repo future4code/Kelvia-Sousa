@@ -16,7 +16,7 @@ export default async function registerUser(
     if(!name ||  !email || !password) {
       res.statusCode = 422
       throw new Error("Error, please check that you have filled in all the fields.");
-      
+
     }
 
    if (password.length < 6) {
@@ -28,7 +28,7 @@ export default async function registerUser(
 
    if (User) {
     res.statusCode = 409
-    throw new Error('Email já cadastrado')
+    throw new Error('The email informed is already registered')
    }
 
     const id: string = generateId();

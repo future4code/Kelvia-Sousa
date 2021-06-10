@@ -4,3 +4,12 @@ export type User = {
   email: string
   password: string
 }
+
+
+export type Recipe = {
+  id: string
+  title: string
+  description: string
+  creationDate: Date
+  user_id: string
+}
