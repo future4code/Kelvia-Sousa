@@ -2,9 +2,9 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-   "name": "Kelvia", 
-   "email": "keldev9@gmail.com" ,
-   "password": "123456"
+   "name": "Eduardo", 
+   "email": "eduardo@gmail.com" ,
+   "password": "ilikebatman"
 }
 
 ### 
@@ -13,8 +13,8 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-  "email": "keldev9@gmail.com",
-  "password": "123456"
+  "email": "eduardo@gmail.com" ,
+   "password": "ilikebatman"
 }
 
 ### 
@@ -35,5 +35,5 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhYWE0Njk1LWMwMTkt
 
 ###
 
-GET http://localhost:3003/recipe/6683df1f-443b-42f6-9cb1-92af389ed329
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhYWE0Njk1LWMwMTktNGEyMS1iYWVjLTFiN2M1ZDgwNGNkMSIsImlhdCI6MTYyMzM0ODM4MSwiZXhwIjoxNjIzMzkxNTgxfQ.5At0AkRN0jcYXrVqvdOQHjhO7hnv7FqY3i_XqZYy_d4
+GET http://localhost:3003/recipe/8aaa4695-c019-4a21-baec-1b7c5d804cd1
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZTRkZThlLWMxOTQtNDIyYi1iMzUyLWE1Mzg4YmY3N2UwNCIsImlhdCI6MTYyMzM1MzEyNywiZXhwIjoxNjIzMzk2MzI3fQ.GopF7tQWC0wB_xugryEOZBTJR2m2SQGEF_xFvtrt6a4

@@ -9,6 +9,8 @@ import registerUser from "./endpoints/register";
 app.post('/user/signup', registerUser);
 app.post('/user/login', login);
 app.get('/user/profile', getProfile)
+app.get('/user/:id', getProfile)
+
 
 app.post("/create/recipe", createRecipes)
 app.get("/recipe/:id", getRecipe)
