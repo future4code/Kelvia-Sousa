@@ -4,6 +4,7 @@ import followers from "./endpoints/followers";
 import getRecipeFeed from "./endpoints/getRecipeFeed";
 import getRecipe from "./endpoints/getRecipes";
 import login from "./endpoints/login";
+import getOthersProfile from "./endpoints/othersProfile";
 import getProfile from "./endpoints/profile";
 import registerUser from "./endpoints/register";
 import unfollow from "./endpoints/unfollow ";
@@ -15,7 +16,7 @@ app.get('/user/profile', getProfile)
 app.get('/user/feed', getRecipeFeed)
 app.post('/user/follow',followers)
 app.post('/user/unfollow',unfollow)
-app.get('/users/:id', getProfile)
+app.get('/users/:id', getOthersProfile)
 
 
 app.post("/create/recipe", createRecipes)

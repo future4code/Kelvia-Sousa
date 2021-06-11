@@ -13,7 +13,7 @@ export default async function getOthersProfile(  req: Request, res: Response): P
       .select("id", "name", "email")
      .where("id", id) 
     
-      res.status(200).send({result});
+      res.status(200).send(result);
 
     } catch (err) {
       res.status(400).send({ message: err.message });
