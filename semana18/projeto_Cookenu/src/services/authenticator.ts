@@ -1,10 +1,12 @@
 import * as jwt from "jsonwebtoken";
 import { config } from "dotenv"
+import { USER_ROLES } from "../types";
 
 config()
 
 export type authenticationData = {
    id: string
+   role: USER_ROLES
 };
 
 export function generateToken(payload: authenticationData): string {

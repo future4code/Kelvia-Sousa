@@ -3,7 +3,7 @@ import connection from "../connection";
 import { generateToken } from "../services/authenticator";
 import { createHash } from "../services/hashManager";
 import { generateId } from "../services/idGenerator";
-import {User} from "../types"
+import {User, USER_ROLES} from "../types"
 
 export default async function registerUser(
   req: Request,
@@ -11,13 +11,16 @@ export default async function registerUser(
 ): Promise<void> {
 
   try {
-    const { name, email, password} = req.body
+    const { name, email, password, role} = req.body
 
-    if(!name ||  !email || !password) {
+    if(!name ||  !email || !password || !role) {
       res.statusCode = 422
       throw new Error("Error, please check that you have filled in all the fields.");
-
     }
+
+    if(!(role in USER_ROLES)){
+      throw new Error("'role' must be 'NORMAL' or 'ADMIN'")
+   }
 
    if (password.length < 6) {
      throw new Error("Password must contain at least 6 characters.");
@@ -38,11 +41,13 @@ export default async function registerUser(
       name,
       email,
       password: createHash(password),
+      role
    }
    await connection("cookenuUser").insert(newUser);
 
   const token: string = generateToken({
     id,
+    role,
  });
    
    res.status(201).send({ "access_token": token });

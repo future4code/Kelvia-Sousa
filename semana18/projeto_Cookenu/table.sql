@@ -13,3 +13,13 @@ create table cookenuRecipe (
 	user_id VARCHAR(64),
     FOREIGN KEY (user_id) REFERENCES cookenuUser(id)
 )
+
+CREATE TABLE cookenuFollowers (
+	following VARCHAR(255) NOT NULL,
+    followed VARCHAR(255) NOT NULL,
+    FOREIGN KEY (following) REFERENCES cookenuUser(id),
+    FOREIGN KEY (followed) REFERENCES cookenuUser(id),
+	CONSTRAINT PK_follow  PRIMARY KEY (following, followed)
+) 
+
+ALTER TABLE cookenuUser ADD role VARCHAR (255) NOT NULL Default "NORMAL"

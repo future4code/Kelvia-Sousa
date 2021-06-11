@@ -2,9 +2,10 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-   "name": "Eduardo", 
-   "email": "eduardo@gmail.com" ,
-   "password": "ilikebatman"
+   "name": "", 
+   "email": "" ,
+   "password": "",
+   "role": ""
 }
 
 ### 
@@ -13,8 +14,8 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-  "email": "eduardo@gmail.com" ,
-   "password": "ilikebatman"
+  "email": "Edite@gmail.com" ,
+   "password": "654321"
 }
 
 ### 

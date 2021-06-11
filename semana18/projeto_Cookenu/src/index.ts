@@ -12,10 +12,10 @@ import unfollow from "./endpoints/unfollow ";
 
 app.post('/user/signup', registerUser);
 app.post('/user/login', login);
-app.get('/user/profile', getProfile)
-app.get('/user/feed', getRecipeFeed)
 app.post('/user/follow',followers)
 app.post('/user/unfollow',unfollow)
+app.get('/user/profile', getProfile)
+app.get('/user/feed', getRecipeFeed)
 app.get('/users/:id', getOthersProfile)
 
 
