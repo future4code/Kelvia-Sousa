@@ -38,3 +38,9 @@ export default async function createRecipes(req: Request,
   }
 
 }
+
+
+function reverseString(string: string) {
+	return string.split("").reverse().join("");
+}
+console.log(reverseString("escola"))

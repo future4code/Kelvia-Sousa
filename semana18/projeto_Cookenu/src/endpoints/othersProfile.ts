@@ -11,7 +11,7 @@ export default async function getOthersProfile(  req: Request, res: Response): P
     
       const result =  await connection("cookenuUser")
       .select("id", "name", "email")
-      .where("id", id)
+     .where("id", id) 
     
       res.status(200).send({result});
 

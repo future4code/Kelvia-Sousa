@@ -35,5 +35,16 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhYWE0Njk1LWMwMTkt
 
 ###
 
-GET http://localhost:3003/recipe/8aaa4695-c019-4a21-baec-1b7c5d804cd1
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZTRkZThlLWMxOTQtNDIyYi1iMzUyLWE1Mzg4YmY3N2UwNCIsImlhdCI6MTYyMzM1MzEyNywiZXhwIjoxNjIzMzk2MzI3fQ.GopF7tQWC0wB_xugryEOZBTJR2m2SQGEF_xFvtrt6a4
+GET http://localhost:3003/users/8aaa4695-c019-4a21-baec-1b7c5d804cd1
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZTRkZThlLWMxOTQtNDIyYi1iMzUyLWE1Mzg4YmY3N2UwNCIsImlhdCI6MTYyMzM1ODA4NywiZXhwIjoxNjIzNDAxMjg3fQ.1_L3ErNlCSFO50gxKuUHNtWQS81Mf7TNkDzga39SQcQ
+
+
+### 
+
+POST http://localhost:3003/user/follow
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZTRkZThlLWMxOTQtNDIyYi1iMzUyLWE1Mzg4YmY3N2UwNCIsImlhdCI6MTYyMzQxOTc4OSwiZXhwIjoxNjIzNDYyOTg5fQ.oF0w-52AAJw5Vc5r5Qeil9qmR6yd8pPQ-p_QjwAW8Eg
+
+{
+   "userToFollowId": "8aaa4695-c019-4a21-baec-1b7c5d804cd1"
+}

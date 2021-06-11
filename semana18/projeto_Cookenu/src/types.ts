@@ -13,3 +13,8 @@ export type Recipe = {
   creationDate: Date
   user_id: string
 }
+
+export type Follow = {
+  following: string, 
+  followed: string
+}
