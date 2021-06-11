@@ -1,0 +1,14 @@
+### 
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "name": "Edite", 
+   "nickname": "Dite", 
+   "email": "edite@gmail.com" ,
+   "password": "ilovepeter",
+   "role": "NORMAL",
+   "PostalCode": 53210210,
+   "number": 115
+}
