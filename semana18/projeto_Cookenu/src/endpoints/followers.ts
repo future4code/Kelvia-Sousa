@@ -18,6 +18,16 @@ export default async function followers(req: Request,
     if(!userToFollowId ){
       throw new Error("type the userToFollowId.");
     }
+
+    const [user] = await connection('cookenuFollowers')
+         .where({ followed: userToFollowId })
+
+      if (!user) {
+         res.statusCode = 409
+         throw new Error('Invalid Id')
+      }
+
+
     const follow: Follow= {
       following,
       followed: userToFollowId
