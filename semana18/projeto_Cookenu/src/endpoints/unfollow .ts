@@ -4,23 +4,23 @@ import { getTokenData } from "../services/authenticator";
 import { Follow } from "../types";
 
 
-export default async function followers(req: Request,
+export default async function unfollow(req: Request,
   res: Response
 ): Promise<void> {
   try {
     const token = req.headers.authorization as string;
     const authenticationData  = getTokenData(token); 
       
-    const {userToFollowId} = req.body
+    const {userToUnfollowId} = req.body
 
     const following = authenticationData.id
 
-    if(!userToFollowId ){
-      throw new Error("type the userToFollowId.");
+    if(!userToUnfollowId ){
+      throw new Error("type the userToUnfollowId.");
     }
 
     const [user] = await connection('cookenuFollowers')
-         .where({ followed: userToFollowId })
+         .where({ followed: userToUnfollowId })
 
       if (!user) {
          res.statusCode = 409
@@ -28,16 +28,18 @@ export default async function followers(req: Request,
       }
 
 
-    const follow: Follow= {
+    const unfollow: Follow= {
       following,
-      followed: userToFollowId
+      followed: userToUnfollowId,
     }
 
-    await connection("cookenuFollowers").insert(follow)
+    await connection("cookenuFollowers").delete(unfollow)
 
-    res.status(201).send({ message: "Followed successfully" });
+    res.status(201).send({ message: "Unfollowed successfully" });
   } catch (error) {
     res.status(400).send({ message: error.message })
   }
 
 }
+
+

@@ -20,18 +20,26 @@ Content-Type: application/json
 ### 
 
 GET http://localhost:3003/user/profile
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhYWE0Njk1LWMwMTktNGEyMS1iYWVjLTFiN2M1ZDgwNGNkMSIsImlhdCI6MTYyMzM0ODM4MSwiZXhwIjoxNjIzMzkxNTgxfQ.5At0AkRN0jcYXrVqvdOQHjhO7hnv7FqY3i_XqZYy_d4
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZTRkZThlLWMxOTQtNDIyYi1iMzUyLWE1Mzg4YmY3N2UwNCIsImlhdCI6MTYyMzQyNTM4NiwiZXhwIjoxNjIzNDY4NTg2fQ.q4a1BDHwwEbnTNGN0EclR9VF4zseTpOOn5LK4UBgb7Y
+### 
+
+GET http://localhost:3003/user/feed
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZTRkZThlLWMxOTQtNDIyYi1iMzUyLWE1Mzg4YmY3N2UwNCIsImlhdCI6MTYyMzQyNTM4NiwiZXhwIjoxNjIzNDY4NTg2fQ.q4a1BDHwwEbnTNGN0EclR9VF4zseTpOOn5LK4UBgb7Y
 
 ###
 
 POST http://localhost:3003/create/recipe
 Content-Type: application/json
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhYWE0Njk1LWMwMTktNGEyMS1iYWVjLTFiN2M1ZDgwNGNkMSIsImlhdCI6MTYyMzM0ODM4MSwiZXhwIjoxNjIzMzkxNTgxfQ.5At0AkRN0jcYXrVqvdOQHjhO7hnv7FqY3i_XqZYy_d4
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZTRkZThlLWMxOTQtNDIyYi1iMzUyLWE1Mzg4YmY3N2UwNCIsImlhdCI6MTYyMzQyNTM4NiwiZXhwIjoxNjIzNDY4NTg2fQ.q4a1BDHwwEbnTNGN0EclR9VF4zseTpOOn5LK4UBgb7Y
 
 {
-   "title": "brigadeiro", 
-   "description": "Com o brigadeiro frio, passe manteiga, água ou óleo de coco nas mão e com uma colher pequena pegue porções do doce e enrole rapidamente, e então passe pelo granulado." 
+   "title": "coxinha", 
+   "description": "Modo de Preparo Leve ao fogo o leite, a margarina e o caldo. Deixe ferver. Despeje de uma só vez o trigo e mexa bem. Depois retire da panela e coloque sobre a mesa. Sove um pouco e comece a modelar." 
 }
+
+###
+GET http://localhost:3003/recipe/99d514dc-ccac-4df5-8656-33f37f1c749b
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZTRkZThlLWMxOTQtNDIyYi1iMzUyLWE1Mzg4YmY3N2UwNCIsImlhdCI6MTYyMzQxOTc4OSwiZXhwIjoxNjIzNDYyOTg5fQ.oF0w-52AAJw5Vc5r5Qeil9qmR6yd8pPQ-p_QjwAW8Eg
 
 ###
 
@@ -47,4 +55,13 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZTRkZThlLWMxOTQt
 
 {
    "userToFollowId": "8aaa4695-c019-4a21-baec-1b7c5d804cd1"
+}
+
+###
+POST http://localhost:3003/user/unfollow
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZTRkZThlLWMxOTQtNDIyYi1iMzUyLWE1Mzg4YmY3N2UwNCIsImlhdCI6MTYyMzQxOTc4OSwiZXhwIjoxNjIzNDYyOTg5fQ.oF0w-52AAJw5Vc5r5Qeil9qmR6yd8pPQ-p_QjwAW8Eg
+
+{
+   "userToUnfollowId": "8aaa4695-c019-4a21-baec-1b7c5d804cd1"
 }

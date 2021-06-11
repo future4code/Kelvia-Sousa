@@ -9,11 +9,11 @@ export default async function getRecipe(  req: Request, res: Response): Promise<
 
      const {id} = req.params 
     
-      const result =  await connection("cookenuRecipe")
-      .select("id", "title", "description","creationDate" )
-      .where("id", id)
+      const result =  await connection.raw(`
+      SELECT id,title, description, DATE_FORMAT(creationDate, '%d/%m/%Y') as creationDate FROM cookenuRecipe where id = '${id}'
+      `)
     
-      res.status(200).send({result });
+      res.status(200).send({result: result[0]});
 
     } catch (err) {
       res.status(400).send({ message: err.message });
