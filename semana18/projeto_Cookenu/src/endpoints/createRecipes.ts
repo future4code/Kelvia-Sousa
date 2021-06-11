@@ -4,19 +4,19 @@ import { getTokenData } from "../services/authenticator";
 import { generateId } from "../services/idGenerator";
 import { Recipe } from "../types";
 
-
-export default async function createRecipes(req: Request,
+export default async function createRecipes(
+  req: Request,
   res: Response
 ): Promise<void> {
   try {
     const token = req.headers.authorization as string;
-    const authenticationData  = getTokenData(token); 
-      
-    const {title, description} = req.body
+    const authenticationData = getTokenData(token);
 
-    const user_id = authenticationData.id
+    const { title, description } = req.body;
 
-    if(!title || !description || !user_id){
+    const user_id = authenticationData.id;
+
+    if (!title || !description || !user_id) {
       throw new Error("check that you have filled in all the fields.");
     }
 
@@ -27,20 +27,15 @@ export default async function createRecipes(req: Request,
       title,
       description,
       creationDate: new Date(),
-      user_id
-    }
+      user_id,
+    };
 
-    await connection("cookenuRecipe").insert(recipe)
+    await connection("cookenuRecipe").insert(recipe);
 
-    res.status(201).send({ title: recipe.title, description: recipe.description });
+    res
+      .status(201)
+      .send({ title: recipe.title, description: recipe.description });
   } catch (error) {
-    res.status(400).send({ message: error.message })
+    res.status(400).send({ message: error.message });
   }
-
 }
-
-
-function reverseString(string: string) {
-	return string.split("").reverse().join("");
-}
-console.log(reverseString("escola"))

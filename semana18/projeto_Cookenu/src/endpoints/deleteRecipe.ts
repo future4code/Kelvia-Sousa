@@ -3,11 +3,12 @@ import connection from "../connection";
 import { getTokenData } from "../services/authenticator";
 import { USER_ROLES } from "../types";
 
-export default async function editeRecipe(
+export default async function deleteRecipe(
   req: Request,
   res: Response
 ): Promise<void> {
   try {
+    const id = req.params;
     const token = req.headers.authorization as string;
     const authenticationData = getTokenData(token);
 
@@ -17,19 +18,11 @@ export default async function editeRecipe(
       );
     }
 
-    const { title, description, recipeId } = req.body;
+    const result = await connection.raw(
+      `DELETE FROM cookenuRecipe WHERE id = '${id}' `
+    );
 
-    // Como impedir que edite receita de outra pessoa?
-    /* 
-    if (!(recipeId in )) {
-      throw new Error("This recipe belongs to another user");
-    }  */
-
-    await connection("cookenuRecipe")
-      .update({ title, description })
-      .where({ id: recipeId });
-
-    res.send({ message: "Recipe has changed" });
+    res.send({ message: "Success" });
   } catch (error) {
     res.status(400).send({ message: error.message });
   }

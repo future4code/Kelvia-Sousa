@@ -14,8 +14,8 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-  "email": "Edite@gmail.com" ,
-   "password": "654321"
+  "email": "keldev9@gmail.com" ,
+   "password": "123456"
 }
 
 ### 
@@ -66,3 +66,20 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQxZTRkZThlLWMxOTQt
 {
    "userToUnfollowId": "8aaa4695-c019-4a21-baec-1b7c5d804cd1"
 }
+
+### 
+
+PUT http://localhost:3003/edit/recipe
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhYWE0Njk1LWMwMTktNGEyMS1iYWVjLTFiN2M1ZDgwNGNkMSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2MjM0MzY5OTUsImV4cCI6MTYyMzQ4MDE5NX0.pJjq5UPBsUAKEOcQi1_Ctep9Rj9M4EloUzD61NA_uJQ
+
+{
+   "title": "Bolo simples", 
+   "description": "Esse bolo simples é uma daquelas receitas básicas e deliciosas: ele pode ser incrementado com calda de chocolate, recheio de brigadeiro, doce de leite e outras delícias.", 
+   "recipeId": "99d514dc-ccac-4df5-8656-33f37f1c749b"
+}
+
+### 
+
+DELETE http://localhost:3003/delete/recipe/99d514dc-ccac-4df5-8656-33f37f1c749b
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjhhYWE0Njk1LWMwMTktNGEyMS1iYWVjLTFiN2M1ZDgwNGNkMSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2MjM0MzY5OTUsImV4cCI6MTYyMzQ4MDE5NX0.pJjq5UPBsUAKEOcQi1_Ctep9Rj9M4EloUzD61NA_uJQ
