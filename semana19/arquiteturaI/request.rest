@@ -4,8 +4,18 @@ POST http://localhost:3003/signup
 Content-Type: application/json
 
 {
-	"name": "Chico",
-	"email": "chico@gmail.com",
-	"password": "theboss",
+	"name": "Bruno",
+	"email": "bruninho@gmail.com",
+	"password": "algumacoisa",
 	"role": "NORMAL"
+}
+### 
+
+POST http://localhost:3003/login
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2NjEzNWI5LTJiNjAtNDg0ZS04YzMxLTYxNjQ5M2FlN2QyNSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2MjM2OTY0NTIsImV4cCI6MTYyMzY5Nzg5Mn0.UuTiJ4PdQwT_iEGrzZRDF39PMwy95bcfFBQykPLOi0A
+
+{
+		"email": "bruninho@gmail.com",
+	"password": "algumacoisa"
 }
