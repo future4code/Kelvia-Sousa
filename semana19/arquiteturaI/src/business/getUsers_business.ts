@@ -2,7 +2,7 @@ import {getUsersData} from "../data/getUsersData"
 import { getTokenData } from "../services/authenticator";
 
 export const getUsersBusiness = async ( token: string) => {
-  
+
   if (!token){
     throw new Error('Unauthorized');
   }
@@ -13,4 +13,4 @@ export const getUsersBusiness = async ( token: string) => {
 
   return(users)
 
-}
+} 
