@@ -1,0 +1,10 @@
+### 
+
+POST  http://localhost:3003/users/register
+Content-Type: application/json
+
+{
+  "name": "Kelvia Santos",
+  "email": "kel_via@gmail.com",
+  "password": "nadaparanada"
+}
