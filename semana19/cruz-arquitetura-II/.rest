@@ -1,0 +1,27 @@
+###
+
+POST  http://localhost:3003/users/signup 
+Content-Type: application/json
+
+{
+  "name": "José Luiz",
+  "nickname": "Zé",
+  "email": "zeluz@gmail.com",
+  "password": "venhaparaaluz",
+  "role": "ADMIN"
+}
+
+###
+PUT   http://localhost:3003/tasks/
+Content-Type: application/json
+
+{
+  "title": "Comprar kit-festa",
+  "description": "Niver",
+  "deadline": "18-06-21",
+  "status": "TO_DO",
+  "auhor_id": "78ccc9be-db7a-47e2-ac53-7ffc8a5a67a9"
+}
+
+### 
+GET  http://localhost:3003/tasks/1
