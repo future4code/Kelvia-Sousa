@@ -1,0 +1,33 @@
+###
+
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+	"name": "kelvia",
+	"email": "kel@gmail.com",
+	"password": "outracoisa",
+	"role": "ADMIN"
+}
+### 
+
+POST http://localhost:3003/login
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2NjEzNWI5LTJiNjAtNDg0ZS04YzMxLTYxNjQ5M2FlN2QyNSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2MjM2OTY0NTIsImV4cCI6MTYyMzY5Nzg5Mn0.UuTiJ4PdQwT_iEGrzZRDF39PMwy95bcfFBQykPLOi0A
+
+{
+		"email": "bruninho@gmail.com",
+	"password": "algumacoisa"
+}
+
+###
+GET http://localhost:3003/all
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2NjEzNWI5LTJiNjAtNDg0ZS04YzMxLTYxNjQ5M2FlN2QyNSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2MjM3MDAzMTMsImV4cCI6MTYyMzcwMTc1M30.-k_DUQjEFoIj9hFg9Ls7OM89mLWxh8v4Cj8760AsSyA
+
+###
+
+DELETE http://localhost:3003/966135b9-2b60-484e-8c31-616493ae7d25
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2NjEzNWI5LTJiNjAtNDg0ZS04YzMxLTYxNjQ5M2FlN2QyNSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2MjM3MDAzMTMsImV4cCI6MTYyMzcwMTc1M30.-k_DUQjEFoIj9hFg9Ls7OM89mLWxh8v4Cj8760AsSyA
+
