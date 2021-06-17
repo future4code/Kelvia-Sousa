@@ -4,7 +4,29 @@ POST  http://localhost:3003/users/register
 Content-Type: application/json
 
 {
-  "name": "Kelvia Santos",
+  "name": "Luiz Santos",
+  "email": "sluiz@gmail.com",
+  "password": "senhacerta"
+}
+
+### 
+
+POST  http://localhost:3003/users/login
+Content-Type: application/json
+
+{
   "email": "kel_via@gmail.com",
   "password": "nadaparanada"
+}
+
+### 
+
+POST  http://localhost:3003/posts/create
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlZTY4OTliLTc5MmUtNGZjNi1hYzA5LWE2NDZkN2Y3OTE1OCIsImlhdCI6MTYyMzk1NDg4NywiZXhwIjoxNjIzOTU2Njg3fQ.asmOiqTMT1usTvsRY5sXVc_HlEDa2CiIlUkjTCDjVVE
+
+{
+  "photo": "https://i.picsum.photos/id/1026/4621/3070.jpg?hmac=OJ880cIneqAKIwHbYgkRZxQcuMgFZ4IZKJasZ5c5Wcw",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non accumsan eros, et varius metus. Donec dictum vestibulum ex, ut elementum est auctor nec. In hac habitasse platea dictumst.",
+  "type": "normal"
 }
