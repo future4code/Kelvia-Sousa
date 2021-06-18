@@ -1,6 +1,5 @@
 import { insertPost } from "../data/insertPost";
 import { postDTO, postIdDTO } from "../model/postTypes";
-import { getTokenData } from "../services/authenticator";
 import { generateId } from "../services/idGenerator";
 import { CustomError } from "./Errors/CustomErros";
 

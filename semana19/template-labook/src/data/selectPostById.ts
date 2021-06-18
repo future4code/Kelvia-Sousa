@@ -1,16 +1,21 @@
-import { Request, Response } from "express";
 import { postIdDTO } from "../model/postTypes";
 import { connection } from "./connection";
 
 export const selectPostById = async (
-  req: Request, res: Response
+  id: string
 ): Promise<postIdDTO> => {
  try {
-  const result = await connection.raw(`
-  SELECT post.photo, post.description, DATE_FORMAT(post.created_at, '%d/%m/%Y') as creationDate, user.name FROM labook_posts post INNER JOIN labook_users user ON post.author_id = user.id`) 
+const result = await connection("labook_posts").select("*").where({id})
 
-  return result
+  return  {
+    id: result[0].id,
+    photo: result[0].photo,
+    description: result[0].description,
+    type: result[0].type,
+    created_at: result[0].created_at,
+    author_id: result[0].author_id,
+  } 
  } catch (error) {
-  throw new Error(error.slqMessage || error.message)
+  throw new Error(error.message)
  }
 }

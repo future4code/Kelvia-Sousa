@@ -30,3 +30,8 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlZTY4OTliLTc5MmUt
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non accumsan eros, et varius metus. Donec dictum vestibulum ex, ut elementum est auctor nec. In hac habitasse platea dictumst.",
   "type": "normal"
 }
+###
+
+GET  http://localhost:3003/posts/bd52ba9d-2ca6-41fb-923d-9989d43df0fa
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlZTY4OTliLTc5MmUtNGZjNi1hYzA5LWE2NDZkN2Y3OTE1OCIsImlhdCI6MTYyMzk3NjA5OSwiZXhwIjoxNjIzOTc3ODk5fQ.djo38eXHbYB25_O-DH_fcHhu71j8R_0jPcS4GbaEDYg
+
