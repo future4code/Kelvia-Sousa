@@ -4,6 +4,5 @@ import { register } from "../controller/register";
 
 export const userRouter = Router();
 
-userRouter.post('/register', register)
-userRouter.post('/login', login)
-
+userRouter.post("/register", register);
+userRouter.post("/login", login);

@@ -5,15 +5,17 @@ export const selectUserByEmail = async (
   email: string
 ): Promise<RegisterUserIdDTO> => {
   try {
-    const result = await connection("labook_users").select("*").where({ email })
+    const result = await connection("labook_users")
+      .select("*")
+      .where({ email });
 
-    return { 
+    return {
       id: result[0].id,
       name: result[0].name,
       email: result[0].email,
-      password: result[0].password
-    }
+      password: result[0].password,
+    };
   } catch (error) {
-    throw new Error(error.slqMessage || error.message)
+    throw new Error(error.slqMessage || error.message);
   }
-}
+};

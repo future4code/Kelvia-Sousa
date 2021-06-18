@@ -14,3 +14,11 @@ CREATE TABLE IF NOT EXISTS labook_posts(
     author_id VARCHAR(255),
     FOREIGN KEY (author_id) REFERENCES labook_users (id)
 );
+
+CREATE TABLE labook_friendship (
+	user VARCHAR(255) NOT NULL,
+    new_friend VARCHAR(255) NOT NULL,
+    FOREIGN KEY (user) references labook_users(id),
+    FOREIGN KEY (new_friend) references labook_users(id),
+    CONSTRAINT PK_friendship PRIMARY KEY (user, new_friend)
+);

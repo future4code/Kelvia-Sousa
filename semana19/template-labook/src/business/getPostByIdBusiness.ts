@@ -3,9 +3,9 @@ import { postDTO } from "../model/postTypes";
 import { CustomError } from "./Errors/CustomErros";
 
 export const getPostByIdBusiness = async (id: string, token: string) => {
- if (!token) {
+  if (!token) {
     throw new CustomError(404, "Unauthorized");
-  } 
+  }
   const result = await selectPostById(id);
 
   if (!result) {

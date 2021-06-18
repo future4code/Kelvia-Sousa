@@ -8,5 +8,4 @@ export type RegisterUserDTO = {
   password: string;
 };
 
-export type RegisterUserIdDTO = RegisterUserDTO & { id: string }
-
+export type RegisterUserIdDTO = RegisterUserDTO & { id: string };

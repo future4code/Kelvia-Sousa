@@ -5,25 +5,26 @@ import { hash } from "../services/hashManager";
 import { generateId } from "../services/idGenerator";
 import { CustomError } from "./Errors/CustomErros";
 
-export const registerBusiness = async ( registerInput: RegisterUserDTO): Promise<void> => {
+export const registerBusiness = async (
+  registerInput: RegisterUserDTO
+): Promise<void> => {
   if (!registerInput.name || !registerInput.email || !registerInput.password) {
-    throw new CustomError(402, "Preencha todos os campos.")
+    throw new CustomError(402, "Preencha todos os campos.");
   }
 
-  if(registerInput.password.length < 6){
-    throw new CustomError(404, "Senha deve ter no mínimo 6 caracteres")
+  if (registerInput.password.length < 6) {
+    throw new CustomError(404, "Senha deve ter no mínimo 6 caracteres");
   }
-  
+
   const cypherPassword = await hash(registerInput.password);
 
-  const newUser: RegisterUserIdDTO = { 
+  const newUser: RegisterUserIdDTO = {
     ...registerInput,
-    password: cypherPassword, 
-    id: generateId()
-  }
+    password: cypherPassword,
+    id: generateId(),
+  };
 
-  await insertNewUser(newUser)
+  await insertNewUser(newUser);
 
-  const token: string = generateToken({ id: newUser.id})
-
-}
+  const token: string = generateToken({ id: newUser.id });
+};
