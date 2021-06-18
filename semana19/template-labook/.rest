@@ -4,9 +4,9 @@ POST  http://localhost:3003/users/register
 Content-Type: application/json
 
 {
-  "name": "Luiz Santos",
-  "email": "sluiz@gmail.com",
-  "password": "senhacerta"
+  "name": "Eduardo Felipe",
+  "email": "Edupe@gmail.com",
+  "password": "senhaforte"
 }
 
 ### 
@@ -23,7 +23,7 @@ Content-Type: application/json
 
 POST  http://localhost:3003/posts/create
 Content-Type: application/json
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlZTY4OTliLTc5MmUtNGZjNi1hYzA5LWE2NDZkN2Y3OTE1OCIsImlhdCI6MTYyMzk1NDg4NywiZXhwIjoxNjIzOTU2Njg3fQ.asmOiqTMT1usTvsRY5sXVc_HlEDa2CiIlUkjTCDjVVE
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlZTY4OTliLTc5MmUtNGZjNi1hYzA5LWE2NDZkN2Y3OTE1OCIsImlhdCI6MTYyNDAzNjk3MywiZXhwIjoxNjI0MDM4NzczfQ.pvR9lcgMc1iV7jwLi3CsrKu5IpBS-qPgYfjB-ezVMeU
 
 {
   "photo": "https://i.picsum.photos/id/1026/4621/3070.jpg?hmac=OJ880cIneqAKIwHbYgkRZxQcuMgFZ4IZKJasZ5c5Wcw",
@@ -33,10 +33,14 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlZTY4OTliLTc5MmUt
 ###
 
 GET  http://localhost:3003/posts/bd52ba9d-2ca6-41fb-923d-9989d43df0fa
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlZTY4OTliLTc5MmUtNGZjNi1hYzA5LWE2NDZkN2Y3OTE1OCIsImlhdCI6MTYyMzk3NjA5OSwiZXhwIjoxNjIzOTc3ODk5fQ.djo38eXHbYB25_O-DH_fcHhu71j8R_0jPcS4GbaEDYg
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlZTY4OTliLTc5MmUtNGZjNi1hYzA5LWE2NDZkN2Y3OTE1OCIsImlhdCI6MTYyNDAzNjk3MywiZXhwIjoxNjI0MDM4NzczfQ.pvR9lcgMc1iV7jwLi3CsrKu5IpBS-qPgYfjB-ezVMeU
 
 ###
 
-POST  http://localhost:3003/friendship/ed9a98de-1992-4568-8f5d-424f3e9147f4
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlZTY4OTliLTc5MmUtNGZjNi1hYzA5LWE2NDZkN2Y3OTE1OCIsImlhdCI6MTYyNDAxNDY4OCwiZXhwIjoxNjI0MDE2NDg4fQ.zASRsYglr1SLHE7-ZVQhBlUReIop-7vj3o1jqZUuPL8
+POST  http://localhost:3003/friendship/6ee6899b-792e-4fc6-ac09-a646d7f79158
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlZTY4OTliLTc5MmUtNGZjNi1hYzA5LWE2NDZkN2Y3OTE1OCIsImlhdCI6MTYyNDAzNjk3MywiZXhwIjoxNjI0MDM4NzczfQ.pvR9lcgMc1iV7jwLi3CsrKu5IpBS-qPgYfjB-ezVMeU
 
+###
+
+POST http://localhost:3003/friendship/undo/10e18510-dfda-458c-80a8-12818e77885d
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlZTY4OTliLTc5MmUtNGZjNi1hYzA5LWE2NDZkN2Y3OTE1OCIsImlhdCI6MTYyNDAzNTE1MSwiZXhwIjoxNjI0MDM2OTUxfQ.gMYsHfpq9dxi04JuGg-FI3sqFsH_9W2MicW1invO1AU
