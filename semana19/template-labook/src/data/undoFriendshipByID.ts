@@ -1,4 +1,4 @@
-import { CustomError } from "../business/Errors/CustomErros";
+import { NotFoundError } from "../business/Errors/NotFoundError";
 import { connection } from "./connection";
 
 export const undoFriendshipById = async (new_friend: string): Promise<void> => {
@@ -8,7 +8,7 @@ export const undoFriendshipById = async (new_friend: string): Promise<void> => {
       .where({ new_friend });
 
     if (!result) {
-      throw new CustomError(404, "amizade não encontrado");
+      throw new NotFoundError();
     }
   } catch (error) {
     throw new Error(error.sqlMessage || error.message);

@@ -7,7 +7,6 @@ export const postingBusiness = async (
   postData: postDTO,
   token: string
 ): Promise<void> => {
-  console.log(postData);
   if (!token) {
     throw new CustomError(404, "Unauthorized");
   }
