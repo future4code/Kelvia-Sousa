@@ -15,7 +15,6 @@ export class UserDatabaseMock {
             return undefined
       }
    }
-
    public async getUserById(id: string): Promise<User | undefined> {
       switch (id) {
          case "id_mock_admin":
@@ -26,7 +25,6 @@ export class UserDatabaseMock {
             return undefined
       }
    }
-
    public async getAllUsers(): Promise<User[]> {
       return [
          userMockAdmin,
@@ -34,5 +32,4 @@ export class UserDatabaseMock {
       ]
    }
 }
-
 export default new UserDatabaseMock()

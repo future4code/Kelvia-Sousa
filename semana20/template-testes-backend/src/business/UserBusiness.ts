@@ -1,5 +1,5 @@
 import { CustomError } from "../errors/CustomError";
-import { User, stringToUserRole } from "../model/User";
+import { User, stringToUserRole, USER_ROLES } from "../model/User";
 import idGenerator, { IdGenerator } from "../services/idGenerator";
 import userDatabase, { UserDatabase }  from "../data/UserDatabase";
 import hashGenerator, { HashGenerator } from "../services/hashGenerator";
@@ -103,6 +103,21 @@ export class UserBusiness {
         role: user.getRole(),
       };
     }
+
+    public async getAllUsers(role: USER_ROLES) {
+      if (stringToUserRole(role) !== USER_ROLES.ADMIN) {
+         throw new CustomError(401, "You must be an admin to access this endpoint"
+        );
+      }
+      const users = await this.userDatabase.getAllUsers();
+  
+      return users.map((user) => ({
+        id: user.getId(),
+        name: user.getName(),
+        email: user.getEmail(),
+        role: user.getRole(),
+      }));
+   }
 
 }
 

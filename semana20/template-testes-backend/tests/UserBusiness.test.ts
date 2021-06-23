@@ -1,5 +1,6 @@
 import { UserBusiness } from "../src/business/UserBusiness";
 import { UserDatabase } from "../src/data/UserDatabase";
+import { USER_ROLES } from "../src/model/User";
 
 import hashGeneratorMock from "./mocks/hashGeneratorMock";
 import idGeneratorMock from "./mocks/idGeneratorMock";
@@ -161,6 +162,44 @@ describe("UserBusiness", () => {
         email: "astrodev@gmail.com",
         role: "ADMIN",
       })
+      } catch (error) {
+        console.log(error.message)
+      }
+    })
+  })
+
+  describe("getAllUsers", () =>{
+    test(" Error if user is not admin", async () =>{
+      expect.assertions(2)
+      try {
+        await userBusinessMock.getAllUsers(USER_ROLES.NORMAL)
+      } catch (error) {
+        expect(error.statusCode).toBe(401)
+        expect(error.message).toBe("You must be an admin to access this endpoint")
+      }
+    })
+
+    test("return users when authorized", async () =>{
+      try {
+        const getAllUsers = jest.fn(
+          (role: USER_ROLES) => userBusinessMock.getAllUsers(role)
+        )
+
+        const result = await getAllUsers(USER_ROLES.ADMIN)
+
+        expect(getAllUsers).toHaveBeenCalledWith(USER_ROLES.ADMIN)
+        expect(result).toContainEqual({
+          id: "id_mock_admin",
+          name: "astrodev",
+          email: "astrodev@gmail.com",
+          role: "ADMIN",
+        })
+        expect(result).toContainEqual({
+          id: "id_mock_normal",
+          name: "bananinha",
+          email: "bananinha@gmail.com",
+          role: "NORMAL",
+        })
       } catch (error) {
         console.log(error.message)
       }
