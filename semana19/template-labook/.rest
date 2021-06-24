@@ -1,0 +1,50 @@
+### 
+
+POST  http://localhost:3003/users/register
+Content-Type: application/json
+
+{
+  "name": "Eduardo Felipe",
+  "email": "Edupe@gmail.com",
+  "password": "senhaforte"
+}
+
+### 
+
+POST  http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+  "email": "sluiz@gmail.com",
+  "password": "senhacerta"
+}
+
+### 
+
+POST  http://localhost:3003/posts/create
+Content-Type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVkOWE5OGRlLTE5OTItNDU2OC04ZjVkLTQyNGYzZTkxNDdmNCIsImlhdCI6MTYyNDA0MjcxNywiZXhwIjoxNjI0MDQ0NTE3fQ.uyHQM9v0-Itz8_OLMGEQizJtJPqn5ukDoTlwTp2UyfQ
+
+{
+  "photo": "https://i.picsum.photos/id/10/2500/1667.jpg?hmac=J04WWC_ebchx3WwzbM-Z4_KC_LeLBWr5LZMaAkWkF68",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In non accumsan eros, et varius metus. Donec dictum vestibulum ex, ut elementum est auctor nec. In hac habitasse platea dictumst.",
+  "type": "event"
+}
+###
+
+GET  http://localhost:3003/posts/bd52ba9d-2ca6-41fb-923d-9989d43df0fa
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlZTY4OTliLTc5MmUtNGZjNi1hYzA5LWE2NDZkN2Y3OTE1OCIsImlhdCI6MTYyNDAzNjk3MywiZXhwIjoxNjI0MDM4NzczfQ.pvR9lcgMc1iV7jwLi3CsrKu5IpBS-qPgYfjB-ezVMeU
+
+###
+
+POST  http://localhost:3003/friendship/6ee6899b-792e-4fc6-ac09-a646d7f79158
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlZTY4OTliLTc5MmUtNGZjNi1hYzA5LWE2NDZkN2Y3OTE1OCIsImlhdCI6MTYyNDAzNjk3MywiZXhwIjoxNjI0MDM4NzczfQ.pvR9lcgMc1iV7jwLi3CsrKu5IpBS-qPgYfjB-ezVMeU
+
+###
+
+POST http://localhost:3003/friendship/undo/10e18510-dfda-458c-80a8-12818e77885d
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZlZTY4OTliLTc5MmUtNGZjNi1hYzA5LWE2NDZkN2Y3OTE1OCIsImlhdCI6MTYyNDAzNTE1MSwiZXhwIjoxNjI0MDM2OTUxfQ.gMYsHfpq9dxi04JuGg-FI3sqFsH_9W2MicW1invO1AU
+###
+
+GET http://localhost:3003/posts/feed
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVkOWE5OGRlLTE5OTItNDU2OC04ZjVkLTQyNGYzZTkxNDdmNCIsImlhdCI6MTYyNDA5OTYxOSwiZXhwIjoxNjI0MTAxNDE5fQ.wANagCrnR6ffTfYP4nl8dMeL5ag2u7W5-tCds22i4Ew
